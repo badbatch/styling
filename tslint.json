@@ -1,0 +1,4 @@
+{
+  "extends": "@repodog/tslint-config",
+  "rules": {}
+}

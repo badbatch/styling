@@ -1,0 +1,3 @@
+{
+  "extends": "@repodog/ts-config/tsconfig.root.json"
+}
