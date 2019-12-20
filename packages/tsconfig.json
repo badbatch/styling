@@ -3,10 +3,10 @@
   "files": [],
   "references": [
     {
-      "path": "./constants"
+      "path": "./babel-plugin-transform-styling"
     },
     {
-      "path": "./transformer"
+      "path": "./constants"
     },
     {
       "path": "./types"

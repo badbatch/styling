@@ -1,11 +1,12 @@
 {
-  "name": "@styling/transformer",
+  "name": "@styling/babel-plugin-transform-styling",
   "version": "0.0.1",
-  "description": "The Styling transformer module.",
+  "description": "The Styling babel-plugin-transform-styling module.",
   "keywords": [
+    "babel",
+    "plugin",
     "css-in-js",
     "react",
-    "styled components",
     "stylesheet",
     "styling"
   ],
@@ -34,8 +35,7 @@
   "dependencies": {
     "@babel/template": "^7.7.4",
     "@babel/traverse": "^7.7.4",
-    "@babel/types": "^7.7.4",
-    "glob": "^7.1.6"
+    "@babel/types": "^7.7.4"
   },
   "peerDependencies": {
     "@babel/runtime": "^7.0.0",
