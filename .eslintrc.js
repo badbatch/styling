@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ['@repodog/eslint-config']
+  extends: ['@repodog/eslint-config'],
 };

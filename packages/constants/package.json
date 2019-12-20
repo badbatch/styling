@@ -1,9 +1,14 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "Dylan Aubrey <dylanaubrey@gmail.com>",
-  "license": "MIT",
+  "name": "@styling/constants",
+  "version": "0.0.1",
+  "description": "The Styling constants module.",
+  "keywords": [
+    "css-in-js",
+    "react",
+    "styled components",
+    "stylesheet",
+    "styling"
+  ],
   "homepage": "https://github.com/dylanaubrey/styling",
   "bugs": {
     "url": "https://github.com/dylanaubrey/styling/issues"
@@ -12,20 +17,12 @@
     "type": "git",
     "url": "https://github.com/dylanaubrey/styling"
   },
-  "publishConfig": {
-    "access": "public"
-  },
+  "license": "MIT",
+  "author": "Dylan Aubrey <dylanaubrey@gmail.com>",
   "main": "lib/main/index.js",
   "module": "lib/module/index.js",
   "browser": "lib/browser/index.js",
   "types": "lib/types/index.d.ts",
-  "keywords": [
-    "css-in-js",
-    "react",
-    "styled components",
-    "stylesheet",
-    "styling"
-  ],
   "scripts": {
     "compile": "concurrently npm:compile:*",
     "compile-watch": "concurrently npm:compile-watch:*",
@@ -36,11 +33,14 @@
     "compile:module": "cross-env BABEL_ENV=module babel ./src --out-dir ./lib/module --extensions \".ts\" --source-maps --config-file ../../babel.config.js",
     "compile:types": "tsc --build"
   },
+  "dependencies": {},
+  "devDependencies": {},
   "peerDependencies": {
     "@babel/runtime": "^7.0.0",
-    "@styling/constants": "> 1.0",
-    "@styling/types": "> 1.0",
     "core-js": "> 4.0",
     "lodash": "^4.17.5"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

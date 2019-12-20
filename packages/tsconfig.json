@@ -1,5 +1,15 @@
 {
   "extends": "./tsconfig.settings.json",
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./constants"
+    },
+    {
+      "path": "./transformer"
+    },
+    {
+      "path": "./types"
+    }
+  ]
 }
