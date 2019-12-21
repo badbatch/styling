@@ -1,18 +1,35 @@
+import template from "@babel/template";
+import { ImportDeclaration, Statement, identifier, stringLiteral } from "@babel/types";
 import {
   COMPONENT_EXPORT,
-  EXPORT_NAME_PLACEHOLDER,
   FILE_COMMENT_AND_IMPORT,
+  IDENTIFIER,
   PROPS_TO_CLASSNAMES_MAP_PLACEHOLDER,
-  TAG_NAME_PLACEHOLDER,
 } from "../constants";
-import { StylingNamedExports } from "../types";
+import { ExportsArgsMap, StylingNamedExports } from "../types";
 
-export default function buildTransformedFile(namedExports: StylingNamedExports) {
-  return Object.keys(namedExports).reduce((file, name) => {
-    const { propsToClassNamesMap, tagName } = namedExports[name];
+export default function buildTransformedFile(
+  namedExports: StylingNamedExports,
+  importDeclarationsToInclude: ImportDeclaration[],
+  exportsArgsMap: ExportsArgsMap,
+) {
+  return Object.keys(namedExports).reduce(
+    (file, name) => {
+      const { propsToClassNamesMap } = namedExports[name];
+      const { type, value } = exportsArgsMap.get(name) as { type: string; value: string };
 
-    return `${file}${COMPONENT_EXPORT.replace(EXPORT_NAME_PLACEHOLDER, name)
-      .replace(TAG_NAME_PLACEHOLDER, tagName)
-      .replace(PROPS_TO_CLASSNAMES_MAP_PLACEHOLDER, JSON.stringify(propsToClassNamesMap))}`;
-  }, FILE_COMMENT_AND_IMPORT);
+      const buildRequire = template(
+        COMPONENT_EXPORT.replace(PROPS_TO_CLASSNAMES_MAP_PLACEHOLDER, JSON.stringify(propsToClassNamesMap)),
+      );
+
+      const ast = buildRequire({
+        COMPONENT: type === IDENTIFIER ? identifier(value) : stringLiteral(value),
+        EXPORT_NAME: identifier(name),
+      });
+
+      file.push(ast as Statement);
+      return file;
+    },
+    [template.ast(FILE_COMMENT_AND_IMPORT), ...importDeclarationsToInclude] as Statement[],
+  );
 }

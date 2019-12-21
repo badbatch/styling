@@ -1,6 +1,12 @@
 import { NodePath, Visitor } from "@babel/traverse";
 import { StringObject } from "@styling/types";
-import { ReactHTML, ReactSVG } from "react";
+
+export type ExportsArgsMap = Map<string, { type: string; value: string }>;
+
+export interface ExportsArgsResult {
+  identifiers: string[];
+  map: ExportsArgsMap;
+}
 
 export interface PluginState {
   cwd: string;
@@ -16,7 +22,6 @@ export interface PluginResult {
 
 export interface StylingNamedExport {
   propsToClassNamesMap: StringObject;
-  tagName: keyof ReactHTML | keyof ReactSVG;
 }
 
 export interface StylingNamedExports {

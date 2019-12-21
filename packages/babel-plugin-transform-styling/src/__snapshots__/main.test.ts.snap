@@ -1,15 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`transformStylingFiles >> SHOULD generate the correct output for the correct files 1`] = `
-"import { styled } from \\"@styling/core\\";
-export const Container = styled(\\"div\\", {
+"import { styling } from \\"@styling/core\\";
+import BlackText from \\"./text\\";
+import { BlueSubtext } from \\"./subtext\\";
+export const Container = styling(\\"div\\", {
   \\"checked\\": \\"test-component__container--checked\\",
   \\"checked::disabled\\": \\"test-component__container--checked--disabled\\",
   \\"disabled\\": \\"test-component__container--disabled\\"
 });
-export const Radio = styled(\\"input\\", {
+export const Radio = styling(\\"input\\", {
   \\"checked\\": \\"test-component__radio--checked\\",
   \\"checked::disabled\\": \\"test-component__radio--checked--disabled\\",
   \\"disabled\\": \\"test-component__radio--disabled\\"
+});
+export const Subtext = styling(BlueSubtext, {
+  \\"checked\\": \\"test-component__subtext--checked\\",
+  \\"checked::disabled\\": \\"test-component__subtext--checked--disabled\\",
+  \\"disabled\\": \\"test-component__subtext--disabled\\"
+});
+export const Text = styling(BlackText, {
+  \\"checked\\": \\"test-component__text--checked\\",
+  \\"checked::disabled\\": \\"test-component__text--checked--disabled\\",
+  \\"disabled\\": \\"test-component__text--disabled\\"
 });"
 `;

@@ -9,6 +9,9 @@
       "path": "./constants"
     },
     {
+      "path": "./core"
+    },
+    {
       "path": "./types"
     }
   ]

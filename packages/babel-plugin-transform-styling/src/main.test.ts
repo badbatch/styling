@@ -6,9 +6,38 @@ jest.mock("./helpers/load-styling-file");
 const loadStylingFile = require("./helpers/load-styling-file") as MockLoadStylingFile;
 
 describe("transformStylingFiles >>", () => {
-  const example = `
-    var foo = 1;
-    if (foo) console.log(foo);
+  const sourceFile = `
+    import { styled } from "@styling/core";
+    import BlackText from "./text";
+    import { BlueSubtext, RedSubtext } from "./subtext";
+
+    export const Container = styled(
+      "div",
+      ["checked", "disabled"],
+    )\`
+      display: block;
+    \`;
+
+    export const Radio = styled(
+      "input",
+      ["checked", "disabled"],
+    )\`
+      display: block;
+    \`;
+
+    export const Text = styled(
+      BlackText,
+      ["checked", "disabled"],
+    )\`
+      display: block;
+    \`;
+
+    export const Subtext = styled(
+      BlueSubtext,
+      ["checked", "disabled"],
+    )\`
+      display: block;
+    \`;
   `;
 
   beforeEach(() => {
@@ -19,7 +48,6 @@ describe("transformStylingFiles >>", () => {
           "checked::disabled": "test-component__container--checked--disabled",
           disabled: "test-component__container--disabled",
         },
-        tagName: "div",
       },
       Radio: {
         propsToClassNamesMap: {
@@ -27,13 +55,26 @@ describe("transformStylingFiles >>", () => {
           "checked::disabled": "test-component__radio--checked--disabled",
           disabled: "test-component__radio--disabled",
         },
-        tagName: "input",
+      },
+      Subtext: {
+        propsToClassNamesMap: {
+          checked: "test-component__subtext--checked",
+          "checked::disabled": "test-component__subtext--checked--disabled",
+          disabled: "test-component__subtext--disabled",
+        },
+      },
+      Text: {
+        propsToClassNamesMap: {
+          checked: "test-component__text--checked",
+          "checked::disabled": "test-component__text--checked--disabled",
+          disabled: "test-component__text--disabled",
+        },
       },
     });
   });
 
   it("SHOULD generate the correct output for the correct files", () => {
-    const result = transform(example, { filename: "index.styling.ts", plugins: [transformStylingFiles] });
+    const result = transform(sourceFile, { filename: "index.styling.ts", plugins: [transformStylingFiles] });
 
     if (result) {
       expect(result.code).toMatchSnapshot();
