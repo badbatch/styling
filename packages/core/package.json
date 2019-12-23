@@ -33,16 +33,24 @@
     "compile:module": "cross-env BABEL_ENV=module babel ./src --out-dir ./lib/module --extensions \".ts\" --source-maps --config-file ../../babel.config.js",
     "compile:types": "tsc --build"
   },
-  "dependencies": {},
-  "devDependencies": {},
+  "dependencies": {
+    "@types/css": "^0.0.31",
+    "css": "^2.2.4",
+    "invariant": "^2.2.4"
+  },
   "peerDependencies": {
     "@babel/runtime": "^7.0.0",
     "@styling/constants": "> 1.0",
     "@styling/types": "> 1.0",
     "core-js": "> 4.0",
-    "lodash": "^4.17.5"
+    "lodash": "^4.17.5",
+    "react": "^16.8"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@types/css": "^0.0.31",
+    "@types/invariant": "^2.2.31"
   }
 }
