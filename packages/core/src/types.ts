@@ -1,4 +1,3 @@
-import { PlainObject } from "@styling/types";
 import { ReactNode } from "react";
 
 export type ForwardedProps<P extends object> = { children?: ReactNode; className?: string } & P;
@@ -9,16 +8,12 @@ export type ReturnedElementProps<P extends {}, R extends Element> = {
   ref?: React.Ref<R>;
 } & P;
 
-export interface RawStylingConfig {
-  theme?: string;
-}
+export type StylingEnumPropsGeneric = Array<[string, string[]]>;
 
-export type StylingEnumProps = Array<[string, string[]]>;
+export type StylingCSSVariablesGeneric = Array<[string, string | number]>;
 
-export type StylingProps<P extends {}> = Array<keyof P | [keyof P, string[]]>;
+export type StylingPropsWithoutCSSVariablesGeneric = Array<string | [string, string[]]>;
 
-export type StylingPropsGeneric = Array<string | [string, string[]]>;
+export type StylingProps<P extends {}> = Array<keyof P | [keyof P, string[]] | [keyof P, string | number]>;
 
-export interface StylingConfig {
-  theme?: PlainObject;
-}
+export type StylingPropsGeneric = Array<string | [string, string[]] | [string, string | number]>;

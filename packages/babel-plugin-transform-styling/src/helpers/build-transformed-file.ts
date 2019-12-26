@@ -18,11 +18,11 @@ export default function buildTransformedFile(
       const { propsToClassNamesMap } = namedExports[name];
       const { type, value } = exportsArgsMap.get(name) as { type: string; value: string };
 
-      const buildRequire = template(
+      const buildAST = template(
         COMPONENT_EXPORT.replace(PROPS_TO_CLASSNAMES_MAP_PLACEHOLDER, JSON.stringify(propsToClassNamesMap)),
       );
 
-      const ast = buildRequire({
+      const ast = buildAST({
         COMPONENT: type === IDENTIFIER ? identifier(value) : stringLiteral(value),
         EXPORT_NAME: identifier(name),
       });

@@ -5,5 +5,6 @@ export interface StylingConfig {
 }
 
 export interface RawStylingConfig {
+  overrides?: PlainObject;
   theme?: string;
 }

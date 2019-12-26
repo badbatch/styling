@@ -1,14 +1,16 @@
 import { NodePath } from "@babel/core";
+import generator from "@babel/generator";
 import { ExportNamedDeclaration, ImportDeclaration, program } from "@babel/types";
 import { intersection } from "lodash";
 import { parse as pathParse } from "path";
 import { FILENAME_REGEX } from "./constants";
 import buildTransformedFile from "./helpers/build-transformed-file";
+import evalStylingFile from "./helpers/eval-styling-file";
 import getExportsArgs from "./helpers/get-exports-args";
 import getImportNames from "./helpers/get-import-names";
 import getImportSource from "./helpers/get-import-source";
-import loadStylingFile from "./helpers/load-styling-file";
 import removeUnusedImports from "./helpers/remove-unused-imports";
+import setIdentifierInExportsArgs from "./helpers/set-identifier-in-exports-args";
 import { PluginResult } from "./types";
 
 export default function transformStylingFiles(): PluginResult {
@@ -25,6 +27,8 @@ export default function transformStylingFiles(): PluginResult {
         const exportDeclarations = (babelPath
           .get("body")
           .filter(node => node.isExportNamedDeclaration()) as unknown) as Array<NodePath<ExportNamedDeclaration>>;
+
+        setIdentifierInExportsArgs(exportDeclarations);
 
         const { identifiers, map } = getExportsArgs(exportDeclarations);
         const importDeclarationsToInclude: ImportDeclaration[] = [];
@@ -43,8 +47,9 @@ export default function transformStylingFiles(): PluginResult {
           importDeclarationsToInclude.push(declaration.node);
         });
 
-        const namedExports = loadStylingFile(filename);
+        const namedExports = evalStylingFile(generator(babelPath.node).code, filename);
         const transformedFile = buildTransformedFile(namedExports, importDeclarationsToInclude, map);
+
         babelPath.replaceWith(program(transformedFile));
         babelPath.skip();
       },

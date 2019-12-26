@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@types/css": "^0.0.31",
+    "app-root-path": "^3.0.0",
     "css": "^2.2.4",
     "invariant": "^2.2.4"
   },
@@ -50,6 +51,7 @@
     "access": "public"
   },
   "devDependencies": {
+    "@types/app-root-path": "^1.2.4",
     "@types/css": "^0.0.31",
     "@types/invariant": "^2.2.31"
   }

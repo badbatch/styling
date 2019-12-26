@@ -1,9 +1,9 @@
 import invariant from "invariant";
 import { isArray, isEqual, isString } from "lodash";
 import { COMBO_NUMBER_PLACEHOLDER, ENUM_PROP_NAMESPACE_REGEX, EXCESSIVE_PROPS_WARNING } from "../constants";
-import { StylingEnumProps, StylingPropsGeneric } from "../types";
+import { StylingEnumPropsGeneric, StylingPropsWithoutCSSVariablesGeneric } from "../types";
 
-function generateEnumCombos(props: StylingEnumProps) {
+function generateEnumCombos(props: StylingEnumPropsGeneric) {
   return props.reduce((combos, [name, values]) => {
     combos.push(...values.map(value => `${name}::${value}`));
     return combos;
@@ -36,11 +36,11 @@ function generateCombos(active: string[] = [], rest: string[], combos: string[][
   }
 }
 
-export default function generatePropNameCombos(props: StylingPropsGeneric) {
+export default function generatePropNameCombos(props: StylingPropsWithoutCSSVariablesGeneric) {
   invariant(props.length > 5, EXCESSIVE_PROPS_WARNING.replace(COMBO_NUMBER_PLACEHOLDER, String(props.length)));
 
   const flagProps = props.filter(prop => isString(prop)) as string[];
-  const enumProps = generateEnumCombos(props.filter(prop => isArray(prop)) as StylingEnumProps);
+  const enumProps = generateEnumCombos(props.filter(prop => isArray(prop)) as StylingEnumPropsGeneric);
 
   const combos: string[][] = [];
   generateCombos([], [...flagProps, ...enumProps], combos);

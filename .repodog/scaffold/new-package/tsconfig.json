@@ -4,6 +4,11 @@
     "outDir": "lib/types",
     "rootDir": "src"
   },
+  "exclude": [
+    "**/*.test.ts",
+    "**/__tests__/**",
+    "**/__mocks__/**"
+  ],
   "include": [
     "src"
   ],
