@@ -1,7 +1,6 @@
 import { Interpolation, StringObject } from "@styling/types";
-import { kebabCase } from "lodash";
-import shortid from "shortid";
 import { SelectorCSS, StylingCSSVariablesGeneric } from "../types";
+import buildBaseSelector from "./build-base-selector";
 import buildCSSPropsFromStylingProps from "./build-css-props-from-styling-props";
 import buildCSSStringFromCSSObjects from "./build-css-string-from-css-objects";
 import buildMapKeyFromStylingProps from "./build-map-key-from-styling-props";
@@ -17,8 +16,8 @@ export default function buildPropsToClassNamesMap(
   cssVariableProps: StylingCSSVariablesGeneric,
   interpolations: Interpolation[],
 ): StringObject {
-  const { outputPath, theme } = loadStylingConfig(componentName);
-  const baseSelector = `${kebabCase(componentName)}-${shortid.generate()}`;
+  const { outputPath, selectorPrefix, theme } = loadStylingConfig(componentName);
+  const baseSelector = buildBaseSelector(componentName, selectorPrefix);
   const baseCSS = collateCSS(interpolations, buildCSSPropsFromStylingProps([], cssVariableProps), theme);
 
   const selectorCSS: SelectorCSS = {};
