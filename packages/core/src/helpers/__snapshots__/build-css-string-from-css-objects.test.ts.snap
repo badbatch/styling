@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`buildCSSFromCSSObjects SHOULD return the correct css string 1`] = `".component-name{font-family:Arial;font-size:16px;line-height:1.25;max-height:auto;max-width:none;color:green;::-webkit-input-placeholder{color:grey}::-moz-placeholder{color:grey}:-ms-input-placeholder{color:grey}::-ms-input-placeholder{color:grey}::placeholder{color:grey}.child-selector-a{background-color:#000;position:fixed}}.component-name--active{max-height:var(--max-height,100%);max-width:var(--max-width,450px);.child-selector-a{background-color:red;display:block}}"`;

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`buildCSSPropsFromStylingProps SHOULD return the correct object properties and values 1`] = `
+Object {
+  "active": true,
+  "disabled": true,
+  "error": true,
+  "maxHeight": "var(--max-height, 100%)",
+  "maxWidth": "var(--max-width, 450px)",
+  "selected": true,
+  "status": "approved",
+  "success": true,
+}
+`;

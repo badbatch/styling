@@ -10,10 +10,12 @@ import { StylingProps, StylingPropsGeneric } from "./types";
 export default function styled<P extends {}>(
   component: ComponentType | keyof ReactHTML | keyof ReactSVG,
   props: StylingProps<P>,
+  componentName: string,
 ) {
   return (strings: TemplateStringsArray, ...values: Interpolation[]) => {
     return {
       propsToClassNamesMap: buildPropsToClassNamesMap(
+        componentName,
         generatePropNameCombos(filterOutCSSVariables((props as unknown) as StylingPropsGeneric)),
         filterCSSVariables((props as unknown) as StylingPropsGeneric),
         interweaveInterpolations(strings, values),

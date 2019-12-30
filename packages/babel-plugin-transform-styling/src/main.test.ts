@@ -1,9 +1,9 @@
 import { transform } from "@babel/core";
-import { MockLoadStylingFile } from "./helpers/__mocks__/types";
+import { MockEvalStylingFile } from "./helpers/__mocks__/types";
 import transformStylingFiles from "./main";
 
-jest.mock("./helpers/load-styling-file");
-const loadStylingFile = require("./helpers/load-styling-file") as MockLoadStylingFile;
+jest.mock("./helpers/eval-styling-file");
+const evalStylingFile = require("./helpers/eval-styling-file") as MockEvalStylingFile;
 
 describe("transformStylingFiles >>", () => {
   const sourceFile = `
@@ -41,7 +41,7 @@ describe("transformStylingFiles >>", () => {
   `;
 
   beforeEach(() => {
-    loadStylingFile._setFile({
+    evalStylingFile._setFile({
       Container: {
         propsToClassNamesMap: {
           checked: "test-component__container--checked",

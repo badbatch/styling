@@ -5,7 +5,7 @@ export interface MockBuildTransformedFile {
   default: (namedExports: StylingNamedExports) => string;
 }
 
-export interface MockLoadStylingFile {
+export interface MockEvalStylingFile {
   _setFile: (file: StylingNamedExports) => void;
   default: (filename: string) => StylingNamedExports;
 }

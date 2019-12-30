@@ -1,4 +1,6 @@
 {
   "extends": "@repodog/tslint-config",
-  "rules": {}
+  "rules": {
+    "no-submodule-imports": [true, "ts-jest/utils", "uuid/v4"]
+  }
 }

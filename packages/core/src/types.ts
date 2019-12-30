@@ -1,3 +1,4 @@
+import { CSSObject } from "postcss-js";
 import { ReactNode } from "react";
 
 export type ForwardedProps<P extends object> = { children?: ReactNode; className?: string } & P;
@@ -7,6 +8,13 @@ export type ReturnedElementProps<P extends {}, R extends Element> = {
   className?: string;
   ref?: React.Ref<R>;
 } & P;
+
+export interface SelectorCSS {
+  [key: string]: {
+    css: CSSObject;
+    key: string;
+  };
+}
 
 export type StylingEnumPropsGeneric = Array<[string, string[]]>;
 

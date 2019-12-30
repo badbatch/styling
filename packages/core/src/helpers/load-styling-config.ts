@@ -7,12 +7,12 @@ import parseStylingConfig from "./parse-styling-config";
 
 const stylingConfigs: Map<string, StylingConfig> = new Map();
 
-function conditionallyLoadParentStylingConfig(path: string, childConfig: StylingConfig) {
+function conditionallyLoadParentStylingConfig(path: string, childConfig: StylingConfig, componentName: string) {
   if (appRoot.toString() === path) return childConfig;
-  return loadStylingConfigs(resolve(path, ".."), childConfig);
+  return loadStylingConfig(resolve(path, ".."), childConfig, componentName);
 }
 
-export default function loadStylingConfigs(path: string = __dirname, childConfig: StylingConfig = {}): StylingConfig {
+function loadStylingConfig(path: string, childConfig: StylingConfig, componentName: string): StylingConfig {
   try {
     let config;
 
@@ -20,16 +20,23 @@ export default function loadStylingConfigs(path: string = __dirname, childConfig
       config = cloneDeep(stylingConfigs.get(path)) as StylingConfig;
     } else {
       try {
-        config = parseStylingConfig(require(resolve(path, STYLING_CONFIG_FILENAME)) as RawStylingConfig);
+        config = parseStylingConfig(require(resolve(path, STYLING_CONFIG_FILENAME)) as RawStylingConfig, componentName);
       } catch {
-        config = parseStylingConfig(require(resolve(path, PACKAGE_JSON_FILENAME)).styling as RawStylingConfig);
+        config = parseStylingConfig(
+          require(resolve(path, PACKAGE_JSON_FILENAME)).styling as RawStylingConfig,
+          componentName,
+        );
       }
 
       stylingConfigs.set(path, config);
     }
 
-    return conditionallyLoadParentStylingConfig(path, merge(config, childConfig));
+    return conditionallyLoadParentStylingConfig(path, merge(config, childConfig), componentName);
   } catch {
-    return conditionallyLoadParentStylingConfig(path, childConfig);
+    return conditionallyLoadParentStylingConfig(path, childConfig, componentName);
   }
+}
+
+export default function loadStylingConfigs(componentName: string): StylingConfig {
+  return loadStylingConfig(__dirname, {}, componentName);
 }

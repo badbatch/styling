@@ -1,5 +1,8 @@
 import { Interpolation, PlainObject } from "@styling/types";
 import { isArray, isFunction } from "lodash";
+import postcss from "postcss";
+import postcssJs from "postcss-js";
+import fixupCSSObject from "./fixup-css-object";
 
 function collateRule(css: string, rule: Interpolation, props: PlainObject) {
   const trimmedCSS = css.trim();
@@ -10,8 +13,6 @@ function collateRule(css: string, rule: Interpolation, props: PlainObject) {
 
     if (styles) {
       _css += collateRule(trimmedCSS, styles, props);
-    } else if (trimmedCSS.charAt(trimmedCSS.length - 1) === ":") {
-      _css += "null";
     }
   } else if (isArray(rule)) {
     _css += collateRules(rule, props);
@@ -31,5 +32,5 @@ function collateRules(rules: Interpolation[], props: PlainObject) {
 }
 
 export default function collateCSS(interpolations: Interpolation[], props: PlainObject, theme: PlainObject = {}) {
-  return collateRules(interpolations, { ...props, theme });
+  return fixupCSSObject(postcssJs.objectify(postcss.parse(collateRules(interpolations, { ...props, theme }))));
 }
