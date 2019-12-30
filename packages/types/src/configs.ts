@@ -1,12 +1,12 @@
 import { PlainObject } from "./common";
 
-export interface StylingConfig {
-  outputPath?: string;
-  theme?: PlainObject;
-}
-
 export interface RawStylingConfig {
   outputPath?: string;
   overrides?: PlainObject;
+  selectorPrefix?: string;
   theme?: string | PlainObject;
+}
+
+export interface StylingConfig extends Omit<RawStylingConfig, "overrides"> {
+  theme?: PlainObject;
 }

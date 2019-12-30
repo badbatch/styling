@@ -1,7 +1,7 @@
 import { isEqual, isPlainObject } from "lodash";
 import postcssJs from "postcss-js";
 
-export default function dedupeCSS(css: postcssJs.CSSObject, baseCSS: postcssJs.CSSObject) {
+export default function dedupeCSS(css: postcssJs.CSSObject, baseCSS: postcssJs.CSSObject = {}) {
   const dedupedCSS: postcssJs.CSSObject = {};
 
   Object.keys(css).forEach(key => {

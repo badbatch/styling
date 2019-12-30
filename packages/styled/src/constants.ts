@@ -8,3 +8,5 @@ export const COMBO_NUMBER_PLACEHOLDER = "%{number}";
 
 export const EXCESSIVE_PROPS_WARNING = `Consider reducing the number of props driving the styling of this component.
   The props you have declared create ${COMBO_NUMBER_PLACEHOLDER} combinations.`;
+
+export const CLASSNAME = "className" as const;

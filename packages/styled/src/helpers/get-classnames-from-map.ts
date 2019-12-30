@@ -1,5 +1,5 @@
-import { CLASSNAME } from "@styling/constants";
 import { PlainObject, StringObject } from "@styling/types";
+import { CLASSNAME } from "../constants";
 
 export default function getClassNamesFromMap(propsToClassNamesMap: StringObject, props: PlainObject) {
   return Object.keys(props)

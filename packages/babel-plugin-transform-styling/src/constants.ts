@@ -2,7 +2,7 @@ export const FILENAME_REGEX = /.*(styling|\.styling)\.(js|jsx|ts|tsx)$/;
 
 export const FILE_COMMENT_AND_IMPORT = `
 // This file is auto-generated, do not edit directly.
-import { styling } from "@styling/core";
+import styling from "@styling/core";
 `;
 
 export const PROPS_TO_CLASSNAMES_MAP_PLACEHOLDER = "%{propsToClassNamesMap}" as const;

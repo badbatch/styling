@@ -14,9 +14,6 @@
   ],
   "references": [
     {
-      "path": "../constants"
-    },
-    {
       "path": "../types"
     }
   ]

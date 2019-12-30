@@ -37,7 +37,7 @@ function generateCombos(active: string[] = [], rest: string[], combos: string[][
 }
 
 export default function generatePropNameCombos(props: StylingPropsWithoutCSSVariablesGeneric) {
-  invariant(props.length > 5, EXCESSIVE_PROPS_WARNING.replace(COMBO_NUMBER_PLACEHOLDER, String(props.length)));
+  invariant(props.length < 10, EXCESSIVE_PROPS_WARNING.replace(COMBO_NUMBER_PLACEHOLDER, String(props.length)));
 
   const flagProps = props.filter(prop => isString(prop)) as string[];
   const enumProps = generateEnumCombos(props.filter(prop => isArray(prop)) as StylingEnumPropsGeneric);
