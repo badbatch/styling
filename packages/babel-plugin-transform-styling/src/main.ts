@@ -45,6 +45,7 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
         info(`Iterating import declarations`);
 
         importDeclarations.forEach(declaration => {
+          info(`Entering import declaration`);
           if (getImportSource(declaration).startsWith("@styling")) return;
 
           info(`Getting import names`);
