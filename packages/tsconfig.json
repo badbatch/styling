@@ -6,6 +6,9 @@
       "path": "./babel-plugin-transform-styling"
     },
     {
+      "path": "./core"
+    },
+    {
       "path": "./styled"
     },
     {

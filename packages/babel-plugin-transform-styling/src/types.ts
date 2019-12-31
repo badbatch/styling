@@ -21,6 +21,7 @@ export interface PluginResult {
 }
 
 export interface StylingNamedExport {
+  props: Array<string | [string, string[]] | [string, string | number]>;
   propsToClassNamesMap: StringObject;
 }
 

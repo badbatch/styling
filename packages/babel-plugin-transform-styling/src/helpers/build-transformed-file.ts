@@ -5,6 +5,7 @@ import {
   FILE_COMMENT_AND_IMPORT,
   IDENTIFIER,
   PROPS_TO_CLASSNAMES_MAP_PLACEHOLDER,
+  STYLING_PROPS_PLACEHOLDER,
 } from "../constants";
 import { ExportsArgsMap, StylingNamedExports } from "../types";
 
@@ -15,11 +16,14 @@ export default function buildTransformedFile(
 ) {
   return Object.keys(namedExports).reduce(
     (file, name) => {
-      const { propsToClassNamesMap } = namedExports[name];
+      const { props, propsToClassNamesMap } = namedExports[name];
       const { type, value } = exportsArgsMap.get(name) as { type: string; value: string };
 
       const buildAST = template(
-        COMPONENT_EXPORT.replace(PROPS_TO_CLASSNAMES_MAP_PLACEHOLDER, JSON.stringify(propsToClassNamesMap)),
+        COMPONENT_EXPORT.replace(STYLING_PROPS_PLACEHOLDER, JSON.stringify(props)).replace(
+          PROPS_TO_CLASSNAMES_MAP_PLACEHOLDER,
+          JSON.stringify(propsToClassNamesMap),
+        ),
       );
 
       const ast = buildAST({

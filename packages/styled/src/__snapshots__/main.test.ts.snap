@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`styled SHOULD write the correct css to file 1`] = `
-".container-q7Z2Y9Ji {
+".container-1QPVtzik {
     font-family: Arial;
     font-size: 16px;
     line-height: 1.25
 }
-.container-q7Z2Y9Ji--checked--disabled {
+.container-1QPVtzik--checked--disabled {
     color: grey;
     curser: default
 }
-.container-q7Z2Y9Ji--checked {
+.container-1QPVtzik--checked {
     color: blue
 }
-.container-q7Z2Y9Ji--disabled {
+.container-1QPVtzik--disabled {
     curser: default
 }
 "

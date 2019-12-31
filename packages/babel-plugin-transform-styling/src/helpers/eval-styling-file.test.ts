@@ -4,6 +4,7 @@ describe("evalStylingFile", () => {
   it("SHOULD eval the file correctly", () => {
     const sourceFile = `
       export const Container = {
+        props: ["checked", "disabled"],
         propsToClassNamesMap: {
           checked: "test-component__container--checked",
           "checked::disabled": "test-component__container--checked--disabled",
@@ -12,6 +13,7 @@ describe("evalStylingFile", () => {
       };
 
       export const Radio = {
+        props: ["checked", "disabled"],
         propsToClassNamesMap: {
           checked: "test-component__radio--checked",
           "checked::disabled": "test-component__radio--checked--disabled",
@@ -20,6 +22,7 @@ describe("evalStylingFile", () => {
       };
 
       export const Subtext = {
+        props: ["checked", "disabled"],
         propsToClassNamesMap: {
           checked: "test-component__subtext--checked",
           "checked::disabled": "test-component__subtext--checked--disabled",
@@ -28,6 +31,7 @@ describe("evalStylingFile", () => {
       };
 
       export const Text = {
+        props: ["checked", "disabled"],
         propsToClassNamesMap: {
           checked: "test-component__text--checked",
           "checked::disabled": "test-component__text--checked--disabled",
@@ -40,6 +44,7 @@ describe("evalStylingFile", () => {
 
     expect(output).toEqual({
       Container: {
+        props: ["checked", "disabled"],
         propsToClassNamesMap: {
           checked: "test-component__container--checked",
           "checked::disabled": "test-component__container--checked--disabled",
@@ -47,6 +52,7 @@ describe("evalStylingFile", () => {
         },
       },
       Radio: {
+        props: ["checked", "disabled"],
         propsToClassNamesMap: {
           checked: "test-component__radio--checked",
           "checked::disabled": "test-component__radio--checked--disabled",
@@ -54,6 +60,7 @@ describe("evalStylingFile", () => {
         },
       },
       Subtext: {
+        props: ["checked", "disabled"],
         propsToClassNamesMap: {
           checked: "test-component__subtext--checked",
           "checked::disabled": "test-component__subtext--checked--disabled",
@@ -61,6 +68,7 @@ describe("evalStylingFile", () => {
         },
       },
       Text: {
+        props: ["checked", "disabled"],
         propsToClassNamesMap: {
           checked: "test-component__text--checked",
           "checked::disabled": "test-component__text--checked--disabled",

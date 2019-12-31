@@ -5,10 +5,11 @@ export const FILE_COMMENT_AND_IMPORT = `
 import styling from "@styling/core";
 `;
 
+export const STYLING_PROPS_PLACEHOLDER = "%{props}" as const;
 export const PROPS_TO_CLASSNAMES_MAP_PLACEHOLDER = "%{propsToClassNamesMap}" as const;
 
 export const COMPONENT_EXPORT = `
-export const EXPORT_NAME = styling(COMPONENT, ${PROPS_TO_CLASSNAMES_MAP_PLACEHOLDER});
+export const EXPORT_NAME = styling(COMPONENT, ${STYLING_PROPS_PLACEHOLDER}, ${PROPS_TO_CLASSNAMES_MAP_PLACEHOLDER});
 `;
 
 export const IDENTIFIER = "Identifier" as const;

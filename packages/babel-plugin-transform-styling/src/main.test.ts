@@ -43,6 +43,7 @@ describe("transformStylingFiles >>", () => {
   beforeEach(() => {
     evalStylingFile._setFile({
       Container: {
+        props: ["checked", "disabled"],
         propsToClassNamesMap: {
           checked: "test-component__container--checked",
           "checked::disabled": "test-component__container--checked--disabled",
@@ -50,6 +51,7 @@ describe("transformStylingFiles >>", () => {
         },
       },
       Radio: {
+        props: ["checked", "disabled"],
         propsToClassNamesMap: {
           checked: "test-component__radio--checked",
           "checked::disabled": "test-component__radio--checked--disabled",
@@ -57,6 +59,7 @@ describe("transformStylingFiles >>", () => {
         },
       },
       Subtext: {
+        props: ["checked", "disabled"],
         propsToClassNamesMap: {
           checked: "test-component__subtext--checked",
           "checked::disabled": "test-component__subtext--checked--disabled",
@@ -64,6 +67,7 @@ describe("transformStylingFiles >>", () => {
         },
       },
       Text: {
+        props: ["checked", "disabled"],
         propsToClassNamesMap: {
           checked: "test-component__text--checked",
           "checked::disabled": "test-component__text--checked--disabled",

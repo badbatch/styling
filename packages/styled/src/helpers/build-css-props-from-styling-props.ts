@@ -1,8 +1,8 @@
 import { PlainObject } from "@styling/types";
 import { kebabCase } from "lodash";
-import { StylingCSSVariablesGeneric } from "../types";
+import { StylingCSSVariables } from "../types";
 
-export default function buildCSSPropsFromStylingProps(combo: string[], cssVariableProps: StylingCSSVariablesGeneric) {
+export default function buildCSSPropsFromStylingProps(combo: string[], cssVariableProps: StylingCSSVariables) {
   const props: PlainObject = {};
 
   cssVariableProps.forEach(([key, value]) => {

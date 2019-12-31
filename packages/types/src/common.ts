@@ -11,3 +11,5 @@ export interface PlainObject {
 export interface StringObject {
   [key: string]: string;
 }
+
+export type StylingProps = Array<string | [string, string[]] | [string, string | number]>;

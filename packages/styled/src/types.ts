@@ -16,12 +16,10 @@ export interface SelectorCSS {
   };
 }
 
-export type StylingEnumPropsGeneric = Array<[string, string[]]>;
+export type StylingEnumProps = Array<[string, string[]]>;
 
-export type StylingCSSVariablesGeneric = Array<[string, string | number]>;
+export type StylingCSSVariables = Array<[string, string | number]>;
 
-export type StylingPropsWithoutCSSVariablesGeneric = Array<string | [string, string[]]>;
+export type StylingPropsWithoutCSSVariables = Array<string | [string, string[]]>;
 
-export type StylingProps<P extends {}> = Array<keyof P | [keyof P, string[]] | [keyof P, string | number]>;
-
-export type StylingPropsGeneric = Array<string | [string, string[]] | [string, string | number]>;
+export type StylingPropsExact<P extends {}> = Array<keyof P | [keyof P, string[]] | [keyof P, string | number]>;

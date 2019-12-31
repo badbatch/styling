@@ -4,22 +4,22 @@ exports[`transformStylingFiles >> SHOULD generate the correct output for the cor
 "import styling from \\"@styling/core\\";
 import BlackText from \\"./text\\";
 import { BlueSubtext } from \\"./subtext\\";
-export const Container = styling(\\"div\\", {
+export const Container = styling(\\"div\\", [\\"checked\\", \\"disabled\\"], {
   \\"checked\\": \\"test-component__container--checked\\",
   \\"checked::disabled\\": \\"test-component__container--checked--disabled\\",
   \\"disabled\\": \\"test-component__container--disabled\\"
 });
-export const Radio = styling(\\"input\\", {
+export const Radio = styling(\\"input\\", [\\"checked\\", \\"disabled\\"], {
   \\"checked\\": \\"test-component__radio--checked\\",
   \\"checked::disabled\\": \\"test-component__radio--checked--disabled\\",
   \\"disabled\\": \\"test-component__radio--disabled\\"
 });
-export const Subtext = styling(BlueSubtext, {
+export const Subtext = styling(BlueSubtext, [\\"checked\\", \\"disabled\\"], {
   \\"checked\\": \\"test-component__subtext--checked\\",
   \\"checked::disabled\\": \\"test-component__subtext--checked--disabled\\",
   \\"disabled\\": \\"test-component__subtext--disabled\\"
 });
-export const Text = styling(BlackText, {
+export const Text = styling(BlackText, [\\"checked\\", \\"disabled\\"], {
   \\"checked\\": \\"test-component__text--checked\\",
   \\"checked::disabled\\": \\"test-component__text--checked--disabled\\",
   \\"disabled\\": \\"test-component__text--disabled\\"
