@@ -1,3 +1,9 @@
+#### 0.0.3 (2019-12-31)
+
+##### Bug Fixes
+
+*  add support for css variables in styling function ([c561b5b7](https://github.com/dylanaubrey/styling/commit/c561b5b7edd6da050a9da2e166f8b97ce43d2ad5))
+
 #### 0.0.2 (2019-12-31)
 
 ##### Chores
