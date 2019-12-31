@@ -1,4 +1,5 @@
 import { PlainObject, StringObject, StylingProps } from "@styling/types";
+import buildMapKeyFromProps from "./build-map-key-from-props";
 import filterRelevantProps from "./filter-relevant-props";
 
 export default function getClassNameFromProps(
@@ -7,5 +8,6 @@ export default function getClassNameFromProps(
   props: PlainObject,
 ) {
   const filteredProps = filterRelevantProps(stylingProps, props);
-  // TODO
+  const mapKey = buildMapKeyFromProps(filteredProps);
+  return propsToClassNamesMap[mapKey];
 }

@@ -1,4 +1,4 @@
-import { StylingPropsGeneric } from "../types";
+import { StylingProps } from "@styling/types";
 import filterCSSVariables from "./filter-css-variables";
 
 describe("filterCSSVariables", () => {
@@ -14,7 +14,7 @@ describe("filterCSSVariables", () => {
       "success",
     ];
 
-    expect(filterCSSVariables(props as StylingPropsGeneric)).toEqual([
+    expect(filterCSSVariables(props as StylingProps)).toEqual([
       ["maxHeight", "100%"],
       ["maxWidth", "450px"],
     ]);
