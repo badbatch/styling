@@ -1,6 +1,6 @@
 {
   "name": "styling",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": true,
   "description": "A css-in-js library that extracts css into stylesheets at build time.",
   "keywords": [
