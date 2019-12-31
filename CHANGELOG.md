@@ -1,3 +1,9 @@
+#### 0.0.6 (2019-12-31)
+
+##### Bug Fixes
+
+*  adding more logging ([7201650c](https://github.com/dylanaubrey/styling/commit/7201650c6b47f8561ffa02e04a1fe61c444604f9))
+
 #### 0.0.5 (2019-12-31)
 
 ##### New Features
