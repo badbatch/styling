@@ -1,3 +1,6 @@
 {
-  "extends": "@repodog/ts-config/tsconfig.root.json"
+  "extends": "@repodog/ts-config/tsconfig.root.json",
+  "compilerOptions": {
+    "jsx": "react"
+  }
 }

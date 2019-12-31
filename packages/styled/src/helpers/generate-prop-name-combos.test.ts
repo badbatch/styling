@@ -1,5 +1,5 @@
 import { isEqual } from "lodash";
-import { StylingPropsWithoutCSSVariablesGeneric } from "../types";
+import { StylingPropsWithoutCSSVariables } from "../types";
 import generatePropNameCombos from "./generate-prop-name-combos";
 
 describe("generatePropNameCombos", () => {
@@ -15,7 +15,7 @@ describe("generatePropNameCombos", () => {
       "success",
     ];
 
-    combos = generatePropNameCombos(props as StylingPropsWithoutCSSVariablesGeneric);
+    combos = generatePropNameCombos(props as StylingPropsWithoutCSSVariables);
   });
 
   it("SHOULD return the correct combinations for a given set of prop names", () => {

@@ -4,6 +4,7 @@ A css-in-js library that extracts css into stylesheets at build time.
 
 [![Build Status](https://travis-ci.com/dylanaubrey/styling.svg?branch=master)](https://travis-ci.com/dylanaubrey/styling)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![codecov](https://codecov.io/gh/dylanaubrey/styling/branch/master/graph/badge.svg)](https://codecov.io/gh/dylanaubrey/styling)
 
 ## Installation
 

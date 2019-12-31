@@ -1,4 +1,4 @@
-import { StylingPropsGeneric } from "../types";
+import { StylingProps } from "@styling/types";
 import filterOutCSSVariables from "./filter-out-css-variables";
 
 describe("filterOutCSSVariables", () => {
@@ -14,7 +14,7 @@ describe("filterOutCSSVariables", () => {
       "success",
     ];
 
-    expect(filterOutCSSVariables(props as StylingPropsGeneric)).toEqual([
+    expect(filterOutCSSVariables(props as StylingProps)).toEqual([
       "active",
       "disabled",
       "error",
