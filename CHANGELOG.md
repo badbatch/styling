@@ -1,3 +1,9 @@
+#### 0.0.5 (2019-12-31)
+
+##### New Features
+
+*  increasing logging in babel plugin ([df50ab3a](https://github.com/dylanaubrey/styling/commit/df50ab3ada4293a3a454dbe66a38226ceb7f0c15))
+
 #### 0.0.4 (2019-12-31)
 
 ##### New Features
