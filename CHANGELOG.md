@@ -1,3 +1,13 @@
+#### 0.0.4 (2019-12-31)
+
+##### New Features
+
+*  adding logging to babel plugin ([dffc7b35](https://github.com/dylanaubrey/styling/commit/dffc7b35590186ae6f1c3ec3d69e8c35e33b3aa7))
+
+##### Bug Fixes
+
+*  adding codecov script into ci ([4093634a](https://github.com/dylanaubrey/styling/commit/4093634a1e9d7d6acac8cdff85271400cc59acdf))
+
 #### 0.0.3 (2019-12-31)
 
 ##### Bug Fixes
