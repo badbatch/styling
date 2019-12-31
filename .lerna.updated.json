@@ -1,0 +1,22 @@
+[
+  {
+    "name": "@styling/babel-plugin-transform-styling",
+    "private": false,
+    "version": "0.0.1"
+  },
+  {
+    "name": "@styling/core",
+    "private": false,
+    "version": "0.0.1"
+  },
+  {
+    "name": "@styling/styled",
+    "private": false,
+    "version": "0.0.1"
+  },
+  {
+    "name": "@styling/types",
+    "private": false,
+    "version": "0.0.1"
+  }
+]
