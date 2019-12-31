@@ -1,20 +1,20 @@
 /* tslint:disable no-console */
 
-import { ERROR, INFO, WARN } from "../constants";
+import { ERROR, INFO, LOG_PREFIX, WARN } from "../constants";
 
 export function error(message: string, ...optionalParams: any[]) {
   if (getLevel() < 1) return;
-  console.error(message, ...optionalParams);
+  console.error(`${LOG_PREFIX} ${message}`, ...optionalParams);
 }
 
 export function warn(message: string, ...optionalParams: any[]) {
   if (getLevel() < 2) return;
-  console.warn(message, ...optionalParams);
+  console.warn(`${LOG_PREFIX} ${message}`, ...optionalParams);
 }
 
 export function info(message: string, ...optionalParams: any[]) {
   if (getLevel() < 3) return;
-  console.log(message, ...optionalParams);
+  console.log(`${LOG_PREFIX} ${message}`, ...optionalParams);
 }
 
 export function getLevel() {

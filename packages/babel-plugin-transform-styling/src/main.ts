@@ -35,19 +35,25 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
           .get("body")
           .filter(node => node.isExportNamedDeclaration()) as unknown) as Array<NodePath<ExportNamedDeclaration>>;
 
+        info(`Setting identifier in exports args`);
         setIdentifierInExportsArgs(exportDeclarations);
 
+        info(`Getting exports args`);
         const { identifiers, map } = getExportsArgs(exportDeclarations);
         const importDeclarationsToInclude: ImportDeclaration[] = [];
+
+        info(`Iterating import declarations`);
 
         importDeclarations.forEach(declaration => {
           if (getImportSource(declaration).startsWith("@styling")) return;
 
+          info(`Getting import names`);
           const importNames = getImportNames(declaration.get("specifiers"));
           const usedImportNames = intersection(identifiers, importNames);
           if (!usedImportNames.length) return;
 
           if (importNames.length !== usedImportNames.length) {
+            info(`Removing unused imports`);
             removeUnusedImports(declaration, usedImportNames);
           }
 
