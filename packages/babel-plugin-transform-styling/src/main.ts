@@ -9,16 +9,23 @@ import evalStylingFile from "./helpers/eval-styling-file";
 import getExportsArgs from "./helpers/get-exports-args";
 import getImportNames from "./helpers/get-import-names";
 import getImportSource from "./helpers/get-import-source";
+import { info, setLevel } from "./helpers/log";
 import removeUnusedImports from "./helpers/remove-unused-imports";
 import setIdentifierInExportsArgs from "./helpers/set-identifier-in-exports-args";
-import { PluginResult } from "./types";
+import { PluginResult, StylingPluginOptions } from "./types";
 
-export default function transformStylingFiles(): PluginResult {
+// tslint:disable-next-line no-any
+export default function transformStylingFiles(babel: any, options: StylingPluginOptions = {}): PluginResult {
+  setLevel(options.logLevel);
+  info("Entering transformStylingFiles");
+
   return {
     visitor: {
       Program(babelPath, { filename }) {
         const { base } = pathParse(filename);
         if (!FILENAME_REGEX.test(base)) return;
+
+        info(`Entering styling file ${filename}`);
 
         const importDeclarations = (babelPath
           .get("body")
@@ -47,9 +54,13 @@ export default function transformStylingFiles(): PluginResult {
           importDeclarationsToInclude.push(declaration.node);
         });
 
+        info(`Evaluating styling file`);
         const namedExports = evalStylingFile(generator(babelPath.node).code, filename);
+
+        info(`Transforming styling file`);
         const transformedFile = buildTransformedFile(namedExports, importDeclarationsToInclude, map);
 
+        info(`Replacing program`);
         babelPath.replaceWith(program(transformedFile));
         babelPath.skip();
       },

@@ -14,3 +14,7 @@ export const EXPORT_NAME = styling(COMPONENT, ${STYLING_PROPS_PLACEHOLDER}, ${PR
 
 export const IDENTIFIER = "Identifier" as const;
 export const STRING_LITERAL = "StringLiteral" as const;
+
+export const ERROR = "error" as const;
+export const WARN = "warn" as const;
+export const INFO = "info" as const;

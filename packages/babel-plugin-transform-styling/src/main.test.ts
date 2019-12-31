@@ -78,7 +78,17 @@ describe("transformStylingFiles >>", () => {
   });
 
   it("SHOULD generate the correct output for the correct files", () => {
-    const result = transform(sourceFile, { filename: "index.styling.ts", plugins: [transformStylingFiles] });
+    const result = transform(sourceFile, {
+      filename: "index.styling.ts",
+      plugins: [
+        [
+          transformStylingFiles,
+          {
+            logLevel: "error",
+          },
+        ],
+      ],
+    });
 
     if (result) {
       expect(result.code).toMatchSnapshot();

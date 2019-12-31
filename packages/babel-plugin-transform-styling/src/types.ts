@@ -28,3 +28,7 @@ export interface StylingNamedExport {
 export interface StylingNamedExports {
   [key: string]: StylingNamedExport;
 }
+
+export interface StylingPluginOptions {
+  logLevel?: "error" | "warn" | "info";
+}
