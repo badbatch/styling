@@ -1,3 +1,9 @@
+#### 0.0.8 (2020-01-01)
+
+##### Bug Fixes
+
+*  adding logging to eval styling file script ([14499dc5](https://github.com/dylanaubrey/styling/commit/14499dc51d9461401f697abe1ce3f74d316d9d31))
+
 #### 0.0.7 (2019-12-31)
 
 ##### Bug Fixes
