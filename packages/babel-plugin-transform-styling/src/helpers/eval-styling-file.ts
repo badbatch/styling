@@ -1,6 +1,7 @@
 import { removeSync, writeFileSync } from "fs-extra";
 import { parse } from "path";
 import { StylingNamedExports } from "../types";
+import { error } from "./log";
 
 export default function evalStylingFile(code: string, filename: string) {
   const { dir, ext, name } = parse(filename);
@@ -25,7 +26,8 @@ export default function evalStylingFile(code: string, filename: string) {
   try {
     output = require(tempFilePath);
     removeSync(tempFilePath);
-  } catch {
+  } catch (e) {
+    error("Error evaluating styling file", e);
     removeSync(tempFilePath);
   }
 
