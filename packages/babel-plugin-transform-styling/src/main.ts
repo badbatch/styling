@@ -9,7 +9,7 @@ import evalStylingFile from "./helpers/eval-styling-file";
 import getExportsArgs from "./helpers/get-exports-args";
 import getImportNames from "./helpers/get-import-names";
 import getImportSource from "./helpers/get-import-source";
-import { info, setLevel } from "./helpers/log";
+import { error, info, setLevel } from "./helpers/log";
 import removeUnusedImports from "./helpers/remove-unused-imports";
 import setIdentifierInExportsArgs from "./helpers/set-identifier-in-exports-args";
 import { PluginResult, StylingPluginOptions } from "./types";
@@ -63,6 +63,11 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
 
         info(`Evaluating styling file`);
         const namedExports = evalStylingFile(generator(babelPath.node).code, filename);
+
+        if (!namedExports) {
+          error(`Invalid evalStylingFile output`);
+          return;
+        }
 
         info(`Transforming styling file`);
         const transformedFile = buildTransformedFile(namedExports, importDeclarationsToInclude, map);

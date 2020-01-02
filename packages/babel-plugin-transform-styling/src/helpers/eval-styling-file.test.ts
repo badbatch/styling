@@ -40,7 +40,7 @@ describe("evalStylingFile", () => {
       };
     `;
 
-    const output = evalStylingFile(sourceFile, "index.js");
+    const output = evalStylingFile(sourceFile, `${__dirname}/index.js`);
 
     expect(output).toEqual({
       Container: {

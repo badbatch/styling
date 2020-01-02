@@ -1,13 +1,13 @@
-import { BabelFileResult, transform } from "@babel/core";
-import nodeEval from "node-eval";
+import { removeSync, writeFileSync } from "fs-extra";
+import { parse } from "path";
 import { StylingNamedExports } from "../types";
-import { info } from "./log";
 
-export default function evalStylingFile(code: string, filename: string): StylingNamedExports {
-  info(`Transforming code to commonjs`);
+export default function evalStylingFile(code: string, filename: string) {
+  const { dir, ext, name } = parse(filename);
+  const tempFilePath = `${dir}/__${name}.temp${ext}`;
+  writeFileSync(tempFilePath, code, { encoding: "utf-8" });
 
-  const transformed = transform(code, {
-    filename,
+  require("@babel/register")({
     plugins: ["@babel/plugin-transform-modules-commonjs"],
     presets: [
       [
@@ -18,9 +18,16 @@ export default function evalStylingFile(code: string, filename: string): Styling
         },
       ],
     ],
-    sourceType: "module",
-  }) as BabelFileResult;
+  });
 
-  info(`Evaluating transformed code`);
-  return nodeEval(transformed.code as string, filename);
+  let output: StylingNamedExports | undefined;
+
+  try {
+    output = require(tempFilePath);
+    removeSync(tempFilePath);
+  } catch {
+    removeSync(tempFilePath);
+  }
+
+  return output;
 }
