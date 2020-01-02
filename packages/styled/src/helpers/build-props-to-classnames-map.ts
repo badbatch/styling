@@ -8,6 +8,7 @@ import buildSelectorFromStylingProps from "./build-selector-from-styling-props";
 import collateCSS from "./collate-css";
 import dedupeCSS from "./dedupe-css";
 import loadStylingConfig from "./load-styling-config";
+import { info } from "./log";
 import writeCSS from "./write-css";
 
 export default function buildPropsToClassNamesMap(
@@ -43,7 +44,11 @@ export default function buildPropsToClassNamesMap(
     }
   });
 
-  writeCSS(buildCSSStringFromCSSObjects(selectorCSS), outputPath);
+  info("Generating css from css objects");
+  const css = buildCSSStringFromCSSObjects(selectorCSS);
+
+  info(`Writing css to ${outputPath}`, css);
+  writeCSS(css, outputPath);
 
   return Object.keys(selectorCSS).reduce((map: StringObject, selector) => {
     const { key } = selectorCSS[selector];
