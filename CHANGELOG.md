@@ -1,3 +1,9 @@
+#### 0.0.18 (2020-01-02)
+
+##### Bug Fixes
+
+*  remove css file before trying to write a new one ([542b79ff](https://github.com/dylanaubrey/styling/commit/542b79ff28ffa573e072fb9d0f1b9ec5d5ddcda6))
+
 #### 0.0.17 (2020-01-02)
 
 ##### Bug Fixes
