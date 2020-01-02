@@ -1,6 +1,6 @@
 import { RawStylingConfig, StylingConfig } from "@styling/types";
 import appRoot from "app-root-path";
-import { cloneDeep, merge } from "lodash";
+import { cloneDeep, mergeWith } from "lodash";
 import { resolve } from "path";
 import { PACKAGE_JSON_FILENAME, STYLING_CONFIG_FILENAME } from "../constants";
 import { Metadata } from "../types";
@@ -41,7 +41,13 @@ function loadStylingConfig(path: string, childConfig: StylingConfig, componentNa
       stylingConfigs.set(path, config);
     }
 
-    return conditionallyLoadParentStylingConfig(path, merge(config, childConfig), componentName);
+    return conditionallyLoadParentStylingConfig(
+      path,
+      mergeWith(config, childConfig, (value, srcValue) => {
+        if (!srcValue) return value;
+      }),
+      componentName,
+    );
   } catch {
     info(`No styling config found in package.json, checking parent directory`);
     return conditionallyLoadParentStylingConfig(path, childConfig, componentName);
@@ -49,5 +55,5 @@ function loadStylingConfig(path: string, childConfig: StylingConfig, componentNa
 }
 
 export default function loadStylingConfigs({ componentName, sourceDir }: Metadata): StylingConfig {
-  return loadStylingConfig(sourceDir, { outputPath: sourceDir }, componentName);
+  return loadStylingConfig(sourceDir, { outputPath: "" }, componentName);
 }
