@@ -1,3 +1,9 @@
+#### 0.0.17 (2020-01-02)
+
+##### Bug Fixes
+
+*  stop empty string overriding parent output path ([68bc7593](https://github.com/dylanaubrey/styling/commit/68bc7593cef3e771deef8c5e3a2f4a770fadb11b))
+
 #### 0.0.16 (2020-01-02)
 
 ##### Bug Fixes
