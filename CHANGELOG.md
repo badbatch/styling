@@ -1,3 +1,9 @@
+#### 0.0.21 (2020-01-02)
+
+##### Refactors
+
+*  update modules to reduce code duplication ([a2310811](https://github.com/dylanaubrey/styling/commit/a2310811f396f3a74ae46a808abfdc8ce876c2d3))
+
 #### 0.0.20 (2020-01-02)
 
 ##### Bug Fixes

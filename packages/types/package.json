@@ -1,6 +1,6 @@
 {
   "name": "@styling/types",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "The Styling types module.",
   "keywords": [
     "css-in-js",
