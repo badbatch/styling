@@ -1,3 +1,9 @@
+#### 0.0.9 (2020-01-02)
+
+##### Bug Fixes
+
+*  changing way of evaling styling file to resolve bugs ([b73e1e97](https://github.com/dylanaubrey/styling/commit/b73e1e9793d16632d0fead670e13d5a741c44d7f))
+
 #### 0.0.8 (2020-01-01)
 
 ##### Bug Fixes
