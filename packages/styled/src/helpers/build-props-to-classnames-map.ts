@@ -16,7 +16,7 @@ export default function buildPropsToClassNamesMap(
   interpolations: Interpolation[],
   { componentName, sourceDir }: Metadata,
 ): StringObject {
-  const { outputPath, selectorPrefix, theme } = loadStylingConfig({ componentName, sourceDir });
+  const { outputPath = sourceDir, selectorPrefix, theme } = loadStylingConfig({ componentName, sourceDir });
   const baseSelector = buildBaseSelector(componentName, selectorPrefix);
   const baseCSS = collateCSS(interpolations, buildCSSPropsFromStylingProps([], cssVariableProps), theme);
 

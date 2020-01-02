@@ -23,12 +23,17 @@ function loadStylingConfig(path: string, childConfig: StylingConfig, componentNa
     } else {
       try {
         info(`Loading styling config from directory ${path}`);
-        config = parseStylingConfig(require(resolve(path, STYLING_CONFIG_FILENAME)) as RawStylingConfig, componentName);
+        config = parseStylingConfig(
+          require(resolve(path, STYLING_CONFIG_FILENAME)) as RawStylingConfig,
+          path,
+          componentName,
+        );
       } catch {
         info(`No styling config found, falling back to package.json`);
 
         config = parseStylingConfig(
           require(resolve(path, PACKAGE_JSON_FILENAME)).styling as RawStylingConfig,
+          path,
           componentName,
         );
       }
