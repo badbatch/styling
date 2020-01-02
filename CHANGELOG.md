@@ -1,3 +1,9 @@
+#### 0.0.10 (2020-01-02)
+
+##### Bug Fixes
+
+*  adding error logging of styling file eval ([3b925752](https://github.com/dylanaubrey/styling/commit/3b92575262c5a95bfe4e206b9abc423897e8da63))
+
 #### 0.0.9 (2020-01-02)
 
 ##### Bug Fixes
