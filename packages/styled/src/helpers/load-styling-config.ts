@@ -49,5 +49,5 @@ function loadStylingConfig(path: string, childConfig: StylingConfig, componentNa
 }
 
 export default function loadStylingConfigs({ componentName, sourceDir }: Metadata): StylingConfig {
-  return loadStylingConfig(sourceDir, {}, componentName);
+  return loadStylingConfig(sourceDir, { outputPath: sourceDir }, componentName);
 }

@@ -32,5 +32,11 @@ export default function parseStylingConfig(
     theme = merge(theme, config.overrides?.[componentName]);
   }
 
-  return { ...config, theme };
+  let outputPath = currentDir;
+
+  if (config.outputPath) {
+    outputPath = resolve(currentDir, config.outputPath);
+  }
+
+  return { ...config, outputPath, theme };
 }

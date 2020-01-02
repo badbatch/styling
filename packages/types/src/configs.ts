@@ -1,3 +1,4 @@
+import { Required } from "utility-types";
 import { PlainObject } from "./common";
 
 export interface RawStylingConfig {
@@ -7,6 +8,6 @@ export interface RawStylingConfig {
   theme?: string | PlainObject;
 }
 
-export interface StylingConfig extends Omit<RawStylingConfig, "overrides"> {
+export interface StylingConfig extends Required<Omit<RawStylingConfig, "overrides">, "outputPath"> {
   theme?: PlainObject;
 }
