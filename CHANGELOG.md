@@ -1,3 +1,9 @@
+#### 0.0.14 (2020-01-02)
+
+##### Bug Fixes
+
+*  wrong output path resolution ([fa7a8388](https://github.com/dylanaubrey/styling/commit/fa7a8388477ddc6ca5c0ea8f08de3eb0946b2e7d))
+
 #### 0.0.13 (2020-01-02)
 
 ##### Bug Fixes
