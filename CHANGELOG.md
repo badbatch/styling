@@ -1,3 +1,9 @@
+#### 0.0.11 (2020-01-02)
+
+##### Bug Fixes
+
+*  adding logging to loading of themes ([488cf4a5](https://github.com/dylanaubrey/styling/commit/488cf4a5938b14e6a1a4ca6a16ca37830d4e31b6))
+
 #### 0.0.10 (2020-01-02)
 
 ##### Bug Fixes
