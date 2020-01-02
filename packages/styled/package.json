@@ -1,6 +1,6 @@
 {
   "name": "@styling/styled",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "The Styling styled module.",
   "keywords": [
     "css-in-js",

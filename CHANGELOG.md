@@ -1,3 +1,9 @@
+#### 0.0.16 (2020-01-02)
+
+##### Bug Fixes
+
+*  make file writing sync ([22d729d5](https://github.com/dylanaubrey/styling/commit/22d729d5b0f12cbaff3f24d03c81dfad3de7dcdf))
+
 #### 0.0.15 (2020-01-02)
 
 ##### New Features
