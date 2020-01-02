@@ -3,7 +3,10 @@ import traverse from "@babel/traverse";
 import { ExportNamedDeclaration, Identifier, VariableDeclarator, callExpression, stringLiteral } from "@babel/types";
 import { info } from "./log";
 
-export default function setIdentifierInExportsArgs(exportDeclarations: Array<NodePath<ExportNamedDeclaration>>) {
+export default function setMetadataInExportsArgs(
+  exportDeclarations: Array<NodePath<ExportNamedDeclaration>>,
+  sourceDir: string,
+) {
   info(`Iterating export declarations`);
 
   return exportDeclarations.forEach(declaration => {
@@ -22,7 +25,13 @@ export default function setIdentifierInExportsArgs(exportDeclarations: Array<Nod
             info(`Get arguments`);
             const args = path.get("arguments");
             info(`Replace call expression`);
-            path.replaceWith(callExpression(path.node.callee, [...args.map(arg => arg.node), stringLiteral(name)]));
+            path.replaceWith(
+              callExpression(path.node.callee, [
+                ...args.map(arg => arg.node),
+                stringLiteral(name),
+                stringLiteral(sourceDir),
+              ]),
+            );
             path.skip();
           }
         },

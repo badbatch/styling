@@ -3,6 +3,7 @@ import appRoot from "app-root-path";
 import { cloneDeep, merge } from "lodash";
 import { resolve } from "path";
 import { PACKAGE_JSON_FILENAME, STYLING_CONFIG_FILENAME } from "../constants";
+import { Metadata } from "../types";
 import { info } from "./log";
 import parseStylingConfig from "./parse-styling-config";
 
@@ -42,6 +43,6 @@ function loadStylingConfig(path: string, childConfig: StylingConfig, componentNa
   }
 }
 
-export default function loadStylingConfigs(componentName: string): StylingConfig {
-  return loadStylingConfig(__dirname, {}, componentName);
+export default function loadStylingConfigs({ componentName, sourceDir }: Metadata): StylingConfig {
+  return loadStylingConfig(sourceDir, {}, componentName);
 }

@@ -15,7 +15,7 @@ describe("styled", () => {
     color: ${p => (p.disabled ? "grey" : "blue")};
   `;
 
-  const { propsToClassNamesMap } = styled("div", ["checked", "disabled"], "Container")`
+  const { propsToClassNamesMap } = styled("div", ["checked", "disabled"], "Container", "path/to/component")`
     font-family: Arial;
     font-size: 16px;
     line-height: 1.25;

@@ -11,7 +11,7 @@ import getImportNames from "./helpers/get-import-names";
 import getImportSource from "./helpers/get-import-source";
 import { error, info, setLevel } from "./helpers/log";
 import removeUnusedImports from "./helpers/remove-unused-imports";
-import setIdentifierInExportsArgs from "./helpers/set-identifier-in-exports-args";
+import setMetadataInExportsArgs from "./helpers/set-metadata-in-exports-args";
 import { PluginResult, StylingPluginOptions } from "./types";
 
 // tslint:disable-next-line no-any
@@ -22,7 +22,7 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
   return {
     visitor: {
       Program(babelPath, { filename }) {
-        const { base } = pathParse(filename);
+        const { base, dir } = pathParse(filename);
         if (!FILENAME_REGEX.test(base)) return;
 
         info(`Entering styling file ${filename}`);
@@ -36,7 +36,7 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
           .filter(node => node.isExportNamedDeclaration()) as unknown) as Array<NodePath<ExportNamedDeclaration>>;
 
         info(`Setting identifier in exports args`);
-        setIdentifierInExportsArgs(exportDeclarations);
+        setMetadataInExportsArgs(exportDeclarations, dir);
 
         info(`Getting exports args`);
         const { identifiers, map } = getExportsArgs(exportDeclarations);

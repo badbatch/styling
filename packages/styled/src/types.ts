@@ -1,5 +1,10 @@
 import { CSSObject } from "postcss-js";
 
+export interface Metadata {
+  componentName: string;
+  sourceDir: string;
+}
+
 export interface SelectorCSS {
   [key: string]: {
     css: CSSObject;

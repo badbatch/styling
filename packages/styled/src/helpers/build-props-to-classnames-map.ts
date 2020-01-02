@@ -1,5 +1,5 @@
 import { Interpolation, StringObject } from "@styling/types";
-import { SelectorCSS, StylingCSSVariables } from "../types";
+import { Metadata, SelectorCSS, StylingCSSVariables } from "../types";
 import buildBaseSelector from "./build-base-selector";
 import buildCSSPropsFromStylingProps from "./build-css-props-from-styling-props";
 import buildCSSStringFromCSSObjects from "./build-css-string-from-css-objects";
@@ -11,12 +11,12 @@ import loadStylingConfig from "./load-styling-config";
 import writeCSS from "./write-css";
 
 export default function buildPropsToClassNamesMap(
-  componentName: string,
   propNameCombos: string[][],
   cssVariableProps: StylingCSSVariables,
   interpolations: Interpolation[],
+  { componentName, sourceDir }: Metadata,
 ): StringObject {
-  const { outputPath, selectorPrefix, theme } = loadStylingConfig(componentName);
+  const { outputPath, selectorPrefix, theme } = loadStylingConfig({ componentName, sourceDir });
   const baseSelector = buildBaseSelector(componentName, selectorPrefix);
   const baseCSS = collateCSS(interpolations, buildCSSPropsFromStylingProps([], cssVariableProps), theme);
 

@@ -11,15 +11,16 @@ export default function styled<P extends {}>(
   component: ComponentType | keyof ReactHTML | keyof ReactSVG,
   props: StylingPropsExact<P>,
   componentName: string,
+  sourceDir: string,
 ) {
   return (strings: TemplateStringsArray, ...values: Interpolation[]) => {
     return {
       props,
       propsToClassNamesMap: buildPropsToClassNamesMap(
-        componentName,
         generatePropNameCombos(filterOutCSSVariables((props as unknown) as StylingProps)),
         filterCSSVariables((props as unknown) as StylingProps),
         interweaveInterpolations(strings, values),
+        { componentName, sourceDir },
       ),
     };
   };
