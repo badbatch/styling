@@ -1,3 +1,9 @@
+#### 0.0.19 (2020-01-02)
+
+##### Bug Fixes
+
+*  revert removing css file ([d1b1081b](https://github.com/dylanaubrey/styling/commit/d1b1081ba41d001b3a107eab625c7a77a2942ed2))
+
 #### 0.0.18 (2020-01-02)
 
 ##### Bug Fixes
