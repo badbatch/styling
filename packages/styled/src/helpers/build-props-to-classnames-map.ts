@@ -1,7 +1,4 @@
 import { Interpolation, StringObject } from "@styling/types";
-import { existsSync, removeSync } from "fs-extra";
-import { resolve } from "path";
-import { STYLING_CSS_FILENAME } from "../constants";
 import { Metadata, SelectorCSS, StylingCSSVariables } from "../types";
 import buildBaseSelector from "./build-base-selector";
 import buildCSSPropsFromStylingProps from "./build-css-props-from-styling-props";
@@ -21,12 +18,6 @@ export default function buildPropsToClassNamesMap(
   { componentName, sourceDir }: Metadata,
 ): StringObject {
   const { outputPath, selectorPrefix, theme } = loadStylingConfig({ componentName, sourceDir });
-  const fullOutputPath = resolve(outputPath, STYLING_CSS_FILENAME);
-
-  if (existsSync(fullOutputPath)) {
-    removeSync(fullOutputPath);
-  }
-
   const baseSelector = buildBaseSelector(componentName, selectorPrefix);
   const baseCSS = collateCSS(interpolations, buildCSSPropsFromStylingProps([], cssVariableProps), theme);
 
@@ -56,10 +47,10 @@ export default function buildPropsToClassNamesMap(
   info("Generating css from css objects");
   const css = buildCSSStringFromCSSObjects(selectorCSS);
 
-  info(`Writing css to ${fullOutputPath}`, css);
+  info(`Writing css to ${outputPath}`, css);
 
   try {
-    writeCSS(css, fullOutputPath);
+    writeCSS(css, outputPath);
   } catch (e) {
     error("Writing css failed", e);
   }
