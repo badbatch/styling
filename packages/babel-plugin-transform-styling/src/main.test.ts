@@ -1,6 +1,6 @@
 import { transform } from "@babel/core";
-import { MockEvalStylingFile } from "./helpers/__mocks__/types";
 import transformStylingFiles from "./main";
+import { MockEvalStylingFile } from "./types";
 
 jest.mock("./helpers/eval-styling-file");
 const evalStylingFile = require("./helpers/eval-styling-file") as MockEvalStylingFile;

@@ -5,6 +5,11 @@ export interface Metadata {
   sourceDir: string;
 }
 
+export interface MockBuildBaseSelector {
+  _setSelector: (selector: string) => void;
+  default: (componentName: string, prefix?: string) => string;
+}
+
 export interface SelectorCSS {
   [key: string]: {
     css: CSSObject;

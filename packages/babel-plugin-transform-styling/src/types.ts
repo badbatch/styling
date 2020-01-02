@@ -8,6 +8,16 @@ export interface ExportsArgsResult {
   map: ExportsArgsMap;
 }
 
+export interface MockBuildTransformedFile {
+  _setFile: (file: string) => void;
+  default: (namedExports: StylingNamedExports) => string;
+}
+
+export interface MockEvalStylingFile {
+  _setFile: (file: StylingNamedExports) => void;
+  default: (filename: string) => StylingNamedExports;
+}
+
 export interface PluginState {
   cwd: string;
   file: {

@@ -1,6 +1,6 @@
 import { getInterpolations } from "./__tests__/helpers";
-import { MockBuildBaseSelector } from "./helpers/__mocks__/types";
 import styled from "./main";
+import { MockBuildBaseSelector } from "./types";
 
 jest.mock("./helpers/write-css");
 const writeCSS = require("./helpers/write-css") as { default: jest.Mock };

@@ -1,4 +1,4 @@
-import { MockBuildBaseSelector } from "./types";
+import { MockBuildBaseSelector } from "../../types";
 
 const mockModule = jest.genMockFromModule("../build-base-selector") as MockBuildBaseSelector;
 

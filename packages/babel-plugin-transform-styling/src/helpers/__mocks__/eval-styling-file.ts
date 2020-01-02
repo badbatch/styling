@@ -1,5 +1,4 @@
-import { StylingNamedExports } from "../../types";
-import { MockEvalStylingFile } from "./types";
+import { MockEvalStylingFile, StylingNamedExports } from "../../types";
 
 const mockModule = jest.genMockFromModule("../eval-styling-file") as MockEvalStylingFile;
 
