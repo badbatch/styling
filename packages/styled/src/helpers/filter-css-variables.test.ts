@@ -1,9 +1,9 @@
-import { StylingProps } from "@styling/types";
+import { PropList } from "@styling/types";
 import filterCSSVariables from "./filter-css-variables";
 
 describe("filterCSSVariables", () => {
   it("SHOULD return the props that are css variables", () => {
-    const props = [
+    const propList = [
       "active",
       "disabled",
       "error",
@@ -14,7 +14,7 @@ describe("filterCSSVariables", () => {
       "success",
     ];
 
-    expect(filterCSSVariables(props as StylingProps)).toEqual([
+    expect(filterCSSVariables(propList as PropList)).toEqual([
       ["maxHeight", "100%"],
       ["maxWidth", "450px"],
     ]);

@@ -1,7 +1,7 @@
 import { kebabCase } from "lodash";
 
-export default function buildMapKeyFromStylingProps(propNameCombo: string[]) {
-  return propNameCombo
+export default function buildMapKeyFromPropKeyCombo(propKeyCombo: string[]) {
+  return propKeyCombo
     .map(propName => kebabCase(propName))
     .sort()
     .join("--");

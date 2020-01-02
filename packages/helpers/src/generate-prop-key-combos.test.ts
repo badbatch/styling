@@ -1,8 +1,8 @@
+import { PropListWithoutCSSVariables } from "@styling/types";
 import { isEqual } from "lodash";
-import { StylingPropsWithoutCSSVariables } from "../types";
-import generatePropNameCombos from "./generate-prop-name-combos";
+import generatePropKeyCombos from "./generate-prop-key-combos";
 
-describe("generatePropNameCombos", () => {
+describe("generatePropKeyCombos", () => {
   let combos: string[][];
 
   beforeEach(() => {
@@ -15,10 +15,10 @@ describe("generatePropNameCombos", () => {
       "success",
     ];
 
-    combos = generatePropNameCombos(props as StylingPropsWithoutCSSVariables);
+    combos = generatePropKeyCombos(props as PropListWithoutCSSVariables);
   });
 
-  it("SHOULD return the correct combinations for a given set of prop names", () => {
+  it("SHOULD return the correct combinations for a given set of prop keys", () => {
     expect(combos).toMatchSnapshot();
   });
 

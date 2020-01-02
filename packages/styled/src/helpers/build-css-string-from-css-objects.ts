@@ -1,15 +1,15 @@
 import autoprefixer from "autoprefixer";
 import postcss from "postcss";
 import postcssJs from "postcss-js";
-import { SelectorCSS } from "../types";
+import { PropKeyComboCSS } from "../types";
 
-export default function buildCSSStringFromCSSObjects(selectorCSS: SelectorCSS) {
+export default function buildCSSStringFromCSSObjects(propKeyComboCSS: PropKeyComboCSS) {
   let css = "";
-  const selectors = Object.keys(selectorCSS);
+  const keys = Object.keys(propKeyComboCSS);
 
-  for (const selector of selectors) {
+  for (const key of keys) {
     const result = postcss([autoprefixer]).process(
-      { [`.${selector}`]: selectorCSS[selector].css },
+      { [`.${propKeyComboCSS[key].selector}`]: propKeyComboCSS[key].css },
       {
         from: undefined,
         parser: postcssJs.parse,

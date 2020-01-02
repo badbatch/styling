@@ -6,15 +6,14 @@ exports[`styled SHOULD write the correct css to file 1`] = `
     font-size: 16px;
     line-height: 1.25
 }
-.container-eHB-OhMi--checked--disabled {
-    color: grey;
-    curser: default
-}
 .container-eHB-OhMi--checked {
     color: blue
 }
 .container-eHB-OhMi--disabled {
     curser: default
+}
+.container-eHB-OhMi--checked--disabled {
+    color: grey
 }
 "
 `;

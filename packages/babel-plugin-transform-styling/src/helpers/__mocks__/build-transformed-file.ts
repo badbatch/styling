@@ -1,4 +1,4 @@
-import { MockBuildTransformedFile, StylingNamedExports } from "../../types";
+import { MockBuildTransformedFile, StylingExports } from "../../types";
 
 const mockModule = jest.genMockFromModule("../build-transformed-file") as MockBuildTransformedFile;
 
@@ -8,7 +8,7 @@ function _setFile(file: string) {
   mockFile = file;
 }
 
-function buildTransformedFile(namedExports: StylingNamedExports) {
+function buildTransformedFile(namedExports: StylingExports) {
   return mockFile;
 }
 

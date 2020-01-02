@@ -1,9 +1,9 @@
-import { StylingProps } from "@styling/types";
+import { PropList } from "@styling/types";
 import filterOutCSSVariables from "./filter-out-css-variables";
 
 describe("filterOutCSSVariables", () => {
   it("SHOULD return the props that are css variables", () => {
-    const props = [
+    const propList = [
       "active",
       "disabled",
       "error",
@@ -14,7 +14,7 @@ describe("filterOutCSSVariables", () => {
       "success",
     ];
 
-    expect(filterOutCSSVariables(props as StylingProps)).toEqual([
+    expect(filterOutCSSVariables(propList as PropList)).toEqual([
       "active",
       "disabled",
       "error",

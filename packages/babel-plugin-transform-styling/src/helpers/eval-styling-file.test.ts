@@ -4,39 +4,43 @@ describe("evalStylingFile", () => {
   it("SHOULD eval the file correctly", () => {
     const sourceFile = `
       export const Container = {
-        props: ["checked", "disabled"],
+        propList: ["checked", "disabled"],
         propsToClassNamesMap: {
           checked: "test-component__container--checked",
-          "checked::disabled": "test-component__container--checked--disabled",
+          "checked--disabled": "test-component__container--checked--disabled",
           disabled: "test-component__container--disabled",
         },
+        relevantPropKeys: ["checked", "disabled"],
       };
 
       export const Radio = {
-        props: ["checked", "disabled"],
+        propList: ["checked", "disabled"],
         propsToClassNamesMap: {
           checked: "test-component__radio--checked",
-          "checked::disabled": "test-component__radio--checked--disabled",
+          "checked--disabled": "test-component__radio--checked--disabled",
           disabled: "test-component__radio--disabled",
         },
+        relevantPropKeys: ["checked", "disabled"],
       };
 
       export const Subtext = {
-        props: ["checked", "disabled"],
+        propList: ["checked", "disabled"],
         propsToClassNamesMap: {
           checked: "test-component__subtext--checked",
-          "checked::disabled": "test-component__subtext--checked--disabled",
+          "checked--disabled": "test-component__subtext--checked--disabled",
           disabled: "test-component__subtext--disabled",
         },
+        relevantPropKeys: ["checked", "disabled"],
       };
 
       export const Text = {
-        props: ["checked", "disabled"],
+        propList: ["checked", "disabled"],
         propsToClassNamesMap: {
           checked: "test-component__text--checked",
-          "checked::disabled": "test-component__text--checked--disabled",
+          "checked--disabled": "test-component__text--checked--disabled",
           disabled: "test-component__text--disabled",
         },
+        relevantPropKeys: ["checked", "disabled"],
       };
     `;
 
@@ -44,36 +48,40 @@ describe("evalStylingFile", () => {
 
     expect(output).toEqual({
       Container: {
-        props: ["checked", "disabled"],
+        propList: ["checked", "disabled"],
         propsToClassNamesMap: {
           checked: "test-component__container--checked",
-          "checked::disabled": "test-component__container--checked--disabled",
+          "checked--disabled": "test-component__container--checked--disabled",
           disabled: "test-component__container--disabled",
         },
+        relevantPropKeys: ["checked", "disabled"],
       },
       Radio: {
-        props: ["checked", "disabled"],
+        propList: ["checked", "disabled"],
         propsToClassNamesMap: {
           checked: "test-component__radio--checked",
-          "checked::disabled": "test-component__radio--checked--disabled",
+          "checked--disabled": "test-component__radio--checked--disabled",
           disabled: "test-component__radio--disabled",
         },
+        relevantPropKeys: ["checked", "disabled"],
       },
       Subtext: {
-        props: ["checked", "disabled"],
+        propList: ["checked", "disabled"],
         propsToClassNamesMap: {
           checked: "test-component__subtext--checked",
-          "checked::disabled": "test-component__subtext--checked--disabled",
+          "checked--disabled": "test-component__subtext--checked--disabled",
           disabled: "test-component__subtext--disabled",
         },
+        relevantPropKeys: ["checked", "disabled"],
       },
       Text: {
-        props: ["checked", "disabled"],
+        propList: ["checked", "disabled"],
         propsToClassNamesMap: {
           checked: "test-component__text--checked",
-          "checked::disabled": "test-component__text--checked--disabled",
+          "checked--disabled": "test-component__text--checked--disabled",
           disabled: "test-component__text--disabled",
         },
+        relevantPropKeys: ["checked", "disabled"],
       },
     });
   });

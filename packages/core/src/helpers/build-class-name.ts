@@ -1,12 +1,12 @@
-export default function buildClassName(stylingClassName?: string, className?: string) {
+export default function buildClassNames(stylingClassNames?: string, className?: string) {
   let combined = "";
 
-  if (stylingClassName) {
-    combined += stylingClassName;
+  if (stylingClassNames) {
+    combined += stylingClassNames;
   }
 
   if (className) {
-    if (stylingClassName) {
+    if (stylingClassNames) {
       combined += " ";
     }
 

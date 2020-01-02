@@ -10,17 +10,12 @@ export interface MockBuildBaseSelector {
   default: (componentName: string, prefix?: string) => string;
 }
 
-export interface SelectorCSS {
+export interface PropKeyComboCSS {
   [key: string]: {
     css: CSSObject;
-    key: string;
+    keyCombo: string[];
+    selector: string;
   };
 }
 
-export type StylingEnumProps = Array<[string, string[]]>;
-
-export type StylingCSSVariables = Array<[string, string | number]>;
-
-export type StylingPropsWithoutCSSVariables = Array<string | [string, string[]]>;
-
-export type StylingPropsExact<P extends {}> = Array<keyof P | [keyof P, string[]] | [keyof P, string | number]>;
+export type PropListExact<P extends {}> = Array<keyof P | [keyof P, string[]] | [keyof P, string | number]>;

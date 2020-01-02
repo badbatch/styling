@@ -1,6 +1,6 @@
 /* tslint:disable no-console */
 
-import { ERROR, INFO, LOG_PREFIX, WARN } from "../constants";
+import { ERROR, INFO, LOG_PREFIX, WARN } from "./constants";
 
 export function error(message: string, ...optionalParams: any[]) {
   if (getLevel() < 1) return;
@@ -28,4 +28,8 @@ export function getLevel() {
     default:
       return 0;
   }
+}
+
+export function setLevel(logLevel?: "error" | "warn" | "info") {
+  if (logLevel) process.env.STYLING_LOG_LEVEL = logLevel;
 }

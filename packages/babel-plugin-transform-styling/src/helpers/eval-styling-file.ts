@@ -1,7 +1,7 @@
+import { error } from "@styling/helpers";
 import { removeSync, writeFileSync } from "fs-extra";
 import { parse } from "path";
-import { StylingNamedExports } from "../types";
-import { error } from "./log";
+import { StylingExports } from "../types";
 
 export default function evalStylingFile(code: string, filename: string) {
   const { dir, ext, name } = parse(filename);
@@ -21,7 +21,7 @@ export default function evalStylingFile(code: string, filename: string) {
     ],
   });
 
-  let output: StylingNamedExports | undefined;
+  let output: StylingExports | undefined;
 
   try {
     output = require(tempFilePath);

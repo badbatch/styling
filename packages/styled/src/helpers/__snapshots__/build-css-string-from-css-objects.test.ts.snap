@@ -1,7 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`buildCSSFromCSSObjects SHOULD return the correct css string 1`] = `
-".component-name {
+".component-name--active {
+    max-height: var(--max-height, 100%);
+    max-width: var(--max-width, 450px);
+    .child-selector-a {
+        background-color: red;
+        display: block
+    }
+}
+.component-name {
     font-family: Arial;
     font-size: 16px;
     line-height: 1.25;
@@ -26,14 +34,6 @@ exports[`buildCSSFromCSSObjects SHOULD return the correct css string 1`] = `
     .child-selector-a {
         background-color: black;
         position: fixed
-    }
-}
-.component-name--active {
-    max-height: var(--max-height, 100%);
-    max-width: var(--max-width, 450px);
-    .child-selector-a {
-        background-color: red;
-        display: block
     }
 }
 "

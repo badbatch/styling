@@ -5,18 +5,13 @@ export const FILE_COMMENT_AND_IMPORT = `
 import styling from "@styling/core";
 `;
 
-export const STYLING_PROPS_PLACEHOLDER = "%{props}" as const;
+export const PROP_LIST_PLACEHOLDER = "%{propList}" as const;
+export const RELEVANT_PROP_KEYS_PLACEHOLDER = "%{relevantPropKeys}" as const;
 export const PROPS_TO_CLASSNAMES_MAP_PLACEHOLDER = "%{propsToClassNamesMap}" as const;
 
 export const COMPONENT_EXPORT = `
-export const EXPORT_NAME = styling(COMPONENT, ${STYLING_PROPS_PLACEHOLDER}, ${PROPS_TO_CLASSNAMES_MAP_PLACEHOLDER});
+export const EXPORT_NAME = styling(COMPONENT, ${PROP_LIST_PLACEHOLDER}, ${RELEVANT_PROP_KEYS_PLACEHOLDER}, ${PROPS_TO_CLASSNAMES_MAP_PLACEHOLDER});
 `;
 
 export const IDENTIFIER = "Identifier" as const;
 export const STRING_LITERAL = "StringLiteral" as const;
-
-export const ERROR = "error" as const;
-export const WARN = "warn" as const;
-export const INFO = "info" as const;
-
-export const LOG_PREFIX = ">>>>>>" as const;

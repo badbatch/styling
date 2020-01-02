@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`generatePropNameCombos SHOULD return the correct combinations for a given set of prop names 1`] = `
+exports[`generatePropKeyCombos SHOULD return the correct combinations for a given set of prop keys 1`] = `
 Array [
   Array [
     "active",

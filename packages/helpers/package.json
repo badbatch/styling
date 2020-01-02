@@ -1,7 +1,7 @@
 {
-  "name": "@styling/core",
-  "version": "0.0.3",
-  "description": "The Styling core module.",
+  "name": "@styling/helpers",
+  "version": "0.0.20",
+  "description": "The Styling helpers module.",
   "keywords": [
     "css-in-js",
     "react",
@@ -37,11 +37,9 @@
   "devDependencies": {},
   "peerDependencies": {
     "@babel/runtime": "^7.0.0",
-    "@styling/helpers": "> 1.0",
     "@styling/types": "> 1.0",
     "core-js": "> 4.0",
-    "lodash": "^4.17.5",
-    "react": "^16.8"
+    "lodash": "^4.17.5"
   },
   "publishConfig": {
     "access": "public"

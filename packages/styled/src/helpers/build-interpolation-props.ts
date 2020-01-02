@@ -1,15 +1,14 @@
-import { PlainObject } from "@styling/types";
+import { CSSVariablePropList, PlainObject } from "@styling/types";
 import { kebabCase } from "lodash";
-import { StylingCSSVariables } from "../types";
 
-export default function buildCSSPropsFromStylingProps(combo: string[], cssVariableProps: StylingCSSVariables) {
+export default function buildInterpolationProps(propKeyCombo: string[], cssVariablePropList: CSSVariablePropList) {
   const props: PlainObject = {};
 
-  cssVariableProps.forEach(([key, value]) => {
+  cssVariablePropList.forEach(([key, value]) => {
     props[key] = `var(--${kebabCase(key)}${value ? `, ${value}` : ""})`;
   });
 
-  combo.forEach(prop => {
+  propKeyCombo.forEach(prop => {
     const split = prop.split("::");
 
     if (split.length === 2) {

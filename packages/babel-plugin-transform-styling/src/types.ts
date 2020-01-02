@@ -1,5 +1,5 @@
 import { NodePath, Visitor } from "@babel/traverse";
-import { StringObject } from "@styling/types";
+import { PropList, StringObject } from "@styling/types";
 
 export type ExportsArgsMap = Map<string, { type: string; value: string }>;
 
@@ -10,12 +10,12 @@ export interface ExportsArgsResult {
 
 export interface MockBuildTransformedFile {
   _setFile: (file: string) => void;
-  default: (namedExports: StylingNamedExports) => string;
+  default: (namedExports: StylingExports) => string;
 }
 
 export interface MockEvalStylingFile {
-  _setFile: (file: StylingNamedExports) => void;
-  default: (filename: string) => StylingNamedExports;
+  _setFile: (file: StylingExports) => void;
+  default: (filename: string) => StylingExports;
 }
 
 export interface PluginState {
@@ -30,13 +30,14 @@ export interface PluginResult {
   visitor: Visitor<PluginState>;
 }
 
-export interface StylingNamedExport {
-  props: Array<string | [string, string[]] | [string, string | number]>;
+export interface StylingExport {
+  propList: PropList;
   propsToClassNamesMap: StringObject;
+  relevantPropKeys: string[];
 }
 
-export interface StylingNamedExports {
-  [key: string]: StylingNamedExport;
+export interface StylingExports {
+  [key: string]: StylingExport;
 }
 
 export interface StylingPluginOptions {

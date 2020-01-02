@@ -4,17 +4,19 @@ import collateCSS from "./collate-css";
 
 describe("buildCSSFromCSSObjects", () => {
   it("SHOULD return the correct css string", () => {
-    const selectorCSS = {
-      "component-name": {
-        css: collateCSS(baseInterpolations, props, theme),
-        key: "",
-      },
-      "component-name--active": {
+    const propKeyComboCSS = {
+      active: {
         css: collateCSS(activeInterpolations, props, theme),
-        key: "",
+        keyCombo: ["active"],
+        selector: "component-name--active",
+      },
+      base: {
+        css: collateCSS(baseInterpolations, props, theme),
+        keyCombo: [],
+        selector: "component-name",
       },
     };
 
-    expect(buildCSSStringFromCSSObjects(selectorCSS)).toMatchSnapshot();
+    expect(buildCSSStringFromCSSObjects(propKeyComboCSS)).toMatchSnapshot();
   });
 });

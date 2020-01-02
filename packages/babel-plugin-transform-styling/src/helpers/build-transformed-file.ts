@@ -5,25 +5,25 @@ import {
   FILE_COMMENT_AND_IMPORT,
   IDENTIFIER,
   PROPS_TO_CLASSNAMES_MAP_PLACEHOLDER,
-  STYLING_PROPS_PLACEHOLDER,
+  PROP_LIST_PLACEHOLDER,
+  RELEVANT_PROP_KEYS_PLACEHOLDER,
 } from "../constants";
-import { ExportsArgsMap, StylingNamedExports } from "../types";
+import { ExportsArgsMap, StylingExports } from "../types";
 
 export default function buildTransformedFile(
-  namedExports: StylingNamedExports,
+  namedExports: StylingExports,
   importDeclarationsToInclude: ImportDeclaration[],
   exportsArgsMap: ExportsArgsMap,
 ) {
   return Object.keys(namedExports).reduce(
     (file, name) => {
-      const { props, propsToClassNamesMap } = namedExports[name];
+      const { propList, propsToClassNamesMap, relevantPropKeys } = namedExports[name];
       const { type, value } = exportsArgsMap.get(name) as { type: string; value: string };
 
       const buildAST = template(
-        COMPONENT_EXPORT.replace(STYLING_PROPS_PLACEHOLDER, JSON.stringify(props)).replace(
-          PROPS_TO_CLASSNAMES_MAP_PLACEHOLDER,
-          JSON.stringify(propsToClassNamesMap),
-        ),
+        COMPONENT_EXPORT.replace(PROP_LIST_PLACEHOLDER, JSON.stringify(propList))
+          .replace(RELEVANT_PROP_KEYS_PLACEHOLDER, JSON.stringify(relevantPropKeys))
+          .replace(PROPS_TO_CLASSNAMES_MAP_PLACEHOLDER, JSON.stringify(propsToClassNamesMap)),
       );
 
       const ast = buildAST({

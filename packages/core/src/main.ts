@@ -1,30 +1,31 @@
-import { StringObject, StylingProps } from "@styling/types";
+import { PropList, StringObject } from "@styling/types";
 import { isFunction, kebabCase } from "lodash";
 import { ComponentType, ReactHTML, ReactSVG, createElement, forwardRef } from "react";
 import buildClassName from "./helpers/build-class-name";
-import getClassNameFromProps from "./helpers/get-class-name-from-props";
-import getCSSVariableProps from "./helpers/get-css-variable-props";
+import getClassNamesFromProps from "./helpers/get-class-names-from-props";
+import getCSSVariablePropList from "./helpers/get-css-variable-prop-list";
 import { ForwardedProps, ReturnedElementProps } from "./types";
 
 export default function styling(
   component: ComponentType | keyof ReactHTML | keyof ReactSVG,
-  stylingProps: StylingProps,
+  propList: PropList,
+  relevantPropKeys: string[],
   propsToClassNamesMap: StringObject,
 ) {
   // tslint:disable-next-line no-any
   return forwardRef<any, ForwardedProps>(({ as, children, className, ...rest }, ref) => {
-    const stylingClassName = getClassNameFromProps(stylingProps, propsToClassNamesMap, rest);
-    const cssVariableProps = getCSSVariableProps(stylingProps, rest);
+    const stylingClassNames = getClassNamesFromProps(propList, relevantPropKeys, propsToClassNamesMap, rest);
+    const cssVariablePropList = getCSSVariablePropList(propList, rest);
 
     return createElement<ReturnedElementProps>(
       as || component,
       {
         ...rest,
-        className: buildClassName(stylingClassName, className),
+        className: buildClassName(stylingClassNames, className),
         ref: element => {
           if (element) {
-            Object.keys(cssVariableProps).forEach(propName => {
-              element.style.setProperty(`--${kebabCase(propName)}`, cssVariableProps[propName]);
+            Object.keys(cssVariablePropList).forEach(propName => {
+              element.style.setProperty(`--${kebabCase(propName)}`, cssVariablePropList[propName]);
             });
 
             if (isFunction(ref)) {

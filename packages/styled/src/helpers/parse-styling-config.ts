@@ -1,7 +1,7 @@
+import { error, info } from "@styling/helpers";
 import { PlainObject, RawStylingConfig, StylingConfig } from "@styling/types";
 import { isPlainObject, isString, merge } from "lodash";
 import { resolve } from "path";
-import { error, info } from "./log";
 
 export default function parseStylingConfig(
   config: RawStylingConfig,

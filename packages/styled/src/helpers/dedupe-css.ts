@@ -1,19 +1,35 @@
+import { buildMapKeyFromPropKeyCombo } from "@styling/helpers";
 import { isEqual, isPlainObject } from "lodash";
-import postcssJs from "postcss-js";
+import { CSSObject } from "postcss-js";
+import { PropKeyComboCSS } from "../types";
 
-export default function dedupeCSS(css: postcssJs.CSSObject, baseCSS: postcssJs.CSSObject = {}) {
-  const dedupedCSS: postcssJs.CSSObject = {};
+function dedupe(css: CSSObject, srcCSS: CSSObject) {
+  const dedupedCSS: CSSObject = {};
 
   Object.keys(css).forEach(key => {
-    if (!baseCSS[key]) {
+    if (!srcCSS[key]) {
       dedupedCSS[key] = css[key];
-    } else if (!isEqual(css[key], baseCSS[key])) {
+    } else if (!isEqual(css[key], srcCSS[key])) {
       if (isPlainObject(css[key])) {
-        dedupedCSS[key] = dedupeCSS(css[key] as postcssJs.CSSObject, baseCSS[key] as postcssJs.CSSObject);
+        dedupedCSS[key] = dedupe(css[key] as CSSObject, srcCSS[key] as CSSObject);
       } else {
         dedupedCSS[key] = css[key];
       }
     }
+  });
+
+  return dedupedCSS;
+}
+
+export default function dedupeCSS(css: CSSObject, propKeyCombo: string[], propKeyComboCSS: PropKeyComboCSS) {
+  let dedupedCSS = dedupe(css, propKeyComboCSS.base.css);
+  if (propKeyCombo.length === 1) return dedupedCSS;
+
+  propKeyCombo.forEach(propName => {
+    const propNameCSS = propKeyComboCSS[buildMapKeyFromPropKeyCombo([propName])];
+    if (!propNameCSS) return;
+
+    dedupedCSS = dedupe(dedupedCSS, propNameCSS.css);
   });
 
   return dedupedCSS;

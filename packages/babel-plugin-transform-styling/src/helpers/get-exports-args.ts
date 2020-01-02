@@ -10,7 +10,7 @@ export default function getExportsArgs(exportDeclarations: Array<NodePath<Export
       traverse(
         declaration.node,
         {
-          CallExpression(path, state) {
+          CallExpression(path) {
             if (path.findParent(node => node.isTaggedTemplateExpression())) {
               const variable = path.findParent(node => node.isVariableDeclarator()) as NodePath<VariableDeclarator>;
               const name = (variable.get("id") as NodePath<Identifier>).node.name;

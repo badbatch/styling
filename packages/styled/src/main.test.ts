@@ -25,6 +25,8 @@ describe("styled", () => {
 
   it("SHOULD generate the correct props to class names map", () => {
     Object.keys(propsToClassNamesMap).forEach(key => {
+      if (key === "base") return;
+
       expect(propsToClassNamesMap[key].startsWith("container")).toBe(true);
       expect(propsToClassNamesMap[key].endsWith(key)).toBe(true);
     });

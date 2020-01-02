@@ -1,10 +1,10 @@
+import { info } from "@styling/helpers";
 import { RawStylingConfig, StylingConfig } from "@styling/types";
 import appRoot from "app-root-path";
 import { cloneDeep, mergeWith } from "lodash";
 import { resolve } from "path";
 import { PACKAGE_JSON_FILENAME, STYLING_CONFIG_FILENAME } from "../constants";
 import { Metadata } from "../types";
-import { info } from "./log";
 import parseStylingConfig from "./parse-styling-config";
 
 const stylingConfigs: Map<string, StylingConfig> = new Map();

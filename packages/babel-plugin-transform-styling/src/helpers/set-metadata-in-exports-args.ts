@@ -1,7 +1,7 @@
 import { NodePath } from "@babel/core";
 import traverse from "@babel/traverse";
 import { ExportNamedDeclaration, Identifier, VariableDeclarator, callExpression, stringLiteral } from "@babel/types";
-import { info } from "./log";
+import { info } from "@styling/helpers";
 
 export default function setMetadataInExportsArgs(
   exportDeclarations: Array<NodePath<ExportNamedDeclaration>>,
@@ -15,7 +15,7 @@ export default function setMetadataInExportsArgs(
     traverse(
       declaration.node,
       {
-        CallExpression(path, state) {
+        CallExpression(path) {
           if (path.findParent(node => node.isTaggedTemplateExpression())) {
             info(`Entering call expression`);
             info(`Find parent`);
