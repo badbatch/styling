@@ -1,3 +1,9 @@
+#### 0.0.13 (2020-01-02)
+
+##### Bug Fixes
+
+*  sort bug in loading configs ([3eeca8d4](https://github.com/dylanaubrey/styling/commit/3eeca8d49dbc8882f6f252f1337a54c7e17ad65c))
+
 #### 0.0.12 (2020-01-02)
 
 ##### Bug Fixes
