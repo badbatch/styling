@@ -1,3 +1,9 @@
+#### 0.0.20 (2020-01-02)
+
+##### Bug Fixes
+
+*  update write css logic to stop silent failure ([f071473c](https://github.com/dylanaubrey/styling/commit/f071473ce98d04d7062d57f09c0aafaad3acde24))
+
 #### 0.0.19 (2020-01-02)
 
 ##### Bug Fixes
