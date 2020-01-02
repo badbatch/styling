@@ -1,3 +1,9 @@
+#### 0.0.15 (2020-01-02)
+
+##### New Features
+
+*  adding logging to writing css logic ([cebb70cd](https://github.com/dylanaubrey/styling/commit/cebb70cdf6ee76bd6eac9f536d46801ae13ce7cd))
+
 #### 0.0.14 (2020-01-02)
 
 ##### Bug Fixes
