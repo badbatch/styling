@@ -1,3 +1,10 @@
+#### 0.0.12 (2020-01-02)
+
+##### Bug Fixes
+
+*  jest mocking warning ([eb3f19a6](https://github.com/dylanaubrey/styling/commit/eb3f19a6a78130e07efd811915ba80960a249d68))
+*  changing how source directory is derived ([8a7faf3e](https://github.com/dylanaubrey/styling/commit/8a7faf3ee9fcc1238b604e6fea0598f182f8feee))
+
 #### 0.0.11 (2020-01-02)
 
 ##### Bug Fixes
