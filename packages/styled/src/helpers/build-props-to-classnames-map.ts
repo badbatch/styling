@@ -1,4 +1,7 @@
 import { Interpolation, StringObject } from "@styling/types";
+import { existsSync, removeSync } from "fs-extra";
+import { resolve } from "path";
+import { STYLING_CSS_FILENAME } from "../constants";
 import { Metadata, SelectorCSS, StylingCSSVariables } from "../types";
 import buildBaseSelector from "./build-base-selector";
 import buildCSSPropsFromStylingProps from "./build-css-props-from-styling-props";
@@ -8,7 +11,7 @@ import buildSelectorFromStylingProps from "./build-selector-from-styling-props";
 import collateCSS from "./collate-css";
 import dedupeCSS from "./dedupe-css";
 import loadStylingConfig from "./load-styling-config";
-import { info } from "./log";
+import { error, info } from "./log";
 import writeCSS from "./write-css";
 
 export default function buildPropsToClassNamesMap(
@@ -18,6 +21,12 @@ export default function buildPropsToClassNamesMap(
   { componentName, sourceDir }: Metadata,
 ): StringObject {
   const { outputPath, selectorPrefix, theme } = loadStylingConfig({ componentName, sourceDir });
+  const fullOutputPath = resolve(outputPath, STYLING_CSS_FILENAME);
+
+  if (existsSync(fullOutputPath)) {
+    removeSync(fullOutputPath);
+  }
+
   const baseSelector = buildBaseSelector(componentName, selectorPrefix);
   const baseCSS = collateCSS(interpolations, buildCSSPropsFromStylingProps([], cssVariableProps), theme);
 
@@ -47,8 +56,13 @@ export default function buildPropsToClassNamesMap(
   info("Generating css from css objects");
   const css = buildCSSStringFromCSSObjects(selectorCSS);
 
-  info(`Writing css to ${outputPath}`, css);
-  writeCSS(css, outputPath);
+  info(`Writing css to ${fullOutputPath}`, css);
+
+  try {
+    writeCSS(css, fullOutputPath);
+  } catch (e) {
+    error("Writing css failed", e);
+  }
 
   return Object.keys(selectorCSS).reduce((map: StringObject, selector) => {
     const { key } = selectorCSS[selector];
