@@ -9,7 +9,7 @@ import {
 import { IDENTIFIER, STRING_LITERAL } from "../constants";
 import { ExportsArgsResult } from "../types";
 
-export default function getExportsArgs(exportDeclarations: Array<NodePath<ExportNamedDeclaration>>) {
+export default function getExportsComponentArgs(exportDeclarations: Array<NodePath<ExportNamedDeclaration>>) {
   return exportDeclarations.reduce(
     (args: ExportsArgsResult, declaration) => {
       const variableDeclaratorPath = (declaration.get("declaration") as NodePath<VariableDeclaration>).get(

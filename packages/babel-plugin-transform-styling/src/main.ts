@@ -7,7 +7,7 @@ import { parse as pathParse } from "path";
 import { FILENAME_REGEX } from "./constants";
 import buildTransformedFile from "./helpers/build-transformed-file";
 import evalStylingFile from "./helpers/eval-styling-file";
-import getExportsArgs from "./helpers/get-exports-args";
+import getExportsComponentArgs from "./helpers/get-exports-component-args";
 import getImportNames from "./helpers/get-import-names";
 import getImportSource from "./helpers/get-import-source";
 import removeUnusedImports from "./helpers/remove-unused-imports";
@@ -39,7 +39,7 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
         setMetadataInExportsArgs(exportDeclarations, dir);
 
         info(`Getting exports args`);
-        const { identifiers, map } = getExportsArgs(exportDeclarations);
+        const { identifiers, map } = getExportsComponentArgs(exportDeclarations);
         const importDeclarationsToInclude: ImportDeclaration[] = [];
 
         info(`Iterating import declarations`);
