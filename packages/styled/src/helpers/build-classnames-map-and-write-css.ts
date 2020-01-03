@@ -1,18 +1,16 @@
-import { error, info } from "@styling/helpers";
-import { CSSVariablePropList, Interpolation, StringObject } from "@styling/types";
-import { Metadata } from "../types";
+import { error, info, loadStylingConfig } from "@styling/helpers";
+import { CSSVariablePropList, Interpolation, Metadata, StringObject } from "@styling/types";
 import buildCSSObjects from "./build-css-objects";
 import buildCSSStringFromCSSObjects from "./build-css-string-from-css-objects";
-import loadStylingConfig from "./load-styling-config";
 import writeCSS from "./write-css";
 
 export default function buildClassNamesMapAndWriteCSS(
   propKeyCombos: string[][],
   cssVariablePropList: CSSVariablePropList,
   interpolations: Interpolation[],
-  { componentName, sourceDir }: Metadata,
+  { componentName, sourceFilename }: Metadata,
 ) {
-  const config = loadStylingConfig({ componentName, sourceDir });
+  const config = loadStylingConfig({ componentName, sourceFilename });
 
   info("Building css objects");
   const propKeyComboCSS = buildCSSObjects(propKeyCombos, cssVariablePropList, interpolations, componentName, config);
@@ -24,7 +22,7 @@ export default function buildClassNamesMapAndWriteCSS(
   info(`Writing css to ${outputPath}`, css);
 
   try {
-    writeCSS(css, outputPath);
+    writeCSS(css, outputPath, sourceFilename);
   } catch (e) {
     error("Writing css failed", e);
   }

@@ -1,10 +1,17 @@
-import { error } from "@styling/helpers";
-import { removeSync, writeFileSync } from "fs-extra";
+import { error, getFullOutputPath, loadStylingConfig } from "@styling/helpers";
+import { existsSync, removeSync, writeFileSync } from "fs-extra";
 import { parse } from "path";
 import { StylingExports } from "../types";
 
-export default function evalStylingFile(code: string, filename: string) {
-  const { dir, ext, name } = parse(filename);
+export default function evalStylingFile(code: string, sourceFilename: string) {
+  const { outputPath } = loadStylingConfig({ sourceFilename });
+  const fullOutputPath = getFullOutputPath(outputPath, sourceFilename);
+
+  if (existsSync(fullOutputPath)) {
+    removeSync(fullOutputPath);
+  }
+
+  const { dir, ext, name } = parse(sourceFilename);
   const tempFilePath = `${dir}/__${name}.temp${ext}`;
   writeFileSync(tempFilePath, code, { encoding: "utf-8" });
 

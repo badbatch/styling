@@ -5,7 +5,7 @@ import { STYLED_FUNC_NAME } from "../constants";
 
 export default function setMetadataInExportsArgs(
   exportDeclarations: Array<NodePath<ExportNamedDeclaration>>,
-  sourceDir: string,
+  filename: string,
 ) {
   info(`Iterating export declarations`);
 
@@ -28,7 +28,7 @@ export default function setMetadataInExportsArgs(
             callExpression(path.node.callee, [
               ...argsPath.map(argPath => argPath.node),
               stringLiteral(name),
-              stringLiteral(sourceDir),
+              stringLiteral(filename),
             ]),
           );
 

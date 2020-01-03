@@ -1,12 +1,12 @@
-import { error, info } from "@styling/helpers";
 import { PlainObject, RawStylingConfig, StylingConfig } from "@styling/types";
 import { isPlainObject, isString, merge } from "lodash";
 import { resolve } from "path";
+import { error, info } from "./log";
 
 export default function parseStylingConfig(
   config: RawStylingConfig,
   currentDir: string,
-  componentName: string,
+  componentName?: string,
 ): StylingConfig {
   let theme: PlainObject = {};
 
@@ -28,7 +28,7 @@ export default function parseStylingConfig(
     theme = config.theme as PlainObject;
   }
 
-  if (isPlainObject(config.overrides?.[componentName])) {
+  if (componentName && isPlainObject(config.overrides?.[componentName])) {
     theme = merge(theme, config.overrides?.[componentName]);
   }
 

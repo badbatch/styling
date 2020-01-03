@@ -12,6 +12,11 @@ export interface StringObject {
   [key: string]: string;
 }
 
+export interface Metadata {
+  componentName: string;
+  sourceFilename: string;
+}
+
 export type EnumPropList = Array<[string, string[]]>;
 
 export type CSSVariablePropList = Array<[string, string | number]>;

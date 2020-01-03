@@ -11,7 +11,7 @@ export default function styled<P extends {}>(
   component: ComponentType | keyof ReactHTML | keyof ReactSVG,
   propList: PropListExact<P>,
   componentName: string,
-  sourceDir: string,
+  sourceFilename: string,
 ) {
   return (strings: TemplateStringsArray, ...values: Interpolation[]) => {
     return {
@@ -20,7 +20,7 @@ export default function styled<P extends {}>(
         generatePropKeyCombos(filterOutCSSVariables((propList as unknown) as PropList)),
         filterCSSVariables((propList as unknown) as PropList),
         interweaveInterpolations(strings, values),
-        { componentName, sourceDir },
+        { componentName, sourceFilename },
       ),
     };
   };

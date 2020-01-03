@@ -1,9 +1,8 @@
+import { getFullOutputPath } from "@styling/helpers";
 import { appendFileSync, existsSync, outputFileSync } from "fs-extra";
-import { resolve } from "path";
-import { STYLING_CSS_FILENAME } from "../constants";
 
-export default function writeCSS(css: string, outputPath: string) {
-  const fullOutputPath = resolve(outputPath, STYLING_CSS_FILENAME);
+export default function writeCSS(css: string, outputPath: string, sourceFilename: string) {
+  const fullOutputPath = getFullOutputPath(outputPath, sourceFilename);
 
   if (existsSync(fullOutputPath)) {
     appendFileSync(fullOutputPath, css, { encoding: "utf-8" });

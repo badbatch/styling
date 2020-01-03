@@ -1,10 +1,5 @@
 import { CSSObject } from "postcss-js";
 
-export interface Metadata {
-  componentName: string;
-  sourceDir: string;
-}
-
 export interface MockBuildBaseSelector {
   _setSelector: (selector: string) => void;
   default: (componentName: string, prefix?: string) => string;

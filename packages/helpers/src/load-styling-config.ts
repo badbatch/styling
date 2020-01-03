@@ -1,20 +1,20 @@
-import { info } from "@styling/helpers";
-import { RawStylingConfig, StylingConfig } from "@styling/types";
+import { Metadata, RawStylingConfig, StylingConfig } from "@styling/types";
 import appRoot from "app-root-path";
 import { cloneDeep, mergeWith } from "lodash";
-import { resolve } from "path";
-import { PACKAGE_JSON_FILENAME, STYLING_CONFIG_FILENAME } from "../constants";
-import { Metadata } from "../types";
+import { parse, resolve } from "path";
+import { Optional } from "utility-types";
+import { PACKAGE_JSON_FILENAME, STYLING_CONFIG_FILENAME } from "./constants";
+import { info } from "./log";
 import parseStylingConfig from "./parse-styling-config";
 
 const stylingConfigs: Map<string, StylingConfig> = new Map();
 
-function conditionallyLoadParentStylingConfig(path: string, childConfig: StylingConfig, componentName: string) {
+function conditionallyLoadParentStylingConfig(path: string, childConfig: StylingConfig, componentName?: string) {
   if (appRoot.toString() === path) return childConfig;
   return loadStylingConfig(resolve(path, ".."), childConfig, componentName);
 }
 
-function loadStylingConfig(path: string, childConfig: StylingConfig, componentName: string): StylingConfig {
+function loadStylingConfig(path: string, childConfig: StylingConfig, componentName?: string): StylingConfig {
   try {
     let config;
 
@@ -54,6 +54,10 @@ function loadStylingConfig(path: string, childConfig: StylingConfig, componentNa
   }
 }
 
-export default function loadStylingConfigs({ componentName, sourceDir }: Metadata): StylingConfig {
-  return loadStylingConfig(sourceDir, { outputPath: "" }, componentName);
+export default function loadStylingConfigs({
+  componentName,
+  sourceFilename,
+}: Optional<Metadata, "componentName">): StylingConfig {
+  const { dir } = parse(sourceFilename);
+  return loadStylingConfig(dir, { outputPath: "" }, componentName);
 }
