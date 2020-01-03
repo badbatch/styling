@@ -1,3 +1,9 @@
+#### 0.0.28 (2020-01-03)
+
+##### Bug Fixes
+
+*  trying different approach to traversing sub tree ([8bfcdf8b](https://github.com/dylanaubrey/styling/commit/8bfcdf8b84989357073fdf1bcbc87de7ca51b0b3))
+
 #### 0.0.27 (2020-01-03)
 
 ##### Refactors
