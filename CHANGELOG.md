@@ -1,3 +1,9 @@
+#### 0.0.24 (2020-01-03)
+
+##### New Features
+
+*  change way call expression is replaced ([31348072](https://github.com/dylanaubrey/styling/commit/313480729d7e60944eab5772c24bb4a0dc009801))
+
 #### 0.0.23 (2020-01-03)
 
 ##### Bug Fixes
