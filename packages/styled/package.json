@@ -35,7 +35,7 @@
     "app-root-path": "^3.0.0",
     "autoprefixer": "^9.7.3",
     "fs-extra": "^8.1.0",
-    "invariant": "^2.2.4",
+    "node-sass": "^4.13.0",
     "postcss": "^7.0.25",
     "postcss-js": "^2.0.3",
     "shortid": "^2.2.15"
@@ -54,7 +54,8 @@
   "devDependencies": {
     "@types/app-root-path": "^1.2.4",
     "@types/autoprefixer": "^9.6.1",
-    "@types/invariant": "^2.2.31",
+    "@types/fs-extra": "^8.0.1",
+    "@types/node-sass": "^4.11.0",
     "@types/shortid": "^0.0.29"
   }
 }

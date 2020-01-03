@@ -1,6 +1,8 @@
 import autoprefixer from "autoprefixer";
+import { renderSync } from "node-sass";
 import postcss from "postcss";
 import postcssJs from "postcss-js";
+import { StringDecoder } from "string_decoder";
 import { PropKeyComboCSS } from "../types";
 
 export default function buildCSSStringFromCSSObjects(propKeyComboCSS: PropKeyComboCSS) {
@@ -16,7 +18,7 @@ export default function buildCSSStringFromCSSObjects(propKeyComboCSS: PropKeyCom
       },
     );
 
-    css += `${result.css}\n`;
+    css += `${new StringDecoder("utf8").write(renderSync({ data: result.css }).css)}\n`;
   }
 
   return css;

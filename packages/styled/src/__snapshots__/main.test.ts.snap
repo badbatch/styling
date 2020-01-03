@@ -2,18 +2,18 @@
 
 exports[`styled SHOULD write the correct css to file 1`] = `
 ".container-eHB-OhMi {
-    font-family: Arial;
-    font-size: 16px;
-    line-height: 1.25
-}
+  font-family: Arial;
+  font-size: 16px;
+  line-height: 1.25; }
+
 .container-eHB-OhMi--checked {
-    color: blue
-}
+  color: blue; }
+
 .container-eHB-OhMi--disabled {
-    curser: default
-}
+  curser: default; }
+
 .container-eHB-OhMi--checked--disabled {
-    color: grey
-}
+  color: grey; }
+
 "
 `;
