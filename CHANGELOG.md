@@ -1,3 +1,9 @@
+#### 0.0.30 (2020-01-03)
+
+##### Refactors
+
+*  change way output path is resolved ([7c4d0065](https://github.com/dylanaubrey/styling/commit/7c4d006570ad3ad46fdcfc8fac32b7a725e03b49))
+
 #### 0.0.29 (2020-01-03)
 
 ##### New Features

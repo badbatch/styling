@@ -1,8 +1,26 @@
 [
   {
+    "name": "@styling/babel-plugin-transform-styling",
+    "version": "0.0.16",
+    "private": false,
+    "location": "/Users/dylanaubrey/Documents/workspaces/styling/packages/babel-plugin-transform-styling"
+  },
+  {
+    "name": "@styling/helpers",
+    "version": "0.0.21",
+    "private": false,
+    "location": "/Users/dylanaubrey/Documents/workspaces/styling/packages/helpers"
+  },
+  {
     "name": "@styling/styled",
-    "version": "0.0.15",
+    "version": "0.0.16",
     "private": false,
     "location": "/Users/dylanaubrey/Documents/workspaces/styling/packages/styled"
+  },
+  {
+    "name": "@styling/types",
+    "version": "0.0.4",
+    "private": false,
+    "location": "/Users/dylanaubrey/Documents/workspaces/styling/packages/types"
   }
 ]
