@@ -22,7 +22,7 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
   return {
     visitor: {
       Program(babelPath, { filename }) {
-        const { base, dir } = pathParse(filename);
+        const { base } = pathParse(filename);
         if (!FILENAME_REGEX.test(base)) return;
 
         info(`Entering styling file ${filename}`);
@@ -36,7 +36,7 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
           .filter(node => node.isExportNamedDeclaration()) as unknown) as Array<NodePath<ExportNamedDeclaration>>;
 
         info(`Setting identifier in exports args`);
-        setMetadataInExportsArgs(exportDeclarations, dir);
+        setMetadataInExportsArgs(exportDeclarations, filename);
 
         info(`Getting exports args`);
         const { identifiers, map } = getExportsComponentArgs(exportDeclarations);
