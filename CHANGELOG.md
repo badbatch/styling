@@ -1,3 +1,10 @@
+#### 0.0.33 (2020-01-03)
+
+##### Bug Fixes
+
+*  change way path segments are combined ([bc0a8ede](https://github.com/dylanaubrey/styling/commit/bc0a8ede2de9de3e884b970c590cafaaca599280))
+*  pass filename down and not just directory ([5969824f](https://github.com/dylanaubrey/styling/commit/5969824fe9eb9270a55c3cc0b26a289932b37102))
+
 #### 0.0.32 (2020-01-03)
 
 ##### Bug Fixes

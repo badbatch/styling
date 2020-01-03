@@ -1,6 +1,6 @@
 {
   "name": "@styling/babel-plugin-transform-styling",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "The Styling babel-plugin-transform-styling module.",
   "keywords": [
     "babel",
