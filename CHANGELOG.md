@@ -1,3 +1,9 @@
+#### 0.0.23 (2020-01-03)
+
+##### Bug Fixes
+
+*  filter css variable functions missing condition ([0bb29637](https://github.com/dylanaubrey/styling/commit/0bb29637005240aee1ca45fa392b1be3291ef25a))
+
 #### 0.0.22 (2020-01-03)
 
 ##### Bug Fixes
