@@ -1,3 +1,9 @@
+#### 0.0.32 (2020-01-03)
+
+##### Bug Fixes
+
+*  update output path build logic ([9caa23b9](https://github.com/dylanaubrey/styling/commit/9caa23b9127866826397c44c238f389c3b36fce8))
+
 #### 0.0.31 (2020-01-03)
 
 ##### Bug Fixes
