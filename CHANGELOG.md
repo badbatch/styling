@@ -1,3 +1,9 @@
+#### 0.0.22 (2020-01-03)
+
+##### Bug Fixes
+
+*  update dedupe css function to account for more variants ([649835d3](https://github.com/dylanaubrey/styling/commit/649835d3ce336d7ed7e1a16366e9fb8d8ff90bbc))
+
 #### 0.0.21 (2020-01-02)
 
 ##### Refactors
