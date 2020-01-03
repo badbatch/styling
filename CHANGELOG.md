@@ -1,3 +1,9 @@
+#### 0.0.27 (2020-01-03)
+
+##### Refactors
+
+*  rename function to make clearer ([6407eff4](https://github.com/dylanaubrey/styling/commit/6407eff4f6cf5c8657851276683cfac5f5a988c7))
+
 #### 0.0.26 (2020-01-03)
 
 ##### Bug Fixes
