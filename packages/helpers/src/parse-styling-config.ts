@@ -20,7 +20,7 @@ export default function parseStylingConfig(
         theme = theme.default;
       }
 
-      info("Theme loaded successfully", theme);
+      info("Theme loaded successfully\n", theme);
     } catch (e) {
       error("Theme loading failed", e);
     }

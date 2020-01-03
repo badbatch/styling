@@ -19,7 +19,7 @@ export default function buildClassNamesMapAndWriteCSS(
   info("Generating css from css objects");
   const css = buildCSSStringFromCSSObjects(propKeyComboCSS);
 
-  info(`Writing css to ${outputPath}`, css);
+  info(`Writing css to ${outputPath}\n`, css);
 
   try {
     writeCSS(css, outputPath, sourceFilename);
