@@ -1,5 +1,4 @@
 import { parse, resolve } from "path";
-import { STYLING_CSS_FILENAME_SUFFIX } from "./constants";
 
 export default function getFullOutputPath(outputPath: string, sourceFilename: string) {
   const { dir, name } = parse(sourceFilename);
@@ -23,5 +22,5 @@ export default function getFullOutputPath(outputPath: string, sourceFilename: st
     match = match.substring(3);
   }
 
-  return resolve(`${outputPath}${match}/${name}${STYLING_CSS_FILENAME_SUFFIX}`);
+  return resolve(`${outputPath}${match}/${name}.css`);
 }
