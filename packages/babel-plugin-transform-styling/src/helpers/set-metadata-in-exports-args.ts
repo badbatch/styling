@@ -32,7 +32,7 @@ export default function setMetadataInExportsArgs(
     const argumentsPath = callExpressionPath.get("arguments");
 
     callExpressionPath.replaceWith(
-      callExpression(callExpressionPath.node.callee, [
+      callExpression(callExpressionPath.node, [
         ...argumentsPath.map(argumentPath => argumentPath.node),
         stringLiteral(name),
         stringLiteral(sourceDir),
