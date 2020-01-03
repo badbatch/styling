@@ -1,3 +1,9 @@
+#### 0.0.31 (2020-01-03)
+
+##### Bug Fixes
+
+*  sorting bug with way output path was built ([e2cd7a03](https://github.com/dylanaubrey/styling/commit/e2cd7a03c37ef25092bf90a1a4830f54f2e21d18))
+
 #### 0.0.30 (2020-01-03)
 
 ##### Refactors
