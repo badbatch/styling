@@ -7,6 +7,7 @@ describe("filterCSSVariables", () => {
       "active",
       "disabled",
       "error",
+      ["height"],
       ["maxHeight", "100%"],
       ["maxWidth", "450px"],
       "selected",
@@ -15,6 +16,7 @@ describe("filterCSSVariables", () => {
     ];
 
     expect(filterCSSVariables(propList as PropList)).toEqual([
+      ["height"],
       ["maxHeight", "100%"],
       ["maxWidth", "450px"],
     ]);

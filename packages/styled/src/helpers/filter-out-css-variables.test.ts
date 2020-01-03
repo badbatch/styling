@@ -7,6 +7,7 @@ describe("filterOutCSSVariables", () => {
       "active",
       "disabled",
       "error",
+      ["height"],
       ["maxHeight", "100%"],
       ["maxWidth", "450px"],
       "selected",
