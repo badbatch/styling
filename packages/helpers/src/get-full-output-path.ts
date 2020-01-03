@@ -1,4 +1,4 @@
-import { parse, resolve } from "path";
+import { join, parse } from "path";
 
 export default function getFullOutputPath(outputPath: string, sourceFilename: string) {
   const { dir, name } = parse(sourceFilename);
@@ -22,5 +22,5 @@ export default function getFullOutputPath(outputPath: string, sourceFilename: st
     match = match.substring(3);
   }
 
-  return resolve(`${outputPath}${match}/${name}.css`);
+  return join(outputPath, match, `${name}.css`);
 }
