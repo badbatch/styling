@@ -1,3 +1,9 @@
+#### 0.0.26 (2020-01-03)
+
+##### Bug Fixes
+
+*  change way exports args are collated ([c0cc59e5](https://github.com/dylanaubrey/styling/commit/c0cc59e5f880f651321e0eb15e1a5779cde4770e))
+
 #### 0.0.25 (2020-01-03)
 
 ##### Bug Fixes
