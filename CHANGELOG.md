@@ -1,3 +1,9 @@
+#### 0.0.29 (2020-01-03)
+
+##### New Features
+
+*  parse sass to css prior to writing ([817d46e3](https://github.com/dylanaubrey/styling/commit/817d46e3d4ce0c4b2c0615edd1772670718389e3))
+
 #### 0.0.28 (2020-01-03)
 
 ##### Bug Fixes
