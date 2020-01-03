@@ -15,3 +15,5 @@ export const EXPORT_NAME = styling(COMPONENT, ${PROP_LIST_PLACEHOLDER}, ${RELEVA
 
 export const IDENTIFIER = "Identifier" as const;
 export const STRING_LITERAL = "StringLiteral" as const;
+
+export const STYLED_FUNC_NAME = "styled";

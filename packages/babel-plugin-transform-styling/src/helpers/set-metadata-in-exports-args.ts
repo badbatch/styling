@@ -1,14 +1,7 @@
 import { NodePath } from "@babel/core";
-import {
-  CallExpression,
-  ExportNamedDeclaration,
-  Identifier,
-  TaggedTemplateExpression,
-  VariableDeclaration,
-  callExpression,
-  stringLiteral,
-} from "@babel/types";
+import { ExportNamedDeclaration, Identifier, VariableDeclarator, callExpression, stringLiteral } from "@babel/types";
 import { info } from "@styling/helpers";
+import { STYLED_FUNC_NAME } from "../constants";
 
 export default function setMetadataInExportsArgs(
   exportDeclarations: Array<NodePath<ExportNamedDeclaration>>,
@@ -19,24 +12,29 @@ export default function setMetadataInExportsArgs(
   return exportDeclarations.forEach(declaration => {
     info(`Entering export declaration`);
 
-    const variableDeclaratorPath = (declaration.get("declaration") as NodePath<VariableDeclaration>).get(
-      "declarations",
-    )[0];
+    declaration.traverse({
+      CallExpression: path => {
+        if ((path.get("callee") as NodePath<Identifier>).node.name === STYLED_FUNC_NAME) {
+          info(`Entering call expression`);
+          info(`Find parent`);
+          const variable = path.findParent(node => node.isVariableDeclarator()) as NodePath<VariableDeclarator>;
+          info(`Get id`);
+          const name = (variable.get("id") as NodePath<Identifier>).node.name;
+          info(`Get arguments`);
+          const argsPath = path.get("arguments");
+          info(`Replace call expression`);
 
-    const name = (variableDeclaratorPath.get("id") as NodePath<Identifier>).node.name;
+          path.replaceWith(
+            callExpression(path.node.callee, [
+              ...argsPath.map(argPath => argPath.node),
+              stringLiteral(name),
+              stringLiteral(sourceDir),
+            ]),
+          );
 
-    const callExpressionPath = (variableDeclaratorPath.get("init") as NodePath<TaggedTemplateExpression>).get(
-      "tag",
-    ) as NodePath<CallExpression>;
-
-    const argumentsPath = callExpressionPath.get("arguments");
-
-    callExpressionPath.replaceWith(
-      callExpression(callExpressionPath.node, [
-        ...argumentsPath.map(argumentPath => argumentPath.node),
-        stringLiteral(name),
-        stringLiteral(sourceDir),
-      ]),
-    );
+          path.skip();
+        }
+      },
+    });
   });
 }
