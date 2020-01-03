@@ -1,7 +1,7 @@
 [
   {
     "name": "@styling/babel-plugin-transform-styling",
-    "version": "0.0.11",
+    "version": "0.0.12",
     "private": false,
     "location": "/Users/dylanaubrey/Documents/workspaces/styling/packages/babel-plugin-transform-styling"
   }

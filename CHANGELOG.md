@@ -1,3 +1,9 @@
+#### 0.0.25 (2020-01-03)
+
+##### Bug Fixes
+
+*  update what is being passed into call expression ([74545f52](https://github.com/dylanaubrey/styling/commit/74545f52269ca9f7205d519f792b9fd10fb2cc41))
+
 #### 0.0.24 (2020-01-03)
 
 ##### New Features
