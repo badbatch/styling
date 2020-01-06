@@ -22,17 +22,24 @@ export default function buildClassNamesMapAndWriteCSS(
     config,
   );
 
-  const { outputPath } = config;
+  /**
+   * TODO: Remove this once we come up with a way of storing
+   * output of previous run and returning it upstream, meaning
+   * this hack will no longer be required.
+   */
+  if (process.env.STYLING_WRITE_CSS) {
+    const { outputPath } = config;
 
-  info("Generating css from css objects");
-  const css = buildCSSStringFromCSSObjects(propKeyComboCSS);
+    info("Generating css from css objects");
+    const css = buildCSSStringFromCSSObjects(propKeyComboCSS);
 
-  info(`Writing css to ${outputPath}\n`, css);
+    info(`Writing css to ${outputPath}\n`, css);
 
-  try {
-    writeCSS(css, outputPath, sourceFilename);
-  } catch (e) {
-    error("Writing css failed", e);
+    try {
+      writeCSS(css, outputPath, sourceFilename);
+    } catch (e) {
+      error("Writing css failed", e);
+    }
   }
 
   return {
