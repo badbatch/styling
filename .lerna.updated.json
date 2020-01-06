@@ -1,8 +1,8 @@
 [
   {
-    "name": "@styling/styled",
-    "version": "0.0.19",
+    "name": "@styling/helpers",
+    "version": "0.0.25",
     "private": false,
-    "location": "/Users/dylanaubrey/Documents/workspaces/styling/packages/styled"
+    "location": "/Users/dylanaubrey/Documents/workspaces/styling/packages/helpers"
   }
 ]
