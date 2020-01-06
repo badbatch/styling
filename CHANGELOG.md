@@ -1,3 +1,9 @@
+#### 0.0.34 (2020-01-06)
+
+##### Bug Fixes
+
+*  change hashing mechanism ([38bfcc1a](https://github.com/dylanaubrey/styling/commit/38bfcc1aba6e3aaa0adbbf2ae7643de8ac7b3a5b))
+
 #### 0.0.33 (2020-01-03)
 
 ##### Bug Fixes
