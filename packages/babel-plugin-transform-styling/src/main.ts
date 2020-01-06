@@ -21,7 +21,8 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
 
   return {
     visitor: {
-      Program(babelPath, { filename }) {
+      Program(babelPath, state) {
+        const { filename } = state;
         const { base } = pathParse(filename);
         if (!FILENAME_REGEX.test(base)) return;
 

@@ -7,7 +7,12 @@ export default function evalStylingFile(code: string, sourceFilename: string) {
   const { outputPath } = loadStylingConfig({ sourceFilename });
   const fullOutputPath = getFullOutputPath(outputPath, sourceFilename);
 
-  if (existsSync(fullOutputPath)) {
+  /**
+   * TODO: Remove this once we come up with a way of storing
+   * output of previous run and returning it upstream, meaning
+   * this hack will no longer be required.
+   */
+  if (process.env.STYLING_WRITE_CSS && existsSync(fullOutputPath)) {
     removeSync(fullOutputPath);
   }
 
