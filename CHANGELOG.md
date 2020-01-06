@@ -1,3 +1,9 @@
+#### 0.0.37 (2020-01-06)
+
+##### Bug Fixes
+
+*  expose options in plugin function ([b506ff12](https://github.com/dylanaubrey/styling/commit/b506ff1292532bcef21d6f918e5510e7e83d201c))
+
 #### 0.0.36 (2020-01-06)
 
 ##### Bug Fixes
