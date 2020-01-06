@@ -19,7 +19,7 @@ Object {
       "width": "100%",
     },
     "keyCombo": Array [],
-    "selector": "container-eHB-OhMi",
+    "selector": "button__container-596050158",
   },
   "no-text": Object {
     "css": Object {
@@ -28,7 +28,7 @@ Object {
     "keyCombo": Array [
       "noText",
     ],
-    "selector": "container-eHB-OhMi--no-text",
+    "selector": "button__container-596050158--no-text",
   },
   "stretch": Object {
     "css": Object {
@@ -37,7 +37,7 @@ Object {
     "keyCombo": Array [
       "stretch",
     ],
-    "selector": "container-eHB-OhMi--stretch",
+    "selector": "button__container-596050158--stretch",
   },
   "variant-link": Object {
     "css": Object {
@@ -46,7 +46,7 @@ Object {
     "keyCombo": Array [
       "variant::link",
     ],
-    "selector": "container-eHB-OhMi--variant-link",
+    "selector": "button__container-596050158--variant-link",
   },
 }
 `;

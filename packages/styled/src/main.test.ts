@@ -1,16 +1,10 @@
 import { getInterpolations } from "./__tests__/helpers";
 import styled from "./main";
-import { MockBuildBaseSelector } from "./types";
 
 jest.mock("./helpers/write-css");
 const writeCSS = require("./helpers/write-css") as { default: jest.Mock };
 
-jest.mock("./helpers/build-base-selector");
-const buildBaseSelector = require("./helpers/build-base-selector") as MockBuildBaseSelector;
-
 describe("styled", () => {
-  buildBaseSelector._setSelector("container-eHB-OhMi");
-
   const checkedInterpolation = getInterpolations`
     color: ${p => (p.disabled ? "grey" : "blue")};
   `;

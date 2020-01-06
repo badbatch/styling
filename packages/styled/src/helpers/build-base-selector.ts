@@ -1,6 +1,8 @@
 import { kebabCase } from "lodash";
-import shortid from "shortid";
+import murmurhash from "murmurhash";
 
-export default function buildBaseSelector(componentName: string, prefix?: string) {
-  return `${prefix ? `${prefix}__` : ""}${kebabCase(componentName)}-${shortid.generate()}`;
+export default function buildBaseSelector(sourceFilename: string, componentName: string, prefix?: string) {
+  return `${prefix ? `${prefix}__` : ""}${kebabCase(componentName)}-${murmurhash.v3(
+    `${sourceFilename}::${componentName}`,
+  )}`;
 }

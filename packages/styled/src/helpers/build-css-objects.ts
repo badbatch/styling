@@ -1,5 +1,5 @@
 import { buildMapKeyFromPropKeyCombo } from "@styling/helpers";
-import { CSSVariablePropList, Interpolation, StylingConfig } from "@styling/types";
+import { CSSVariablePropList, Interpolation, Metadata, StylingConfig } from "@styling/types";
 import { PropKeyComboCSS } from "../types";
 import buildBaseSelector from "./build-base-selector";
 import buildInterpolationProps from "./build-interpolation-props";
@@ -11,10 +11,10 @@ export default function buildCSSObjects(
   propKeyCombos: string[][],
   cssVariablePropList: CSSVariablePropList,
   interpolations: Interpolation[],
-  componentName: string,
+  { componentName, sourceFilename }: Metadata,
   { selectorPrefix, theme }: StylingConfig,
 ) {
-  const baseSelector = buildBaseSelector(componentName, selectorPrefix);
+  const baseSelector = buildBaseSelector(sourceFilename, componentName, selectorPrefix);
   const baseCSS = collateCSS(interpolations, buildInterpolationProps([], cssVariablePropList), theme);
 
   const propKeyComboCSS: PropKeyComboCSS = {};

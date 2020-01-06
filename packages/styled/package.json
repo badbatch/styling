@@ -35,10 +35,10 @@
     "app-root-path": "^3.0.0",
     "autoprefixer": "^9.7.3",
     "fs-extra": "^8.1.0",
+    "murmurhash": "^0.0.2",
     "node-sass": "^4.13.0",
     "postcss": "^7.0.25",
-    "postcss-js": "^2.0.3",
-    "shortid": "^2.2.15"
+    "postcss-js": "^2.0.3"
   },
   "peerDependencies": {
     "@babel/runtime": "^7.0.0",
@@ -55,7 +55,7 @@
     "@types/app-root-path": "^1.2.4",
     "@types/autoprefixer": "^9.6.1",
     "@types/fs-extra": "^8.0.1",
-    "@types/node-sass": "^4.11.0",
-    "@types/shortid": "^0.0.29"
+    "@types/murmurhash": "^0.0.1",
+    "@types/node-sass": "^4.11.0"
   }
 }

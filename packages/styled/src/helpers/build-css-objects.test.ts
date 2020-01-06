@@ -1,15 +1,9 @@
 import { generatePropKeyCombos } from "@styling/helpers";
 import { PlainObject, PropListWithoutCSSVariables } from "@styling/types";
 import { getInterpolations } from "../__tests__/helpers";
-import { MockBuildBaseSelector } from "../types";
 import buildCSSObjects from "./build-css-objects";
 
-jest.mock("./build-base-selector");
-const buildBaseSelector = require("./build-base-selector") as MockBuildBaseSelector;
-
 describe("buildCSSObjects", () => {
-  buildBaseSelector._setSelector("container-eHB-OhMi");
-
   const propList = [
     "block",
     "disabled",
@@ -62,7 +56,7 @@ describe("buildCSSObjects", () => {
       generatePropKeyCombos(propList as PropListWithoutCSSVariables),
       [],
       interpolations,
-      "Container",
+      { componentName: "Container", sourceFilename: "path/to/component/index.ts" },
       {
         outputPath: "",
         selectorPrefix: "button",

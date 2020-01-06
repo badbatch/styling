@@ -13,7 +13,15 @@ export default function buildClassNamesMapAndWriteCSS(
   const config = loadStylingConfig({ componentName, sourceFilename });
 
   info("Building css objects");
-  const propKeyComboCSS = buildCSSObjects(propKeyCombos, cssVariablePropList, interpolations, componentName, config);
+
+  const propKeyComboCSS = buildCSSObjects(
+    propKeyCombos,
+    cssVariablePropList,
+    interpolations,
+    { componentName, sourceFilename },
+    config,
+  );
+
   const { outputPath } = config;
 
   info("Generating css from css objects");
