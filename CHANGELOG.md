@@ -1,3 +1,9 @@
+#### 0.0.35 (2020-01-06)
+
+##### Bug Fixes
+
+*  adding env flag to determine when to write css ([55aa0391](https://github.com/dylanaubrey/styling/commit/55aa0391b51615a85909808d95d0e65c2046aac3))
+
 #### 0.0.34 (2020-01-06)
 
 ##### Bug Fixes
