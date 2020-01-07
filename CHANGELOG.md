@@ -1,3 +1,13 @@
+#### 0.0.38 (2020-01-07)
+
+##### New Features
+
+*  add filtering of props to only valid attributes ([677317b9](https://github.com/dylanaubrey/styling/commit/677317b99bb1b6aa66545206f596b6389947e22e))
+
+##### Tests
+
+*  add additional scenario for styling function ([f3281493](https://github.com/dylanaubrey/styling/commit/f328149344092158d9246ede30e0393cb7b84850))
+
 #### 0.0.37 (2020-01-06)
 
 ##### Bug Fixes
