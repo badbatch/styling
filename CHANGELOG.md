@@ -1,3 +1,9 @@
+#### 0.0.39 (2020-01-07)
+
+##### New Features
+
+*  add additional logging to tranforming file logic ([af86296b](https://github.com/dylanaubrey/styling/commit/af86296b5ec0888b8a7321fcae7aadfb5914f74a))
+
 #### 0.0.38 (2020-01-07)
 
 ##### New Features
