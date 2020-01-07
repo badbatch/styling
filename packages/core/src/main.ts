@@ -2,6 +2,7 @@ import { PropList, StringObject } from "@styling/types";
 import { isFunction, kebabCase } from "lodash";
 import { ComponentType, ReactHTML, ReactSVG, createElement, forwardRef } from "react";
 import buildClassName from "./helpers/build-class-name";
+import filterValidDOMAttributes from "./helpers/filter-valid-dom-attributes";
 import getClassNamesFromProps from "./helpers/get-class-names-from-props";
 import getCSSVariablePropList from "./helpers/get-css-variable-prop-list";
 import { ForwardedProps, ReturnedElementProps } from "./types";
@@ -20,7 +21,7 @@ export default function styling(
     return createElement<ReturnedElementProps>(
       as || component,
       {
-        ...rest,
+        ...filterValidDOMAttributes(as || component, rest),
         className: buildClassName(stylingClassNames, className),
         ref: element => {
           if (element) {
