@@ -70,7 +70,7 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
           return;
         }
 
-        info(`Transforming styling file`);
+        info(`Transforming styling file with named exports\n${namedExports}`);
         const transformedFile = buildTransformedFile(namedExports, importDeclarationsToInclude, map);
 
         info(`Replacing program`);

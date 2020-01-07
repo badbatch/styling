@@ -1,5 +1,6 @@
 import template from "@babel/template";
 import { ImportDeclaration, Statement, identifier, stringLiteral } from "@babel/types";
+import { error } from "@styling/helpers";
 import {
   COMPONENT_EXPORT,
   FILE_COMMENT_AND_IMPORT,
@@ -18,7 +19,14 @@ export default function buildTransformedFile(
   return Object.keys(namedExports).reduce(
     (file, name) => {
       const { propList, propsToClassNamesMap, relevantPropKeys } = namedExports[name];
-      const { type, value } = exportsArgsMap.get(name) as { type: string; value: string };
+      const exportArgs = exportsArgsMap.get(name);
+
+      if (!exportArgs) {
+        error(`buildTransformedFile expected ${name} to be an export arg, but it was undefined`);
+        return file;
+      }
+
+      const { type, value } = exportArgs;
 
       const buildAST = template(
         COMPONENT_EXPORT.replace(PROP_LIST_PLACEHOLDER, JSON.stringify(propList))
