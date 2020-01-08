@@ -1,8 +1,8 @@
 [
   {
-    "name": "@styling/babel-plugin-transform-styling",
-    "version": "0.0.19",
+    "name": "@styling/core",
+    "version": "0.0.5",
     "private": false,
-    "location": "/Users/dylanaubrey/Documents/workspaces/styling/packages/babel-plugin-transform-styling"
+    "location": "/Users/dylanaubrey/Documents/workspaces/styling/packages/core"
   }
 ]

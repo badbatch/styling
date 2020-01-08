@@ -1,3 +1,9 @@
+#### 0.0.40 (2020-01-08)
+
+##### New Features
+
+*  adding logging to styling function ([d20f66f3](https://github.com/dylanaubrey/styling/commit/d20f66f3d303922461009408838dd2a3d04ed10a))
+
 #### 0.0.39 (2020-01-07)
 
 ##### New Features
