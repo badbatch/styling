@@ -1,6 +1,6 @@
 /* tslint:disable no-console */
 
-import { ERROR, INFO, LOG_PREFIX, WARN } from "./constants";
+import { ERROR, INFO, LOG_PREFIX, VERBOSE, WARN } from "./constants";
 
 export function error(message: string, ...optionalParams: any[]) {
   if (getLevel() < 1) return;
@@ -17,6 +17,11 @@ export function info(message: string, ...optionalParams: any[]) {
   console.log(`${LOG_PREFIX} ${message}`, ...optionalParams);
 }
 
+export function verbose(message: string, ...optionalParams: any[]) {
+  if (getLevel() < 4) return;
+  console.log(`${LOG_PREFIX} ${message}`, ...optionalParams);
+}
+
 export function getLevel() {
   switch (process.env.STYLING_LOG_LEVEL) {
     case ERROR:
@@ -25,11 +30,13 @@ export function getLevel() {
       return 2;
     case INFO:
       return 3;
+    case VERBOSE:
+      return 4;
     default:
       return 0;
   }
 }
 
-export function setLevel(logLevel?: "error" | "warn" | "info") {
+export function setLevel(logLevel?: "error" | "warn" | "info" | "verbose") {
   if (logLevel) process.env.STYLING_LOG_LEVEL = logLevel;
 }

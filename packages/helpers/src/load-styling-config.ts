@@ -4,7 +4,7 @@ import { cloneDeep, mergeWith } from "lodash";
 import { parse, resolve } from "path";
 import { Optional } from "utility-types";
 import { PACKAGE_JSON_FILENAME, STYLING_CONFIG_FILENAME } from "./constants";
-import { info } from "./log";
+import { verbose } from "./log";
 import parseStylingConfig from "./parse-styling-config";
 
 const stylingConfigs: Map<string, StylingConfig> = new Map();
@@ -22,14 +22,14 @@ function loadStylingConfig(path: string, childConfig: StylingConfig, componentNa
       config = cloneDeep(stylingConfigs.get(path)) as StylingConfig;
     } else {
       try {
-        info(`Loading styling config from directory ${path}`);
+        verbose(`Loading styling config from directory ${path}`);
         config = parseStylingConfig(
           require(resolve(path, STYLING_CONFIG_FILENAME)) as RawStylingConfig,
           path,
           componentName,
         );
       } catch {
-        info(`No styling config found, falling back to package.json`);
+        verbose("No styling config found, falling back to package.json");
 
         config = parseStylingConfig(
           require(resolve(path, PACKAGE_JSON_FILENAME)).styling as RawStylingConfig,
@@ -49,7 +49,7 @@ function loadStylingConfig(path: string, childConfig: StylingConfig, componentNa
       componentName,
     );
   } catch {
-    info(`No styling config found in package.json, checking parent directory`);
+    verbose("No styling config found in package.json, checking parent directory");
     return conditionallyLoadParentStylingConfig(path, childConfig, componentName);
   }
 }

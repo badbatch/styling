@@ -1,7 +1,7 @@
 import { PlainObject, RawStylingConfig, StylingConfig } from "@styling/types";
 import { isPlainObject, isString, merge } from "lodash";
 import { resolve } from "path";
-import { error, info } from "./log";
+import { error, info, verbose } from "./log";
 
 export default function parseStylingConfig(
   config: RawStylingConfig,
@@ -20,7 +20,7 @@ export default function parseStylingConfig(
         theme = theme.default;
       }
 
-      info("Theme loaded successfully\n", theme);
+      verbose("Theme loaded successfully\n", theme);
     } catch (e) {
       error("Theme loading failed", e);
     }

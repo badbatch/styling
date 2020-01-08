@@ -14,7 +14,7 @@ export default function styling(
   relevantPropKeys: string[],
   propsToClassNamesMap: StringObject,
 ) {
-  info(`styling executed for ${component} with propList: ${propList}`);
+  info(`styling executed for ${component} with propList\n`, propList);
 
   // tslint:disable-next-line no-any
   return forwardRef<any, ForwardedProps>(({ as, children, className, ...rest }, ref) => {

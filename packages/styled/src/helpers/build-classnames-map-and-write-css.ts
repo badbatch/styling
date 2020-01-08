@@ -1,4 +1,4 @@
-import { error, info, loadStylingConfig } from "@styling/helpers";
+import { error, info, loadStylingConfig, verbose } from "@styling/helpers";
 import { CSSVariablePropList, Interpolation, Metadata, StringObject } from "@styling/types";
 import buildCSSObjects from "./build-css-objects";
 import buildCSSStringFromCSSObjects from "./build-css-string-from-css-objects";
@@ -33,7 +33,7 @@ export default function buildClassNamesMapAndWriteCSS(
     info("Generating css from css objects");
     const css = buildCSSStringFromCSSObjects(propKeyComboCSS);
 
-    info(`Writing css to ${outputPath}\n`, css);
+    verbose(`Writing css to ${outputPath}\n`, css);
 
     try {
       writeCSS(css, outputPath, sourceFilename);

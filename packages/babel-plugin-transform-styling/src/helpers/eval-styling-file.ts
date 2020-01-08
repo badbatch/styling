@@ -1,4 +1,4 @@
-import { error, getFullOutputPath, loadStylingConfig } from "@styling/helpers";
+import { error, getFullOutputPath, info, loadStylingConfig } from "@styling/helpers";
 import { existsSync, removeSync, writeFileSync } from "fs-extra";
 import { parse } from "path";
 import { StylingExports } from "../types";
@@ -13,12 +13,17 @@ export default function evalStylingFile(code: string, sourceFilename: string) {
    * this hack will no longer be required.
    */
   if (process.env.STYLING_WRITE_CSS && existsSync(fullOutputPath)) {
+    info(`styling file already exists, so removing file: ${fullOutputPath}`);
     removeSync(fullOutputPath);
   }
 
   const { dir, ext, name } = parse(sourceFilename);
   const tempFilePath = `${dir}/__${name}.temp${ext}`;
-  writeFileSync(tempFilePath, code, { encoding: "utf-8" });
+
+  if (!existsSync(tempFilePath)) {
+    info(`Temp styling file already exists, so no need to write file: ${tempFilePath}`);
+    writeFileSync(tempFilePath, code, { encoding: "utf-8" });
+  }
 
   require("@babel/register")({
     plugins: ["@babel/plugin-transform-modules-commonjs"],
