@@ -1,3 +1,4 @@
+import { info } from "@styling/helpers";
 import { PropList, StringObject } from "@styling/types";
 import { isFunction, kebabCase } from "lodash";
 import { ComponentType, ReactHTML, ReactSVG, createElement, forwardRef } from "react";
@@ -13,10 +14,16 @@ export default function styling(
   relevantPropKeys: string[],
   propsToClassNamesMap: StringObject,
 ) {
+  info(`styling executed for ${component} with propList: ${propList}`);
+
   // tslint:disable-next-line no-any
   return forwardRef<any, ForwardedProps>(({ as, children, className, ...rest }, ref) => {
+    info(`class name passed into ${component}: ${className}`);
+
     const stylingClassNames = getClassNamesFromProps(propList, relevantPropKeys, propsToClassNamesMap, rest);
     const cssVariablePropList = getCSSVariablePropList(propList, rest);
+
+    info(`styling class names generated for ${component}: ${stylingClassNames}`);
 
     return createElement<ReturnedElementProps>(
       as || component,
