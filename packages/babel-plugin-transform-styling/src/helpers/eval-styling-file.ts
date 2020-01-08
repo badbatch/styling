@@ -13,7 +13,7 @@ export default function evalStylingFile(code: string, sourceFilename: string) {
    * this hack will no longer be required.
    */
   if (process.env.STYLING_WRITE_CSS && existsSync(fullOutputPath)) {
-    info(`styling file already exists, so removing file: ${fullOutputPath}`);
+    info(`styling file already exists, so removing file from: ${fullOutputPath}`);
     removeSync(fullOutputPath);
   }
 
@@ -21,26 +21,14 @@ export default function evalStylingFile(code: string, sourceFilename: string) {
   const tempFilePath = `${dir}/__${name}.temp${ext}`;
 
   if (!existsSync(tempFilePath)) {
-    info(`Temp styling file already exists, so no need to write file: ${tempFilePath}`);
+    info(`Temp styling does not exist, so writing file to: ${tempFilePath}`);
     writeFileSync(tempFilePath, code, { encoding: "utf-8" });
   }
-
-  require("@babel/register")({
-    plugins: ["@babel/plugin-transform-modules-commonjs"],
-    presets: [
-      [
-        "@babel/preset-env",
-        {
-          modules: "commonjs",
-          targets: { node: "current" },
-        },
-      ],
-    ],
-  });
 
   let output: StylingExports | undefined;
 
   try {
+    require = require("esm")(module);
     output = require(tempFilePath);
     removeSync(tempFilePath);
   } catch (e) {

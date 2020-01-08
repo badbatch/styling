@@ -1,7 +1,7 @@
 import { NodePath } from "@babel/core";
 import generator from "@babel/generator";
 import { ExportNamedDeclaration, ImportDeclaration, program } from "@babel/types";
-import { error, info, setLevel } from "@styling/helpers";
+import { error, info, setLevel, verbose } from "@styling/helpers";
 import { intersection } from "lodash";
 import { parse as pathParse } from "path";
 import { FILENAME_REGEX } from "./constants";
@@ -70,7 +70,7 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
           return;
         }
 
-        info("Transforming styling file with named exports\n", namedExports);
+        verbose("Transforming styling file with named exports\n", namedExports);
         const transformedFile = buildTransformedFile(namedExports, importDeclarationsToInclude, map);
 
         info("Replacing program");

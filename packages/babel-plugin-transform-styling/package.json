@@ -39,6 +39,7 @@
     "@babel/template": "^7.7.4",
     "@babel/traverse": "^7.7.4",
     "@babel/types": "^7.7.4",
+    "esm": "^3.2.25",
     "fs-extra": "^8.1.0"
   },
   "peerDependencies": {
