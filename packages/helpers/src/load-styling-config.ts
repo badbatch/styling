@@ -23,6 +23,7 @@ function loadStylingConfig(path: string, childConfig: StylingConfig, componentNa
     } else {
       try {
         verbose(`Loading styling config from directory ${path}`);
+
         config = parseStylingConfig(
           require(resolve(path, STYLING_CONFIG_FILENAME)) as RawStylingConfig,
           path,

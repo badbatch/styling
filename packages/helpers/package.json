@@ -33,8 +33,9 @@
     "compile:module": "cross-env BABEL_ENV=module babel ./src --out-dir ./lib/module --extensions \".ts\" --source-maps --config-file ../../babel.config.js",
     "compile:types": "tsc --build"
   },
-  "dependencies": {},
-  "devDependencies": {},
+  "dependencies": {
+    "app-root-path": "^3.0.0"
+  },
   "peerDependencies": {
     "@babel/runtime": "^7.0.0",
     "@styling/types": "> 1.0",
@@ -43,5 +44,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@types/app-root-path": "^1.2.4"
   }
 }

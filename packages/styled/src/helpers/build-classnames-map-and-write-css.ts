@@ -35,6 +35,12 @@ export default function buildClassNamesMapAndWriteCSS(
 
     verbose(`Writing css to ${outputPath}\n`, css);
 
+    /**
+     * TODO: We need to load the any css in the file and
+     * check if anything needs to be added before just
+     * writing to the file.
+     */
+
     try {
       writeCSS(css, outputPath, sourceFilename);
     } catch (e) {

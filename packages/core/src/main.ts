@@ -1,6 +1,6 @@
 import { info } from "@styling/helpers";
 import { PropList, StringObject } from "@styling/types";
-import { isFunction, kebabCase } from "lodash";
+import { isFunction, isObject, kebabCase } from "lodash";
 import { ComponentType, ReactHTML, ReactSVG, createElement, forwardRef } from "react";
 import buildClassName from "./helpers/build-class-name";
 import filterValidDOMAttributes from "./helpers/filter-valid-dom-attributes";
@@ -38,6 +38,9 @@ export default function styling(
 
             if (isFunction(ref)) {
               ref(element);
+            } else if (isObject(ref) && "current" in ref) {
+              // @ts-ignore
+              ref.current = element;
             }
           }
         },

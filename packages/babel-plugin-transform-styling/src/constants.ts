@@ -1,5 +1,8 @@
 export const FILENAME_REGEX = /.*(styling|\.styling)\.(js|jsx|ts|tsx)$/;
 
+export const STYLING_FOLDER_NAME = ".styling";
+export const TEMP_FILES_FOLDER_NAME = "temp-files";
+
 export const FILE_COMMENT_AND_IMPORT = `
 // This file is auto-generated, do not edit directly.
 import styling from "@styling/core";

@@ -1,39 +1,48 @@
 import { error, getFullOutputPath, info, loadStylingConfig } from "@styling/helpers";
-import { existsSync, removeSync, writeFileSync } from "fs-extra";
-import { parse } from "path";
+import appRoot from "app-root-path";
+import { existsSync, outputFileSync } from "fs-extra";
+import { resolve } from "path";
+import { STYLING_FOLDER_NAME, TEMP_FILES_FOLDER_NAME } from "../constants";
 import { StylingExports } from "../types";
+import removeFileAndEmptyFolders from "./remove-file-and-empty-folders";
 
 export default function evalStylingFile(code: string, sourceFilename: string) {
   const { outputPath } = loadStylingConfig({ sourceFilename });
-  const fullOutputPath = getFullOutputPath(outputPath, sourceFilename);
+  const cssDistOutputPath = getFullOutputPath(outputPath, sourceFilename);
 
   /**
    * TODO: Remove this once we come up with a way of storing
    * output of previous run and returning it upstream, meaning
    * this hack will no longer be required.
    */
-  if (process.env.STYLING_WRITE_CSS && existsSync(fullOutputPath)) {
-    info(`styling file already exists, so removing file from: ${fullOutputPath}`);
-    removeSync(fullOutputPath);
+  if (process.env.STYLING_WRITE_CSS && existsSync(cssDistOutputPath)) {
+    info(`styling file already exists, so removing file from: ${cssDistOutputPath}`);
+    removeFileAndEmptyFolders(cssDistOutputPath, outputPath);
   }
 
-  const { dir, ext, name } = parse(sourceFilename);
-  const tempFilePath = `${dir}/__${name}.temp${ext}`;
+  const stylingFolderPath = resolve(appRoot.toString(), STYLING_FOLDER_NAME, TEMP_FILES_FOLDER_NAME);
+  const tempOutputPath = getFullOutputPath(stylingFolderPath, sourceFilename);
 
-  if (!existsSync(tempFilePath)) {
-    info(`Temp styling does not exist, so writing file to: ${tempFilePath}`);
-    writeFileSync(tempFilePath, code, { encoding: "utf-8" });
+  if (!existsSync(tempOutputPath)) {
+    info(`Temp styling does not exist, so writing file to: ${tempOutputPath}`);
+    outputFileSync(tempOutputPath, code, { encoding: "utf-8" });
   }
+
+  /**
+   * TODO: Probably need to add @babel/register back
+   * in to make sure eval does not throw exception on
+   * unsupported syntax.
+   */
 
   let output: StylingExports | undefined;
 
   try {
     require = require("esm")(module);
-    output = require(tempFilePath);
-    removeSync(tempFilePath);
+    output = require(tempOutputPath);
+    removeFileAndEmptyFolders(tempOutputPath, stylingFolderPath);
   } catch (e) {
     error("Error evaluating styling file", e);
-    removeSync(tempFilePath);
+    removeFileAndEmptyFolders(tempOutputPath, stylingFolderPath);
   }
 
   return output;

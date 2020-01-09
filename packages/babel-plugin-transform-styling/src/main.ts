@@ -10,7 +10,9 @@ import evalStylingFile from "./helpers/eval-styling-file";
 import getExportsComponentArgs from "./helpers/get-exports-component-args";
 import getImportNames from "./helpers/get-import-names";
 import getImportSource from "./helpers/get-import-source";
+import importSourceIsRelativePath from "./helpers/import-source-is-relative-path";
 import removeUnusedImports from "./helpers/remove-unused-imports";
+import setImportSourceAsAbsolutePath from "./helpers/set-import-source-as-absolute-path";
 import setMetadataInExportsArgs from "./helpers/set-metadata-in-exports-args";
 import { PluginResult, StylingPluginOptions } from "./types";
 
@@ -23,7 +25,7 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
     visitor: {
       Program(babelPath, state) {
         const { filename } = state;
-        const { base } = pathParse(filename);
+        const { base, dir } = pathParse(filename);
         if (!FILENAME_REGEX.test(base) || base.startsWith("__")) return;
 
         info(`Entering styling file ${filename}`);
@@ -47,7 +49,8 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
 
         importDeclarations.forEach(declaration => {
           info("Entering import declaration");
-          if (getImportSource(declaration).startsWith("@styling")) return;
+          const importSource = getImportSource(declaration);
+          if (importSource.startsWith("@styling")) return;
 
           info("Getting import names");
           const importNames = getImportNames(declaration.get("specifiers"));
@@ -57,6 +60,13 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
           if (importNames.length !== usedImportNames.length) {
             info("Removing unused imports");
             removeUnusedImports(declaration, usedImportNames);
+          }
+
+          /**
+           * TODO: Need to support path aliases such as "#/".
+           */
+          if (importSourceIsRelativePath(importSource)) {
+            setImportSourceAsAbsolutePath(declaration, importSource, dir);
           }
 
           importDeclarationsToInclude.push(declaration.node);

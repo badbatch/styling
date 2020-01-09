@@ -32,7 +32,6 @@
     "compile:types": "tsc --build"
   },
   "dependencies": {
-    "app-root-path": "^3.0.0",
     "autoprefixer": "^9.7.3",
     "fs-extra": "^8.1.0",
     "murmurhash": "^0.0.2",
@@ -52,7 +51,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/app-root-path": "^1.2.4",
     "@types/autoprefixer": "^9.6.1",
     "@types/fs-extra": "^8.0.1",
     "@types/murmurhash": "^0.0.1",
