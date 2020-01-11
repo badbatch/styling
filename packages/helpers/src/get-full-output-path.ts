@@ -1,7 +1,12 @@
 import { join, parse } from "path";
 
-export default function getFullOutputPath(outputPath: string, sourceFilename: string) {
-  const { dir, name } = parse(sourceFilename);
+export default function getFullOutputPath(
+  outputPath: string,
+  sourceFilename: string,
+  extension: string,
+  exclude?: string,
+) {
+  const { dir, ext, name } = parse(sourceFilename);
   const splitSourceDir = dir.split("");
   const splitOutputPath = outputPath.split("");
   let sharedPath = "";
@@ -18,9 +23,9 @@ export default function getFullOutputPath(outputPath: string, sourceFilename: st
 
   let match = (dir.match(new RegExp(`^${sharedPath}(.+)$`)) as RegExpMatchArray)[1];
 
-  if (match.startsWith("src")) {
-    match = match.substring(3);
+  if (exclude && match.startsWith(exclude)) {
+    match = match.substring(exclude.length);
   }
 
-  return join(outputPath, match, `${name}.css`);
+  return join(outputPath, match, `${name}${extension || ext}`);
 }

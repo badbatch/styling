@@ -1,7 +1,9 @@
 export const FILENAME_REGEX = /.*(styling|\.styling)\.(js|jsx|ts|tsx)$/;
 
-export const STYLING_FOLDER_NAME = ".styling";
-export const TEMP_FILES_FOLDER_NAME = "temp-files";
+export const STYLING_FOLDER_NAME = ".styling" as const;
+export const TEMP_FILES_FOLDER_NAME = "temp-files" as const;
+export const CSS_FILE_EXT = ".css" as const;
+export const JS_FILE_EXT = ".js" as const;
 
 export const FILE_COMMENT_AND_IMPORT = `
 // This file is auto-generated, do not edit directly.
@@ -19,4 +21,4 @@ export const EXPORT_NAME = styling(COMPONENT, ${PROP_LIST_PLACEHOLDER}, ${RELEVA
 export const IDENTIFIER = "Identifier" as const;
 export const STRING_LITERAL = "StringLiteral" as const;
 
-export const STYLED_FUNC_NAME = "styled";
+export const STYLED_FUNC_NAME = "styled" as const;

@@ -52,6 +52,13 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
           const importSource = getImportSource(declaration);
           if (importSource.startsWith("@styling")) return;
 
+          /**
+           * TODO: Need to support path aliases such as "#/".
+           */
+          if (importSourceIsRelativePath(importSource)) {
+            setImportSourceAsAbsolutePath(declaration, importSource, dir);
+          }
+
           info("Getting import names");
           const importNames = getImportNames(declaration.get("specifiers"));
           const usedImportNames = intersection(identifiers, importNames);
@@ -60,13 +67,6 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
           if (importNames.length !== usedImportNames.length) {
             info("Removing unused imports");
             removeUnusedImports(declaration, usedImportNames);
-          }
-
-          /**
-           * TODO: Need to support path aliases such as "#/".
-           */
-          if (importSourceIsRelativePath(importSource)) {
-            setImportSourceAsAbsolutePath(declaration, importSource, dir);
           }
 
           importDeclarationsToInclude.push(declaration.node);
