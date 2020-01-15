@@ -1,6 +1,6 @@
 import template from "@babel/template";
 import { ImportDeclaration, Statement, identifier, stringLiteral } from "@babel/types";
-import { error } from "@styling/helpers";
+import { error, verbose } from "@styling/helpers";
 import {
   COMPONENT_EXPORT,
   FILE_COMMENT_AND_IMPORT,
@@ -16,13 +16,16 @@ export default function buildTransformedFile(
   importDeclarationsToInclude: ImportDeclaration[],
   exportsArgsMap: ExportsArgsMap,
 ) {
-  return Object.keys(namedExports).reduce(
+  let errors = 0;
+
+  const output = Object.keys(namedExports).reduce(
     (file, name) => {
       const { propList, propsToClassNamesMap, relevantPropKeys } = namedExports[name];
       const exportArgs = exportsArgsMap.get(name);
 
       if (!exportArgs) {
         error(`buildTransformedFile expected ${name} to be an export arg, but it was undefined`);
+        errors += 1;
         return file;
       }
 
@@ -44,4 +47,10 @@ export default function buildTransformedFile(
     },
     [template.ast(FILE_COMMENT_AND_IMPORT), ...importDeclarationsToInclude] as Statement[],
   );
+
+  if (errors) {
+    verbose("buildTransformedFile encountered a problem transforming exports", output);
+  }
+
+  return output;
 }

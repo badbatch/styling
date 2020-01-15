@@ -83,6 +83,11 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
         verbose("Transforming styling file with named exports\n", namedExports);
         const transformedFile = buildTransformedFile(namedExports, importDeclarationsToInclude, map);
 
+        /**
+         * TODO: Need to transform file to commonjs if that is specified
+         * in babel plugins.
+         */
+
         info("Replacing program");
         babelPath.replaceWith(program(transformedFile));
         babelPath.skip();
