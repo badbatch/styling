@@ -32,7 +32,10 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
         const { base, dir } = pathParse(filename);
         if (!FILENAME_REGEX.test(base)) return;
 
-        if (fileChanged(filename) && hasTransformedFileInCache(filename)) {
+        /**
+         * TODO: Need to expand fileChanged to include theme.
+         */
+        if (!fileChanged(filename) && hasTransformedFileInCache(filename)) {
           info(`Retrieving cached transformed file ${filename}`);
           const cachedFile = getTransformedFileFromCache(filename);
           const file = babelParse(cachedFile);
