@@ -22,6 +22,6 @@ export default function fileChanged(filePath: string) {
   }
 
   const hasFileChanged = checkFileAndImports(filePath, { lastCheckedFiles });
-  outputFileSync(lastCheckedFilesPath, lastCheckedFiles, { encoding: "utf8" });
+  outputFileSync(lastCheckedFilesPath, JSON.stringify(lastCheckedFiles, null, 2), { encoding: "utf8" });
   return hasFileChanged;
 }
