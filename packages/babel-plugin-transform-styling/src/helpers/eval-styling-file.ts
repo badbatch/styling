@@ -25,7 +25,7 @@ export default function evalStylingFile(code: string, sourceFilename: string) {
 
   if (!existsSync(tempOutputPath)) {
     info(`Temp styling does not exist, so writing file to: ${tempOutputPath}`);
-    outputFileSync(tempOutputPath, code, { encoding: "utf-8" });
+    outputFileSync(tempOutputPath, code, { encoding: "utf8" });
   }
 
   /**

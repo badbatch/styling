@@ -1,4 +1,4 @@
-import { error } from "@styling/helpers";
+import { verbose } from "@styling/helpers";
 import { PlainObject } from "@styling/types";
 import appRoot from "app-root-path";
 import { existsSync, outputFileSync } from "fs-extra";
@@ -8,7 +8,7 @@ import checkFileAndImports from "./helpers/check-file-and-imports";
 
 export default function fileChanged(filePath: string) {
   if (!existsSync(filePath)) {
-    error(`fileChanged expected to find a file at path: ${filePath}`);
+    verbose(`fileChanged expected to find a file at path: ${filePath}`);
     return true;
   }
 

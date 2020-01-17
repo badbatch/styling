@@ -1,7 +1,10 @@
-import { error, info, loadStylingConfig, verbose } from "@styling/helpers";
+import { error, getFullOutputPath, info, loadStylingConfig, verbose } from "@styling/helpers";
 import { CSSVariablePropList, Interpolation, Metadata, StringObject } from "@styling/types";
+import { existsSync, readFileSync } from "fs-extra";
+import { CSS_FILE_EXT } from "../constants";
 import buildCSSObjects from "./build-css-objects";
 import buildCSSStringFromCSSObjects from "./build-css-string-from-css-objects";
+import mergeNewCSSIntoExisting from "./merge-new-css-into-existing";
 import writeCSS from "./write-css";
 
 export default function buildClassNamesMapAndWriteCSS(
@@ -31,18 +34,18 @@ export default function buildClassNamesMapAndWriteCSS(
     const { outputPath } = config;
 
     info("Generating css from css objects");
-    const css = buildCSSStringFromCSSObjects(propKeyComboCSS);
+    let css = buildCSSStringFromCSSObjects(propKeyComboCSS);
+    const fullOutputPath = getFullOutputPath(outputPath, sourceFilename, CSS_FILE_EXT, "src");
+
+    if (existsSync(fullOutputPath)) {
+      info("Merging new css into existing css");
+      css = mergeNewCSSIntoExisting(css, readFileSync(fullOutputPath, { encoding: "uft8" }));
+    }
 
     verbose(`Writing css to ${outputPath}\n`, css);
 
-    /**
-     * TODO: We need to load the any css in the file and
-     * check if anything needs to be added before just
-     * writing to the file.
-     */
-
     try {
-      writeCSS(css, outputPath, sourceFilename);
+      writeCSS(fullOutputPath, css);
     } catch (e) {
       error("Writing css failed", e);
     }
