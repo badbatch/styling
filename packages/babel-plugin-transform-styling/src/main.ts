@@ -1,16 +1,20 @@
 import { NodePath } from "@babel/core";
 import generator from "@babel/generator";
+import { parse as babelParse } from "@babel/parser";
 import { ExportNamedDeclaration, ImportDeclaration, program } from "@babel/types";
-import { error, info, setLevel, verbose } from "@styling/helpers";
+import fileChanged from "@styling/file-change";
+import { error, importSourceIsRelativePath, info, setLevel, verbose } from "@styling/helpers";
 import { intersection } from "lodash";
 import { parse as pathParse } from "path";
 import { FILENAME_REGEX } from "./constants";
 import buildTransformedFile from "./helpers/build-transformed-file";
+import cacheTransformedFile from "./helpers/cache-transformed-file";
 import evalStylingFile from "./helpers/eval-styling-file";
 import getExportsComponentArgs from "./helpers/get-exports-component-args";
 import getImportNames from "./helpers/get-import-names";
 import getImportSource from "./helpers/get-import-source";
-import importSourceIsRelativePath from "./helpers/import-source-is-relative-path";
+import getTransformedFileFromCache from "./helpers/get-transformed-file-from-cache";
+import hasTransformedFileInCache from "./helpers/has-transformed-file-in-cache";
 import removeUnusedImports from "./helpers/remove-unused-imports";
 import setImportSourceAsAbsolutePath from "./helpers/set-import-source-as-absolute-path";
 import setMetadataInExportsArgs from "./helpers/set-metadata-in-exports-args";
@@ -26,7 +30,23 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
       Program(babelPath, state) {
         const { filename } = state;
         const { base, dir } = pathParse(filename);
-        if (!FILENAME_REGEX.test(base) || base.startsWith("__")) return;
+        if (!FILENAME_REGEX.test(base)) return;
+
+        if (fileChanged(filename) && hasTransformedFileInCache(filename)) {
+          info(`Retrieving cached transformed file ${filename}`);
+          const cachedFile = getTransformedFileFromCache(filename);
+          const file = babelParse(cachedFile);
+
+          /**
+           * TODO: Need to transform file to commonjs if that is specified
+           * in babel plugins.
+           */
+
+          info("Replacing program");
+          babelPath.replaceWith(file.program);
+          babelPath.skip();
+          return;
+        }
 
         info(`Entering styling file ${filename}`);
 
@@ -81,7 +101,8 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
         }
 
         verbose("Transforming styling file with named exports\n", namedExports);
-        const transformedFile = buildTransformedFile(namedExports, importDeclarationsToInclude, map);
+        const transformedProgram = program(buildTransformedFile(namedExports, importDeclarationsToInclude, map));
+        cacheTransformedFile(filename, transformedProgram);
 
         /**
          * TODO: Need to transform file to commonjs if that is specified
@@ -89,7 +110,7 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
          */
 
         info("Replacing program");
-        babelPath.replaceWith(program(transformedFile));
+        babelPath.replaceWith(transformedProgram);
         babelPath.skip();
       },
     },

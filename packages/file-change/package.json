@@ -1,12 +1,11 @@
 {
-  "name": "@styling/babel-plugin-transform-styling",
-  "version": "0.0.20",
-  "description": "The Styling babel-plugin-transform-styling module.",
+  "name": "@styling/file-change",
+  "version": "0.0.40",
+  "description": "The Styling file-change module.",
   "keywords": [
-    "babel",
-    "plugin",
     "css-in-js",
     "react",
+    "styled components",
     "stylesheet",
     "styling"
   ],
@@ -22,40 +21,34 @@
   "author": "Dylan Aubrey <dylanaubrey@gmail.com>",
   "main": "lib/main/index.js",
   "module": "lib/module/index.js",
+  "browser": "lib/browser/index.js",
   "types": "lib/types/index.d.ts",
   "scripts": {
     "compile": "concurrently npm:compile:*",
     "compile-watch": "concurrently npm:compile-watch:*",
     "compile-watch:main": "yarn run compile:main --watch",
     "compile-watch:types": "yarn run compile:types --watch",
+    "compile:browser": "cross-env BABEL_ENV=web rollup -c ../../rollup.config.js",
     "compile:main": "cross-env BABEL_ENV=main babel ./src --out-dir ./lib/main --extensions \".ts\" --source-maps --config-file ../../babel.config.js",
     "compile:module": "cross-env BABEL_ENV=module babel ./src --out-dir ./lib/module --extensions \".ts\" --source-maps --config-file ../../babel.config.js",
     "compile:types": "tsc --build"
   },
   "dependencies": {
-    "@babel/template": "^7.7.4",
-    "@babel/traverse": "^7.7.4",
-    "@babel/types": "^7.7.4",
     "app-root-path": "^3.0.0",
-    "esm": "^3.2.25",
-    "fs-extra": "^8.1.0",
-    "murmurhash": "^0.0.2"
+    "fs-extra": "^8.1.0"
   },
   "peerDependencies": {
     "@babel/runtime": "^7.0.0",
-    "@styling/file-change": "> 1.0",
     "@styling/helpers": "> 1.0",
     "@styling/types": "> 1.0",
     "core-js": "> 4.0",
-    "lodash": "^4.17.5",
-    "react": "^16.8"
+    "lodash": "^4.17.5"
   },
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
     "@types/app-root-path": "^1.2.4",
-    "@types/fs-extra": "^8.0.1",
-    "@types/murmurhash": "^0.0.1"
+    "@types/fs-extra": "^8.0.1"
   }
 }

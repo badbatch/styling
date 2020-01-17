@@ -1,0 +1,7 @@
+import alpha from "alpha";
+import { blah } from "alpha";
+const bravo = require("bravo");
+const charlie = import("charlie");
+import delta from "../delta";
+const echo = require("../echo");
+const foxtrot = import("../foxtrot");

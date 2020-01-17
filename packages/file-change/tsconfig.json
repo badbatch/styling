@@ -14,9 +14,6 @@
   ],
   "references": [
     {
-      "path": "../file-change"
-    },
-    {
       "path": "../helpers"
     },
     {
