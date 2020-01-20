@@ -34,7 +34,8 @@
     "compile:types": "tsc --build"
   },
   "dependencies": {
-    "app-root-path": "^3.0.0"
+    "app-root-path": "^3.0.0",
+    "murmurhash": "^0.0.2"
   },
   "peerDependencies": {
     "@babel/runtime": "^7.0.0",
@@ -46,6 +47,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/app-root-path": "^1.2.4"
+    "@types/app-root-path": "^1.2.4",
+    "@types/murmurhash": "^0.0.1"
   }
 }

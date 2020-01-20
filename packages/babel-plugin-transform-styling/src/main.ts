@@ -3,7 +3,7 @@ import generator from "@babel/generator";
 import { parse as babelParse } from "@babel/parser";
 import { ExportNamedDeclaration, ImportDeclaration, program } from "@babel/types";
 import fileChanged from "@styling/file-change";
-import { error, importSourceIsRelativePath, info, setLevel, verbose } from "@styling/helpers";
+import { error, importSourceIsRelativePath, info, loadStylingConfig, setLevel, verbose } from "@styling/helpers";
 import { intersection } from "lodash";
 import { parse as pathParse } from "path";
 import { FILENAME_REGEX } from "./constants";
@@ -18,6 +18,7 @@ import hasTransformedFileInCache from "./helpers/has-transformed-file-in-cache";
 import removeUnusedImports from "./helpers/remove-unused-imports";
 import setImportSourceAsAbsolutePath from "./helpers/set-import-source-as-absolute-path";
 import setMetadataInExportsArgs from "./helpers/set-metadata-in-exports-args";
+import writeCachedCSS from "./helpers/write-cached-css";
 import { PluginResult, StylingPluginOptions } from "./types";
 
 // tslint:disable-next-line no-any
@@ -32,6 +33,8 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
         const { base, dir } = pathParse(filename);
         if (!FILENAME_REGEX.test(base)) return;
 
+        const { outputPath } = loadStylingConfig({ sourceFilename: filename });
+
         /**
          * TODO: Need to expand fileChanged to include theme.
          */
@@ -39,6 +42,9 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
           info(`Retrieving cached transformed file ${filename}`);
           const cachedFile = getTransformedFileFromCache(filename);
           const file = babelParse(cachedFile, { sourceType: "module" });
+
+          info(`Writing cached css to ${outputPath}`);
+          writeCachedCSS(filename, outputPath);
 
           /**
            * TODO: Need to transform file to commonjs if that is specified

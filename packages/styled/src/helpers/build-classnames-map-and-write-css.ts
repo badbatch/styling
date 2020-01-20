@@ -45,7 +45,7 @@ export default function buildClassNamesMapAndWriteCSS(
     verbose(`Writing css to ${outputPath}\n`, css);
 
     try {
-      writeCSS(fullOutputPath, css);
+      writeCSS(sourceFilename, fullOutputPath, css);
     } catch (e) {
       error("Writing css failed", e);
     }
