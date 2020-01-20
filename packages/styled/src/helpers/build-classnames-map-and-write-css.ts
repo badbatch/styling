@@ -39,7 +39,7 @@ export default function buildClassNamesMapAndWriteCSS(
 
     if (existsSync(fullOutputPath)) {
       info("Merging new css into existing css");
-      css = mergeNewCSSIntoExisting(css, readFileSync(fullOutputPath, { encoding: "uft8" }));
+      css = mergeNewCSSIntoExisting(css, readFileSync(fullOutputPath, { encoding: "utf8" }));
     }
 
     verbose(`Writing css to ${outputPath}\n`, css);

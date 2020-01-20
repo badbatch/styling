@@ -21,21 +21,20 @@
   "author": "Dylan Aubrey <dylanaubrey@gmail.com>",
   "main": "lib/main/index.js",
   "module": "lib/module/index.js",
-  "browser": "lib/browser/index.js",
   "types": "lib/types/index.d.ts",
   "scripts": {
     "compile": "concurrently npm:compile:*",
     "compile-watch": "concurrently npm:compile-watch:*",
     "compile-watch:main": "yarn run compile:main --watch",
     "compile-watch:types": "yarn run compile:types --watch",
-    "compile:browser": "cross-env BABEL_ENV=web rollup -c ../../rollup.config.js",
     "compile:main": "cross-env BABEL_ENV=main babel ./src --out-dir ./lib/main --extensions \".ts\" --source-maps --config-file ../../babel.config.js",
     "compile:module": "cross-env BABEL_ENV=module babel ./src --out-dir ./lib/module --extensions \".ts\" --source-maps --config-file ../../babel.config.js",
     "compile:types": "tsc --build"
   },
   "dependencies": {
     "app-root-path": "^3.0.0",
-    "fs-extra": "^8.1.0"
+    "fs-extra": "^8.1.0",
+    "glob": "^7.1.6"
   },
   "peerDependencies": {
     "@babel/runtime": "^7.0.0",
@@ -49,6 +48,7 @@
   },
   "devDependencies": {
     "@types/app-root-path": "^1.2.4",
-    "@types/fs-extra": "^8.0.1"
+    "@types/fs-extra": "^8.0.1",
+    "@types/glob": "^7.1.1"
   }
 }

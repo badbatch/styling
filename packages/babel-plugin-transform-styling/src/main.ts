@@ -38,7 +38,7 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
         if (!fileChanged(filename) && hasTransformedFileInCache(filename)) {
           info(`Retrieving cached transformed file ${filename}`);
           const cachedFile = getTransformedFileFromCache(filename);
-          const file = babelParse(cachedFile);
+          const file = babelParse(cachedFile, { sourceType: "module" });
 
           /**
            * TODO: Need to transform file to commonjs if that is specified
