@@ -28,12 +28,6 @@ export default function evalStylingFile(code: string, sourceFilename: string) {
     outputFileSync(tempOutputPath, code, { encoding: "utf8" });
   }
 
-  /**
-   * TODO: Probably need to add @babel/register back
-   * in to make sure eval does not throw exception on
-   * unsupported syntax.
-   */
-
   let output: StylingExports | undefined;
 
   try {
