@@ -29,6 +29,6 @@ describe("styled", () => {
   });
 
   it("SHOULD write the correct css to file", () => {
-    expect(writeCSS.default.mock.calls[0][1]).toMatchSnapshot();
+    expect(writeCSS.default.mock.calls[0][2]).toMatchSnapshot();
   });
 });
