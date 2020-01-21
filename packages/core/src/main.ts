@@ -25,6 +25,11 @@ export default function styling(
 
     info(`styling class names generated for ${component}: ${stylingClassNames}`);
 
+    /**
+     * TODO: Components wrapped in other components are not
+     * passing their class names down correctly in the wild.
+     */
+
     return createElement<ReturnedElementProps>(
       as || component,
       {
