@@ -1,9 +1,10 @@
 import { PlainObject } from "@styling/types";
 import htmlElementAttributes from "html-element-attributes";
 import { isString } from "lodash";
-import { ComponentType, ReactHTML, ReactSVG } from "react";
+import { ReactHTML, ReactSVG } from "react";
 import svgElementAttributes from "svg-element-attributes";
 import reactAttributesMap from "../data/react-attributes-map";
+import { StylingComponentOrTagType } from "../types";
 
 function getValidElementAttributes(component: keyof ReactHTML | keyof ReactSVG) {
   let validAttributes: string[] = [];
@@ -33,10 +34,7 @@ function isEventAttribute(propName: string) {
   return /^on[A-Z]/.test(propName);
 }
 
-export default function filterValidDOMAttributes(
-  component: ComponentType | keyof ReactHTML | keyof ReactSVG,
-  props: PlainObject,
-) {
+export default function filterValidDOMAttributes(component: StylingComponentOrTagType<{}>, props: PlainObject) {
   if (!isString(component)) return props;
 
   return Object.keys(props).reduce((filtered: PlainObject, propName) => {

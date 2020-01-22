@@ -1,3 +1,6 @@
 {
-  "extends": "@repodog/ts-config/tsconfig.pkgs.json"
+  "extends": "@repodog/ts-config/tsconfig.pkgs.json",
+  "compilerOptions": {
+    "jsx": "react"
+  }
 }

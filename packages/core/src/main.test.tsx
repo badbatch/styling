@@ -45,9 +45,7 @@ describe("styling", () => {
 
   describe("WHEN a tag name is passed in as the component", () => {
     it("SHOULD return the correct component with the correct class names", () => {
-      expect(mount(<PrimaryButton noText size="sm" />).html()).toBe(
-        `<button class=\"button__primary-button-1842608486 button__primary-button-1842608486--no-text--size-sm button__primary-button-1842608486--no-text\"></button>`,
-      );
+      expect(mount(<PrimaryButton noText size="sm" />).html()).toMatchSnapshot();
     });
   });
 
@@ -72,9 +70,7 @@ describe("styling", () => {
     );
 
     it("SHOULD return the correct component with the correct class names", () => {
-      expect(mount(<PrimaryButtonStyledSpan noText size="sm" />).html()).toBe(
-        `<button class=\"button__primary-button-1842608486 button__primary-button-1842608486--no-text--size-sm button__primary-button-1842608486--no-text button__primary-button-styled-span-759899086\"></button>`,
-      );
+      expect(mount(<PrimaryButtonStyledSpan noText size="sm" />).html()).toMatchSnapshot();
     });
   });
 });

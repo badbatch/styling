@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`styling WHEN a React component is passed in as the component SHOULD return the correct component with the correct class names 1`] = `"<button class=\\"button__primary-button-1842608486 button__primary-button-1842608486--no-text--size-sm button__primary-button-1842608486--no-text button__primary-button-styled-span-759899086\\" data-styling-classnames=\\"button__primary-button-styled-span-759899086\\"></button>"`;
+
+exports[`styling WHEN a tag name is passed in as the component SHOULD return the correct component with the correct class names 1`] = `"<button class=\\"button__primary-button-1842608486 button__primary-button-1842608486--no-text--size-sm button__primary-button-1842608486--no-text\\" data-styling-classnames=\\"button__primary-button-1842608486 button__primary-button-1842608486--no-text--size-sm button__primary-button-1842608486--no-text\\"></button>"`;

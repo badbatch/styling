@@ -1,12 +1,24 @@
-export default function buildClassNames(stylingClassNames?: string, className?: string) {
+export default function buildClassNames(
+  inheritedStylingClassNames?: string,
+  stylingClassNames?: string,
+  className?: string,
+) {
   let combined = "";
 
+  if (inheritedStylingClassNames) {
+    combined += inheritedStylingClassNames;
+  }
+
   if (stylingClassNames) {
+    if (combined) {
+      combined += " ";
+    }
+
     combined += stylingClassNames;
   }
 
   if (className) {
-    if (stylingClassNames) {
+    if (combined) {
       combined += " ";
     }
 
