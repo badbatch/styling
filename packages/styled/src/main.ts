@@ -14,13 +14,15 @@ export default function styled<P extends {}>(
   sourceFilename: string,
 ) {
   return (strings: TemplateStringsArray, ...values: Interpolation[]) => {
+    const _propList = (propList as unknown) as PropList;
+
     return {
       propList,
       ...buildClassNamesMapAndWriteCSS(
-        generatePropKeyCombos(filterOutCSSVariables((propList as unknown) as PropList)),
-        filterCSSVariables((propList as unknown) as PropList),
+        generatePropKeyCombos(filterOutCSSVariables(_propList)),
+        filterCSSVariables(_propList),
         interweaveInterpolations(strings, values),
-        { componentName, sourceFilename },
+        { componentName, propList: _propList, sourceFilename },
       ),
     };
   };

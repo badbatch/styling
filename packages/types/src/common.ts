@@ -14,6 +14,7 @@ export interface StringObject {
 
 export interface Metadata {
   componentName: string;
+  propList?: PropList;
   sourceFilename: string;
 }
 

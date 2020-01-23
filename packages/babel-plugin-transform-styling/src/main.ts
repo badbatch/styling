@@ -36,7 +36,8 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
         const { outputPath } = loadStylingConfig({ sourceFilename: filename });
 
         /**
-         * TODO: Need to expand fileChanged to include theme.
+         * TODO: Need to expand fileChanged to include theme and whether
+         * styling packages have been updated.
          */
         if (!fileChanged(filename) && hasTransformedFileInCache(filename)) {
           info(`Retrieving cached transformed file ${filename}`);

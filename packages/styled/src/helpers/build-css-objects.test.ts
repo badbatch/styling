@@ -1,15 +1,15 @@
 import { generatePropKeyCombos } from "@styling/helpers";
-import { PlainObject, PropListWithoutCSSVariables } from "@styling/types";
+import { PlainObject, PropList, PropListWithoutCSSVariables } from "@styling/types";
 import { getInterpolations } from "../__tests__/helpers";
 import buildCSSObjects from "./build-css-objects";
 
 describe("buildCSSObjects", () => {
-  const propList = [
+  const propList: PropList = [
     "block",
+    "inverse",
     "disabled",
     "error",
     "externalText",
-    "inverse",
     "noText",
     ["size", ["xs", "sm", "md"]],
     "stretch",
@@ -56,7 +56,7 @@ describe("buildCSSObjects", () => {
       generatePropKeyCombos(propList as PropListWithoutCSSVariables),
       [],
       interpolations,
-      { componentName: "Container", sourceFilename: "path/to/component/index.ts" },
+      { componentName: "Container", propList, sourceFilename: "path/to/component/index.ts" },
       {
         outputPath: "",
         selectorPrefix: "button",

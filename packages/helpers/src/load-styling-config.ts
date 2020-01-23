@@ -58,7 +58,7 @@ function loadStylingConfig(path: string, childConfig: StylingConfig, componentNa
 export default function loadStylingConfigs({
   componentName,
   sourceFilename,
-}: Optional<Metadata, "componentName">): StylingConfig {
+}: Optional<Metadata, "componentName" | "propList">): StylingConfig {
   const { dir } = parse(sourceFilename);
   return loadStylingConfig(dir, { outputPath: "" }, componentName);
 }

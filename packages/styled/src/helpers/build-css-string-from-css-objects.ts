@@ -6,12 +6,9 @@ import { StringDecoder } from "string_decoder";
 import { PropKeyComboCSS } from "../types";
 
 export default function buildCSSStringFromCSSObjects(propKeyComboCSS: PropKeyComboCSS) {
-  let css = "";
-  const keys = Object.keys(propKeyComboCSS);
-
-  for (const key of keys) {
+  return propKeyComboCSS.reduce((css, entry) => {
     const result = postcss([autoprefixer]).process(
-      { [`.${propKeyComboCSS[key].selector}`]: propKeyComboCSS[key].css },
+      { [`.${entry[1].selector}`]: entry[1].css },
       {
         from: undefined,
         parser: postcssJs.parse,
@@ -19,7 +16,6 @@ export default function buildCSSStringFromCSSObjects(propKeyComboCSS: PropKeyCom
     );
 
     css += `${new StringDecoder("utf8").write(renderSync({ data: result.css }).css)}\n`;
-  }
-
-  return css;
+    return css;
+  }, "");
 }

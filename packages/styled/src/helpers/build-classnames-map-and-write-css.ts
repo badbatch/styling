@@ -11,7 +11,7 @@ export default function buildClassNamesMapAndWriteCSS(
   propKeyCombos: string[][],
   cssVariablePropList: CSSVariablePropList,
   interpolations: Interpolation[],
-  { componentName, sourceFilename }: Metadata,
+  { componentName, propList, sourceFilename }: Metadata,
 ) {
   const config = loadStylingConfig({ componentName, sourceFilename });
 
@@ -21,7 +21,7 @@ export default function buildClassNamesMapAndWriteCSS(
     propKeyCombos,
     cssVariablePropList,
     interpolations,
-    { componentName, sourceFilename },
+    { componentName, propList, sourceFilename },
     config,
   );
 
@@ -52,13 +52,11 @@ export default function buildClassNamesMapAndWriteCSS(
   }
 
   return {
-    propsToClassNamesMap: Object.keys(propKeyComboCSS).reduce((map: StringObject, key) => {
-      const { selector } = propKeyComboCSS[key];
+    propsToClassNamesMap: propKeyComboCSS.reduce((map: StringObject, [key, { selector }]) => {
       map[key] = selector;
       return map;
     }, {}),
-    relevantPropKeys: Object.keys(propKeyComboCSS).reduce((set, key) => {
-      const { keyCombo } = propKeyComboCSS[key];
+    relevantPropKeys: propKeyComboCSS.reduce((set, [key, { keyCombo }]) => {
       return [...new Set([...set, ...keyCombo])];
     }, [] as string[]),
   };

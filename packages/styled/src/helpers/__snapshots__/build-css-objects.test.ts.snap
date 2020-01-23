@@ -1,52 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`buildCSSObjects SHOULD return the correct selector css objects 1`] = `
-Object {
-  "base": Object {
-    "css": Object {
-      "WebkitTapHighlightColor": "transparent",
-      "alignItems": "center",
-      "borderRadius": "24px",
-      "boxSizing": "border-box",
-      "display": "flex",
-      "height": "100%",
-      "justifyContent": "center",
-      "outline": "none",
-      "position": "relative",
-      "textAlign": "center",
-      "verticalAlign": "middle",
-      "whiteSpace": "nowrap",
-      "width": "100%",
+Array [
+  Array [
+    "base",
+    Object {
+      "css": Object {
+        "WebkitTapHighlightColor": "transparent",
+        "alignItems": "center",
+        "borderRadius": "24px",
+        "boxSizing": "border-box",
+        "display": "flex",
+        "height": "100%",
+        "justifyContent": "center",
+        "outline": "none",
+        "position": "relative",
+        "textAlign": "center",
+        "verticalAlign": "middle",
+        "whiteSpace": "nowrap",
+        "width": "100%",
+      },
+      "keyCombo": Array [],
+      "selector": "button__container-596050158",
     },
-    "keyCombo": Array [],
-    "selector": "button__container-596050158",
-  },
-  "no-text": Object {
-    "css": Object {
-      "borderRadius": "50%",
+  ],
+  Array [
+    "variant-link",
+    Object {
+      "css": Object {
+        "borderRadius": "0",
+      },
+      "keyCombo": Array [
+        "variant::link",
+      ],
+      "selector": "button__container-596050158--variant-link",
     },
-    "keyCombo": Array [
-      "noText",
-    ],
-    "selector": "button__container-596050158--no-text",
-  },
-  "stretch": Object {
-    "css": Object {
-      "justifyContent": "space-between",
+  ],
+  Array [
+    "stretch",
+    Object {
+      "css": Object {
+        "justifyContent": "space-between",
+      },
+      "keyCombo": Array [
+        "stretch",
+      ],
+      "selector": "button__container-596050158--stretch",
     },
-    "keyCombo": Array [
-      "stretch",
-    ],
-    "selector": "button__container-596050158--stretch",
-  },
-  "variant-link": Object {
-    "css": Object {
-      "borderRadius": "0",
+  ],
+  Array [
+    "no-text",
+    Object {
+      "css": Object {
+        "borderRadius": "50%",
+      },
+      "keyCombo": Array [
+        "noText",
+      ],
+      "selector": "button__container-596050158--no-text",
     },
-    "keyCombo": Array [
-      "variant::link",
-    ],
-    "selector": "button__container-596050158--variant-link",
-  },
-}
+  ],
+]
 `;

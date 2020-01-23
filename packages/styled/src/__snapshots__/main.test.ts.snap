@@ -6,11 +6,11 @@ exports[`styled SHOULD write the correct css to file 1`] = `
   font-size: 16px;
   line-height: 1.25; }
 
-.container-596050158--checked {
-  color: blue; }
-
 .container-596050158--disabled {
   curser: default; }
+
+.container-596050158--checked {
+  color: blue; }
 
 .container-596050158--checked--disabled {
   color: grey; }

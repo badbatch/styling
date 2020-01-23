@@ -6,25 +6,29 @@ import buildInterpolationProps from "./build-interpolation-props";
 import buildSelectorFromPropKeyCombo from "./build-selector-from-prop-key-combo";
 import collateCSS from "./collate-css";
 import dedupeCSS from "./dedupe-css";
+import orderPropKeyComboCSS from "./order-prop-key-combo-css";
 
 export default function buildCSSObjects(
   propKeyCombos: string[][],
   cssVariablePropList: CSSVariablePropList,
   interpolations: Interpolation[],
-  { componentName, sourceFilename }: Metadata,
+  { componentName, propList, sourceFilename }: Metadata,
   { selectorPrefix, theme }: StylingConfig,
 ) {
   const baseSelector = buildBaseSelector(sourceFilename, componentName, selectorPrefix);
   const baseCSS = collateCSS(interpolations, buildInterpolationProps([], cssVariablePropList), theme);
 
-  const propKeyComboCSS: PropKeyComboCSS = {};
+  const propKeyComboCSS: PropKeyComboCSS = [];
 
   if (Object.keys(baseCSS).length) {
-    propKeyComboCSS.base = {
-      css: baseCSS,
-      keyCombo: [],
-      selector: baseSelector,
-    };
+    propKeyComboCSS.push([
+      "base",
+      {
+        css: baseCSS,
+        keyCombo: [],
+        selector: baseSelector,
+      },
+    ]);
   }
 
   const sortedKeyCombos = propKeyCombos.sort((a, b) => {
@@ -39,13 +43,16 @@ export default function buildCSSObjects(
     );
 
     if (Object.keys(comboCSS).length) {
-      propKeyComboCSS[buildMapKeyFromPropKeyCombo(keyCombo)] = {
-        css: comboCSS,
-        keyCombo,
-        selector: buildSelectorFromPropKeyCombo(baseSelector, keyCombo),
-      };
+      propKeyComboCSS.push([
+        buildMapKeyFromPropKeyCombo(keyCombo),
+        {
+          css: comboCSS,
+          keyCombo,
+          selector: buildSelectorFromPropKeyCombo(baseSelector, keyCombo),
+        },
+      ]);
     }
   });
 
-  return propKeyComboCSS;
+  return orderPropKeyComboCSS(propKeyComboCSS, propList);
 }
