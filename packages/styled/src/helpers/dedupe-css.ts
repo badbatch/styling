@@ -1,4 +1,5 @@
 import { buildMapKeyFromPropKeyCombo, generatePropKeyCombos } from "@styling/helpers";
+import { PropList } from "@styling/types";
 import { isEqual, isPlainObject } from "lodash";
 import { CSSObject } from "postcss-js";
 import { PropKeyComboCSS, PropKeyComboCSSEntry } from "../types";
@@ -21,7 +22,12 @@ function dedupe(css: CSSObject, srcCSS: CSSObject) {
   return dedupedCSS;
 }
 
-export default function dedupeCSS(css: CSSObject, propKeyCombo: string[], propKeyComboCSS: PropKeyComboCSS) {
+export default function dedupeCSS(
+  css: CSSObject,
+  propKeyCombo: string[],
+  propKeyComboCSS: PropKeyComboCSS,
+  propList?: PropList,
+) {
   const entry = propKeyComboCSS.find(([key]) => key === "base") as PropKeyComboCSSEntry;
   let dedupedCSS = dedupe(css, entry[1].css);
   if (propKeyCombo.length === 1) return dedupedCSS;
@@ -29,7 +35,7 @@ export default function dedupeCSS(css: CSSObject, propKeyCombo: string[], propKe
   const combosOfCombo = generatePropKeyCombos(propKeyCombo);
 
   combosOfCombo.forEach(combo => {
-    const comboMapKey = buildMapKeyFromPropKeyCombo(combo);
+    const comboMapKey = buildMapKeyFromPropKeyCombo(combo, propList);
     const comboEntry = propKeyComboCSS.find(([key]) => key === comboMapKey);
     if (!comboEntry) return;
 

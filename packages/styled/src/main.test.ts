@@ -11,7 +11,7 @@ describe("styled", () => {
 
   process.env.STYLING_WRITE_CSS = "true";
 
-  const { propsToClassNamesMap } = styled("div", ["checked", "disabled"], "Container", "path/to/component/index.ts")`
+  const { propsToClassNamesMap } = styled("div", ["disabled", "checked"], "Container", "path/to/component/index.ts")`
     font-family: Arial;
     font-size: 16px;
     line-height: 1.25;

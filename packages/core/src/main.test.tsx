@@ -7,10 +7,10 @@ describe("styling", () => {
     "button",
     [
       "block",
+      "inverse",
       "disabled",
       "error",
       "externalText",
-      "inverse",
       "noText",
       ["size", ["xs", "sm", "md"]],
       "stretch",
@@ -54,10 +54,10 @@ describe("styling", () => {
       PrimaryButton,
       [
         "block",
+        "inverse",
         "disabled",
         "error",
         "externalText",
-        "inverse",
         "noText",
         ["size", ["xs", "sm", "md"]],
         "stretch",

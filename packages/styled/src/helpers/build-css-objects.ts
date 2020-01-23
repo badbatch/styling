@@ -40,15 +40,16 @@ export default function buildCSSObjects(
       collateCSS(interpolations, buildInterpolationProps(keyCombo, cssVariablePropList), theme),
       keyCombo,
       propKeyComboCSS,
+      propList,
     );
 
     if (Object.keys(comboCSS).length) {
       propKeyComboCSS.push([
-        buildMapKeyFromPropKeyCombo(keyCombo),
+        buildMapKeyFromPropKeyCombo(keyCombo, propList),
         {
           css: comboCSS,
           keyCombo,
-          selector: buildSelectorFromPropKeyCombo(baseSelector, keyCombo),
+          selector: buildSelectorFromPropKeyCombo(baseSelector, keyCombo, propList),
         },
       ]);
     }

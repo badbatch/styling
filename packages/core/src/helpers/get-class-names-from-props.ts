@@ -12,7 +12,7 @@ export default function getClassNamesFromProps(
   const propKeyCombos = generatePropKeyCombos(relevantPropList);
 
   return propKeyCombos.reduce((classNames, keyCombo) => {
-    const mapKey = buildMapKeyFromPropKeyCombo(keyCombo);
+    const mapKey = buildMapKeyFromPropKeyCombo(keyCombo, propList);
     const className = propsToClassNamesMap[mapKey];
     return className ? classNames + ` ${className}` : classNames;
   }, propsToClassNamesMap.base);
