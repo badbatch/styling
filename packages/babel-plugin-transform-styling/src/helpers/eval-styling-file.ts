@@ -1,8 +1,7 @@
-import { error, getFullOutputPath, info, loadStylingConfig } from "@styling/helpers";
-import appRoot from "app-root-path";
+import { error, getFullOutputPath, getStylingFolderPath, info, loadStylingConfig } from "@styling/helpers";
 import { existsSync, outputFileSync } from "fs-extra";
 import { resolve } from "path";
-import { CSS_FILE_EXT, JS_FILE_EXT, STYLING_FOLDER_NAME, TEMP_FILES_FOLDER_NAME } from "../constants";
+import { CSS_FILE_EXT, JS_FILE_EXT, TEMP_FILES_FOLDER_NAME } from "../constants";
 import { StylingExports } from "../types";
 import removeFileAndEmptyFolders from "./remove-file-and-empty-folders";
 
@@ -20,7 +19,7 @@ export default function evalStylingFile(code: string, sourceFilename: string) {
     removeFileAndEmptyFolders(cssDistOutputPath, outputPath);
   }
 
-  const stylingFolderPath = resolve(appRoot.toString(), STYLING_FOLDER_NAME, TEMP_FILES_FOLDER_NAME);
+  const stylingFolderPath = resolve(getStylingFolderPath(), TEMP_FILES_FOLDER_NAME);
   const tempOutputPath = getFullOutputPath(stylingFolderPath, sourceFilename, JS_FILE_EXT);
 
   if (!existsSync(tempOutputPath)) {

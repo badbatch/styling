@@ -1,9 +1,8 @@
-import { verbose } from "@styling/helpers";
+import { getStylingFolderPath, verbose } from "@styling/helpers";
 import { PlainObject } from "@styling/types";
-import appRoot from "app-root-path";
 import { existsSync, outputFileSync } from "fs-extra";
 import { resolve } from "path";
-import { LAST_CHECKED_FILES_FILENAME, STYLING_FOLDER_NAME } from "./constants";
+import { LAST_CHECKED_FILES_FILENAME } from "./constants";
 import checkFileAndImports from "./helpers/check-file-and-imports";
 
 export default function fileChanged(filePath: string) {
@@ -12,7 +11,7 @@ export default function fileChanged(filePath: string) {
     return true;
   }
 
-  const lastCheckedFilesPath = resolve(appRoot.toString(), STYLING_FOLDER_NAME, LAST_CHECKED_FILES_FILENAME);
+  const lastCheckedFilesPath = resolve(getStylingFolderPath(), LAST_CHECKED_FILES_FILENAME);
   let lastCheckedFiles: PlainObject;
 
   try {

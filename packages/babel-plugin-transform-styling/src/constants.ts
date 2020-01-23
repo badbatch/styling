@@ -1,6 +1,5 @@
 export const FILENAME_REGEX = /.*(styling|\.styling)\.(js|jsx|ts|tsx)$/;
 
-export const STYLING_FOLDER_NAME = ".styling" as const;
 export const TEMP_FILES_FOLDER_NAME = "temp-files" as const;
 export const CACHED_FILES_FOLDER_NAME = "cached-files" as const;
 export const CSS_FILE_EXT = ".css" as const;

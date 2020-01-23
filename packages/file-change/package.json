@@ -32,7 +32,6 @@
     "compile:types": "tsc --build"
   },
   "dependencies": {
-    "app-root-path": "^3.0.0",
     "fs-extra": "^8.1.0",
     "glob": "^7.1.6"
   },
@@ -47,7 +46,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/app-root-path": "^1.2.4",
     "@types/fs-extra": "^8.0.1",
     "@types/glob": "^7.1.1"
   }

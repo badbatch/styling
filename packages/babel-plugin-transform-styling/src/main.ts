@@ -29,6 +29,11 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
   return {
     visitor: {
       Program(babelPath, state) {
+        /**
+         * TODO: Check if process is active on this file.
+         * We can create a file that tracks this.
+         */
+
         const { filename } = state;
         const { base, dir } = pathParse(filename);
         if (!FILENAME_REGEX.test(base)) return;
@@ -36,9 +41,10 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
         const { outputPath } = loadStylingConfig({ sourceFilename: filename });
 
         /**
-         * TODO: Need to expand fileChanged to include theme and whether
-         * styling packages have been updated.
+         * TODO: Execute sync child process to watch file location if
+         * marker indicates another build is being run in parallel
          */
+
         if (!fileChanged(filename) && hasTransformedFileInCache(filename)) {
           info(`Retrieving cached transformed file ${filename}`);
           const cachedFile = getTransformedFileFromCache(filename);
