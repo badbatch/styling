@@ -1,4 +1,5 @@
 import { transform } from "@babel/core";
+import replaceAppRoot from "./__tests__/helpers/replace-app-root";
 import transformStylingFiles from "./main";
 import { MockEvalStylingFile } from "./types";
 
@@ -95,7 +96,7 @@ describe("transformStylingFiles >>", () => {
     });
 
     if (result) {
-      expect(result.code).toMatchSnapshot();
+      expect(replaceAppRoot(result.code as string)).toMatchSnapshot();
     }
   });
 });
