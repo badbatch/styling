@@ -4,13 +4,13 @@
   "description": "",
   "author": "Dylan Aubrey <dylanaubrey@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/dylanaubrey/styling",
+  "homepage": "https://github.com/badbatch/styling",
   "bugs": {
-    "url": "https://github.com/dylanaubrey/styling/issues"
+    "url": "https://github.com/badbatch/styling/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dylanaubrey/styling"
+    "url": "https://github.com/badbatch/styling"
   },
   "publishConfig": {
     "access": "public"
