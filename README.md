@@ -64,7 +64,7 @@ css class names, which it uses at runtime to figure out which class names to app
 
 ```javascript
 // traditional styled component
-export const PrimaryButton = styled.button`
+export const Button = styled.button`
   background-color: ${props => (props.disabled ? getDisabledBackgroundColor : getPrimaryColor)};
   color: ${getSecondaryColor};
 
@@ -93,7 +93,7 @@ const propList = [
   ['variant', ['primary', 'secondary', 'link']],
 ];
 
-export const PrimaryButton = styled('button', propList)`
+export const Button = styled('button', propList)`
   background-color: ${props => (props.disabled ? getDisabledBackgroundColor : getPrimaryColor)};
   color: ${getSecondaryColor};
 
