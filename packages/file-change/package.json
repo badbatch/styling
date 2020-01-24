@@ -1,6 +1,6 @@
 {
   "name": "@styling/file-change",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "description": "The Styling file-change module.",
   "keywords": [
     "css-in-js",

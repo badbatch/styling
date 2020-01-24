@@ -1,3 +1,37 @@
+#### 0.0.41 (2020-01-24)
+
+##### Chores
+
+*  add to do ([af5bf33e](https://github.com/dylanaubrey/styling/commit/af5bf33e478244bd17511a25d8c57a0b724e13ac))
+*  add todo for class name currying bug ([2e20e740](https://github.com/dylanaubrey/styling/commit/2e20e7400ae617607c025ce62bee86b382e0ffce))
+*  adding todo and more logs ([536a7cca](https://github.com/dylanaubrey/styling/commit/536a7cca7b356b8489a100f28f6bc154c5a26deb))
+*  remove dead dependencies ([2c0ad954](https://github.com/dylanaubrey/styling/commit/2c0ad95405a49b7a6f15dd013f9b1b1480fb74d4))
+
+##### New Features
+
+*  cache css output as well and just copy into dist ([ef5e729c](https://github.com/dylanaubrey/styling/commit/ef5e729c956e2ca7fbd36346d8e938a0653ac84a))
+*  improve reading and writing css ([3e35b893](https://github.com/dylanaubrey/styling/commit/3e35b893febaa3e5503161fde29e4842c807451f))
+*  add file change package and caching of transpiled files ([77719509](https://github.com/dylanaubrey/styling/commit/7771950984c0dd91e81556c0abb888fdbff57d78))
+*  adding esm and removing babel-register to appease rollup ([18d2a904](https://github.com/dylanaubrey/styling/commit/18d2a904f16b1e430496b894b0dedfd30a42e111))
+
+##### Bug Fixes
+
+*  snapshot test with file system path ([9f35732e](https://github.com/dylanaubrey/styling/commit/9f35732e3e1858c22325e90e7e59f5f263ca2acc))
+*  resolve concurrency issues and stop unnecessary builds ([522f2423](https://github.com/dylanaubrey/styling/commit/522f24238a08fd3ed930cb5f3181cd04ebe182d4))
+*  random refactoring ([02854785](https://github.com/dylanaubrey/styling/commit/02854785945319c47b2eb07b47e534c6d53bf9b1))
+*  resolve styling specificity issues ([b08fcc4d](https://github.com/dylanaubrey/styling/commit/b08fcc4d2c437ebe2fcb79a8258a0fcff59a90e9))
+*  resolve some of the issues with selector specificity ([d3a5c8e5](https://github.com/dylanaubrey/styling/commit/d3a5c8e5f8cab949c2d3154a01c3408f520bc185))
+*  sort bugs in inheriting classnames and tag names ([dc79b011](https://github.com/dylanaubrey/styling/commit/dc79b01159f09e65fb511888754be767d04a3819))
+*  revert ordering due to css specificity issues ([2859a076](https://github.com/dylanaubrey/styling/commit/2859a076897fe0e771bf25be32a3d2a10c3a828e))
+*  sort failing test ([2ba39af2](https://github.com/dylanaubrey/styling/commit/2ba39af24f26b574bd318a44c0f30b947ede9617))
+*  sorting various issues with file change detection ([2c114ff5](https://github.com/dylanaubrey/styling/commit/2c114ff592ebdd9b0ae7b19369a9404da02cd5ff))
+*  stringify json output before writing ([7ed544c7](https://github.com/dylanaubrey/styling/commit/7ed544c77c85bba689334fab2bb0648f79178c0a))
+*  sort missing ! before fileChange ([b83f83c0](https://github.com/dylanaubrey/styling/commit/b83f83c05961626504a3b68e622308348d753f94))
+*  sort out removing file and empty folder method ([adc859a9](https://github.com/dylanaubrey/styling/commit/adc859a916fa0dadd9a0e2c0a5ed9aa9a70eadc3))
+*  move temp files to styling folder ([9ef1136e](https://github.com/dylanaubrey/styling/commit/9ef1136ebcb387d21507bb0f6590d39f5a026420))
+*  various bugs ([c007e2bf](https://github.com/dylanaubrey/styling/commit/c007e2bf4025602827912ff26294fb7f9ba303c1))
+*  make logger avaialbe in client bundle ([e7c8d9ac](https://github.com/dylanaubrey/styling/commit/e7c8d9ac69043e1742989d055500dc1991717cab))
+
 #### 0.0.40 (2020-01-08)
 
 ##### New Features
