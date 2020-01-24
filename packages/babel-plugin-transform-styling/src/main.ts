@@ -44,6 +44,10 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
           return;
         }
 
+        /**
+         * TODO: Need to check if theme has changed or if styling
+         * packages have been updated.
+         */
         if (!fileChanged(filename) && hasTransformedFileInCache(filename)) {
           const file = retrieveCachedFile(filename, outputPath);
 
