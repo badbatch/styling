@@ -1,4 +1,6 @@
-# styling
+<p align="center">
+  <img alt="Styling" src=".github/images/styling-logo.png">
+</p>
 
 A zero-runtime CSS-in-JS library that extracts css into stylesheets at compile time.
 

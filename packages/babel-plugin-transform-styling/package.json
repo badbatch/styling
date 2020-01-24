@@ -43,7 +43,6 @@
     "esm": "^3.2.25",
     "fs-extra": "^8.1.0",
     "murmurhash": "^0.0.2",
-    "steno": "^0.4.4",
     "yargs": "^15.1.0"
   },
   "peerDependencies": {
