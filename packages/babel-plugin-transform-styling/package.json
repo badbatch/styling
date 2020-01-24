@@ -23,6 +23,9 @@
   "main": "lib/main/index.js",
   "module": "lib/module/index.js",
   "types": "lib/types/index.d.ts",
+  "bin": {
+    "watch-active-builds": "./bin/watch-active-builds"
+  },
   "scripts": {
     "compile": "concurrently npm:compile:*",
     "compile-watch": "concurrently npm:compile-watch:*",
@@ -39,7 +42,9 @@
     "app-root-path": "^3.0.0",
     "esm": "^3.2.25",
     "fs-extra": "^8.1.0",
-    "murmurhash": "^0.0.2"
+    "murmurhash": "^0.0.2",
+    "steno": "^0.4.4",
+    "yargs": "^15.1.0"
   },
   "peerDependencies": {
     "@babel/runtime": "^7.0.0",
@@ -56,6 +61,7 @@
   "devDependencies": {
     "@types/app-root-path": "^1.2.4",
     "@types/fs-extra": "^8.0.1",
-    "@types/murmurhash": "^0.0.1"
+    "@types/murmurhash": "^0.0.1",
+    "@types/yargs": "^15.0.1"
   }
 }

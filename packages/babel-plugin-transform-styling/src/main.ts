@@ -1,24 +1,25 @@
 import { NodePath } from "@babel/core";
 import generator from "@babel/generator";
-import { parse as babelParse } from "@babel/parser";
 import { ExportNamedDeclaration, ImportDeclaration, program } from "@babel/types";
 import fileChanged from "@styling/file-change";
 import { error, importSourceIsRelativePath, info, loadStylingConfig, setLevel, verbose } from "@styling/helpers";
 import { intersection } from "lodash";
-import { parse as pathParse } from "path";
+import { parse } from "path";
 import { FILENAME_REGEX } from "./constants";
 import buildTransformedFile from "./helpers/build-transformed-file";
 import cacheTransformedFile from "./helpers/cache-transformed-file";
+import checkAndAwaitActiveBuild from "./helpers/check-and-await-active-build";
+import copyCachedCSS from "./helpers/copy-cached-css";
 import evalStylingFile from "./helpers/eval-styling-file";
 import getExportsComponentArgs from "./helpers/get-exports-component-args";
 import getImportNames from "./helpers/get-import-names";
 import getImportSource from "./helpers/get-import-source";
-import getTransformedFileFromCache from "./helpers/get-transformed-file-from-cache";
 import hasTransformedFileInCache from "./helpers/has-transformed-file-in-cache";
 import removeUnusedImports from "./helpers/remove-unused-imports";
+import retrieveCachedFile from "./helpers/retrieve-cached-file";
 import setImportSourceAsAbsolutePath from "./helpers/set-import-source-as-absolute-path";
 import setMetadataInExportsArgs from "./helpers/set-metadata-in-exports-args";
-import writeCachedCSS from "./helpers/write-cached-css";
+import updateActiveBuilds from "./helpers/update-active-builds";
 import { PluginResult, StylingPluginOptions } from "./types";
 
 // tslint:disable-next-line no-any
@@ -29,34 +30,25 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
   return {
     visitor: {
       Program(babelPath, state) {
-        /**
-         * TODO: Check if process is active on this file.
-         * We can create a file that tracks this.
-         */
-
         const { filename } = state;
-        const { base, dir } = pathParse(filename);
+        const { base, dir } = parse(filename);
         if (!FILENAME_REGEX.test(base)) return;
 
         const { outputPath } = loadStylingConfig({ sourceFilename: filename });
 
-        /**
-         * TODO: Execute sync child process to watch file location if
-         * marker indicates another build is being run in parallel
-         */
+        if (checkAndAwaitActiveBuild(filename)) {
+          const file = retrieveCachedFile(filename, outputPath);
+          info("Replacing program");
+          babelPath.replaceWith(file.program);
+          babelPath.skip();
+          return;
+        }
 
         if (!fileChanged(filename) && hasTransformedFileInCache(filename)) {
-          info(`Retrieving cached transformed file ${filename}`);
-          const cachedFile = getTransformedFileFromCache(filename);
-          const file = babelParse(cachedFile, { sourceType: "module" });
+          const file = retrieveCachedFile(filename, outputPath);
 
           info(`Writing cached css to ${outputPath}`);
-          writeCachedCSS(filename, outputPath);
-
-          /**
-           * TODO: Need to transform file to commonjs if that is specified
-           * in babel plugins.
-           */
+          copyCachedCSS(filename, outputPath);
 
           info("Replacing program");
           babelPath.replaceWith(file.program);
@@ -119,6 +111,7 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
         verbose("Transforming styling file with named exports\n", namedExports);
         const transformedProgram = program(buildTransformedFile(namedExports, importDeclarationsToInclude, map));
         cacheTransformedFile(filename, transformedProgram);
+        updateActiveBuilds(filename);
 
         /**
          * TODO: Need to transform file to commonjs if that is specified
