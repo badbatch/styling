@@ -1,3 +1,22 @@
+#### 0.0.42 (2020-01-24)
+
+##### Chores
+
+*  update repo urls ([1384bdbc](https://github.com/badbatch/styling/commit/1384bdbcee659965a2840f84c51ef7e82dd956b1))
+*  adding todo ([9594593d](https://github.com/badbatch/styling/commit/9594593d6e1cf9de64a2fea4132a2d32e8a82ad5))
+
+##### Documentation Changes
+
+*  update readme ([72d86bd4](https://github.com/badbatch/styling/commit/72d86bd4de57a6905f1ad4b65d13a5496228e2f9))
+*  update readme ([2056fa61](https://github.com/badbatch/styling/commit/2056fa6148f06c21b1609be2721a1dfb7f3eb455))
+
+##### Bug Fixes
+
+*  update examples in readme ([31410317](https://github.com/badbatch/styling/commit/31410317d3934e62cf435a06a16a8771db9bcc70))
+*  update more urls ([ef9c1006](https://github.com/badbatch/styling/commit/ef9c100652d182017422d51788bdac757cc36284))
+*  updating various issues in readme ([b36ca7d0](https://github.com/badbatch/styling/commit/b36ca7d0c8f356ef5df0021fb1519b45267945ed))
+*  typo in readme ([27fa278e](https://github.com/badbatch/styling/commit/27fa278e20971bb222555dc08cc90cb40e7f6c3e))
+
 #### 0.0.41 (2020-01-24)
 
 ##### Chores
