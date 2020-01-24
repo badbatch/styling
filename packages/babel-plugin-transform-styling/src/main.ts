@@ -80,9 +80,6 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
           const importSource = getImportSource(declaration);
           if (importSource.startsWith("@styling")) return;
 
-          /**
-           * TODO: Need to support path aliases such as "#/".
-           */
           if (importSourceIsRelativePath(importSource)) {
             setImportSourceAsAbsolutePath(declaration, importSource, dir);
           }

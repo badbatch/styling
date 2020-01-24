@@ -20,8 +20,8 @@ export interface Metadata {
 
 export type EnumPropList = Array<[string, string[]]>;
 
-export type CSSVariablePropList = Array<[string, string | number]>;
+export type CSSVariablePropList = Array<[string, (string | number)?]>;
 
 export type PropListWithoutCSSVariables = Array<string | [string, string[]]>;
 
-export type PropList = Array<string | [string, string[]] | [string, string | number]>;
+export type PropList = Array<string | [string, string[]] | [string, (string | number)?]>;
