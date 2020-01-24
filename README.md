@@ -53,10 +53,10 @@ The __second change__ is Styling requires a list of the props a styled component
 generates - to be passed into the component in the order of precedence you want the styles each prop generates to have
 over each other. [Read more about the prop list](#proplist-rules).
 
-Below is an example of how to change a traditional styled component you will be familiar with into a styling component.
-And that is pretty much it. [Read more about IE11 support](#ie11-support).
+Below is an example of how to change a traditional styled component you will be familiar with into a Styling styled
+component. And that is pretty much it... apart from one caveat around [IE11 support](#ie11-support) (damn you IE11!).
 
-Under the hood, the plugin generates the styles for each component in the file using their prop lists and replaces each
+Under the hood, the plugin generates the styles for each component in the file using their prop list and replaces each
 `styled` component with a `styling` component. Each `styling` component is provided a map of prop list combo keys to
 css class names, which it uses at runtime to figure out which class names to apply based on the props it receives.
 
@@ -119,13 +119,13 @@ list as an array with the first entry being the name of the prop and the second 
 values. A string/number value is represented in the prop list as an array with the name of the prop as the first entry
 and a fallback value as the optional second entry.
 
-As stated above, the order of the props in the list is important. Styling uses the order to determine the order class
-names get written to a stylesheet. The class names generated for the first entry in the prop list will have a higher
-precedence than those generated for the second entry, and so on.
-
 ```typescript
 type PropList = Array<string | [string, string[]] | [string, (string | number)?]>
 ```
+
+As stated above, the order of the props in the list is important. Styling uses the order to determine the order class
+names get written to a stylesheet. The class names generated for the first entry in the prop list will have a higher
+precedence than those generated for the second entry, and so on.
 
 ## IE11 support
 
