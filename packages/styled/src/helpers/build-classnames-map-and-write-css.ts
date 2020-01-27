@@ -17,6 +17,11 @@ export default function buildClassNamesMapAndWriteCSS(
 
   info("Building css objects");
 
+  /**
+   * TODO: Need to understand why keyframe and media
+   * directives are not nested inside selectors.
+   */
+
   const propKeyComboCSS = buildCSSObjects(
     propKeyCombos,
     cssVariablePropList,

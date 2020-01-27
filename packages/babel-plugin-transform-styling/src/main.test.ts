@@ -10,7 +10,7 @@ describe("transformStylingFiles >>", () => {
   const sourceFile = `
     import { styled } from "@styling/core";
     import BlackText from "./text";
-    import { BlueSubtext, RedSubtext } from "./subtext";
+    import { BlueSubtext } from "./subtext";
 
     export const Container = styled(
       "div",

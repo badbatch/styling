@@ -18,6 +18,11 @@ export default function getExportsComponentArgs(exportDeclarations: Array<NodePa
 
       const name = (variableDeclaratorPath.get("id") as NodePath<Identifier>).node.name;
 
+      /**
+       * TODO: Defensively code against other variables being
+       * exported from the file.
+       */
+
       const callExpressionPath = (variableDeclaratorPath.get("init") as NodePath<TaggedTemplateExpression>).get(
         "tag",
       ) as NodePath<CallExpression>;

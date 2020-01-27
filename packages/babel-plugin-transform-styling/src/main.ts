@@ -1,6 +1,6 @@
 import { NodePath } from "@babel/core";
 import generator from "@babel/generator";
-import { ExportNamedDeclaration, ImportDeclaration, program } from "@babel/types";
+import { ExportNamedDeclaration, ImportDeclaration, cloneNode, program } from "@babel/types";
 import fileChanged from "@styling/file-change";
 import { error, importSourceIsRelativePath, info, loadStylingConfig, setLevel, verbose } from "@styling/helpers";
 import { intersection } from "lodash";
@@ -36,6 +36,10 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
 
         const { outputPath } = loadStylingConfig({ sourceFilename: filename });
 
+        /**
+         * TODO: Need way to kill child process if error happens
+         * in main thread, otherwise build will just hang.
+         */
         if (checkAndAwaitActiveBuild(filename)) {
           const file = retrieveCachedFile(filename, outputPath);
           info("Replacing program");
@@ -93,12 +97,18 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
           const usedImportNames = intersection(identifiers, importNames);
           if (!usedImportNames.length) return;
 
+          let cloneNodeB: ImportDeclaration | undefined;
+          const cloneNodeA = cloneNode(declaration.node);
+
           if (importNames.length !== usedImportNames.length) {
             info("Removing unused imports");
             removeUnusedImports(declaration, usedImportNames);
+
+            cloneNodeB = cloneNode(declaration.node);
+            declaration.replaceWith(cloneNodeA);
           }
 
-          importDeclarationsToInclude.push(declaration.node);
+          importDeclarationsToInclude.push(cloneNodeB || cloneNodeA);
         });
 
         info("Evaluating styling file");

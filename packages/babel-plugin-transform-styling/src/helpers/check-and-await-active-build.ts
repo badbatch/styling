@@ -1,7 +1,7 @@
 import { getStylingFolderPath, info } from "@styling/helpers";
 import appRoot from "app-root-path";
 import { execSync } from "child_process";
-import { existsSync, readFileSync, writeFileSync } from "fs-extra";
+import { existsSync, outputFileSync, readFileSync } from "fs-extra";
 import murmurhash from "murmurhash";
 import { resolve } from "path";
 import { ACTIVE_BUILDS_FILENAME, TXT_FILE_EXT } from "../constants";
@@ -12,7 +12,7 @@ export default function checkAndAwaitActiveBuild(filename: string) {
 
   if (!existsSync(activeBuildsFilePath)) {
     info("No active build file exists");
-    writeFileSync(activeBuildsFilePath, hashedFilePath);
+    outputFileSync(activeBuildsFilePath, hashedFilePath, { encoding: "utf8" });
     return false;
   }
 
@@ -21,7 +21,7 @@ export default function checkAndAwaitActiveBuild(filename: string) {
   if (!activeBuilds.find(activeBuild => activeBuild === hashedFilePath)) {
     info(`No active build found for ${filename}`);
     activeBuilds.push(hashedFilePath);
-    writeFileSync(activeBuildsFilePath, `${activeBuilds.join()}`);
+    outputFileSync(activeBuildsFilePath, `${activeBuilds.join()}`, { encoding: "utf8" });
     return false;
   }
 

@@ -24,6 +24,11 @@ export default function setMetadataInExportsArgs(
           const argsPath = path.get("arguments");
           info("Replace call expression");
 
+          /**
+           * TODO: Set propList to empty array if it
+           * is not passed in.
+           */
+
           path.replaceWith(
             callExpression(path.node.callee, [
               ...argsPath.map(argPath => argPath.node),

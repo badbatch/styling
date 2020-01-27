@@ -20,16 +20,14 @@ export default function buildCSSObjects(
 
   const propKeyComboCSS: PropKeyComboCSS = [];
 
-  if (Object.keys(baseCSS).length) {
-    propKeyComboCSS.push([
-      "base",
-      {
-        css: baseCSS,
-        keyCombo: [],
-        selector: baseSelector,
-      },
-    ]);
-  }
+  propKeyComboCSS.push([
+    "base",
+    {
+      css: baseCSS,
+      keyCombo: [],
+      selector: baseSelector,
+    },
+  ]);
 
   const sortedKeyCombos = propKeyCombos.sort((a, b) => {
     return a.length - b.length;
