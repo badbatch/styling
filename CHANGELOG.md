@@ -1,3 +1,10 @@
+#### 0.0.43 (2020-01-27)
+
+##### Bug Fixes
+
+*  sort issue around config path resolution ([e483d73f](https://github.com/badbatch/styling/commit/e483d73fad31ab66a438d59947f1bca404d90c84))
+*  minor bugs and add todos for others ([7ac7b37e](https://github.com/badbatch/styling/commit/7ac7b37e834011bed0fac386f0b6af9897a6f69b))
+
 #### 0.0.42 (2020-01-24)
 
 ##### Chores

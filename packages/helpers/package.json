@@ -1,6 +1,6 @@
 {
   "name": "@styling/helpers",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "description": "The Styling helpers module.",
   "keywords": [
     "css-in-js",
