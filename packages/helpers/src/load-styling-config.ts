@@ -1,5 +1,6 @@
 import { Metadata, RawStylingConfig, StylingConfig } from "@styling/types";
 import appRoot from "app-root-path";
+import { existsSync } from "fs-extra";
 import { cloneDeep, mergeWith } from "lodash";
 import { parse, resolve } from "path";
 import { Optional } from "utility-types";
@@ -14,9 +15,10 @@ function conditionallyLoadParentStylingConfig(
   childConfig: StylingConfig,
   sourceDir: string,
   componentName?: string,
+  childPackageDir?: string,
 ) {
   if (appRoot.toString() === path) return childConfig;
-  return loadStylingConfig(resolve(path, ".."), childConfig, sourceDir, componentName);
+  return loadStylingConfig(resolve(path, ".."), childConfig, sourceDir, componentName, childPackageDir);
 }
 
 function loadStylingConfig(
@@ -24,9 +26,13 @@ function loadStylingConfig(
   childConfig: StylingConfig,
   sourceDir: string,
   componentName?: string,
+  childPackageDir?: string,
 ): StylingConfig {
+  const packageJsonPath = resolve(path, PACKAGE_JSON_FILENAME);
+  const packageDir = !childPackageDir && existsSync(packageJsonPath) ? path : childPackageDir;
+
   try {
-    let config;
+    let config: StylingConfig;
 
     if (stylingConfigs.has(path)) {
       config = cloneDeep(stylingConfigs.get(path)) as StylingConfig;
@@ -39,6 +45,7 @@ function loadStylingConfig(
           path,
           sourceDir,
           componentName,
+          packageDir,
         );
       } catch {
         verbose("No styling config found, falling back to package.json");
@@ -48,6 +55,7 @@ function loadStylingConfig(
           path,
           sourceDir,
           componentName,
+          packageDir,
         );
       }
 
@@ -61,10 +69,11 @@ function loadStylingConfig(
       }),
       sourceDir,
       componentName,
+      packageDir,
     );
   } catch {
     verbose("No styling config found in package.json, checking parent directory");
-    return conditionallyLoadParentStylingConfig(path, childConfig, sourceDir, componentName);
+    return conditionallyLoadParentStylingConfig(path, childConfig, sourceDir, componentName, packageDir);
   }
 }
 

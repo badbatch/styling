@@ -9,10 +9,11 @@ export default function parseStylingConfig(
   currentDir: string,
   sourceDir: string,
   componentName?: string,
+  packageDir?: string,
 ): StylingConfig {
   const themePath =
     isString(config.theme) || isPathConfig(config.theme)
-      ? getPathFromConfig(config.theme as string | PathConfig, currentDir, sourceDir)
+      ? getPathFromConfig(config.theme as string | PathConfig, currentDir, sourceDir, packageDir)
       : null;
 
   let theme: PlainObject = {};
@@ -39,6 +40,9 @@ export default function parseStylingConfig(
     theme = merge(theme, config.overrides?.[componentName]);
   }
 
-  const outputPath = config.outputPath ? getPathFromConfig(config.outputPath, currentDir, sourceDir) : sourceDir;
+  const outputPath = config.outputPath
+    ? getPathFromConfig(config.outputPath, currentDir, sourceDir, packageDir)
+    : sourceDir;
+
   return { ...config, outputPath, theme };
 }
