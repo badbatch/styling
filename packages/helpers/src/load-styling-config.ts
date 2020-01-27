@@ -9,12 +9,22 @@ import parseStylingConfig from "./parse-styling-config";
 
 const stylingConfigs: Map<string, StylingConfig> = new Map();
 
-function conditionallyLoadParentStylingConfig(path: string, childConfig: StylingConfig, componentName?: string) {
+function conditionallyLoadParentStylingConfig(
+  path: string,
+  childConfig: StylingConfig,
+  sourceDir: string,
+  componentName?: string,
+) {
   if (appRoot.toString() === path) return childConfig;
-  return loadStylingConfig(resolve(path, ".."), childConfig, componentName);
+  return loadStylingConfig(resolve(path, ".."), childConfig, sourceDir, componentName);
 }
 
-function loadStylingConfig(path: string, childConfig: StylingConfig, componentName?: string): StylingConfig {
+function loadStylingConfig(
+  path: string,
+  childConfig: StylingConfig,
+  sourceDir: string,
+  componentName?: string,
+): StylingConfig {
   try {
     let config;
 
@@ -27,6 +37,7 @@ function loadStylingConfig(path: string, childConfig: StylingConfig, componentNa
         config = parseStylingConfig(
           require(resolve(path, STYLING_CONFIG_FILENAME)) as RawStylingConfig,
           path,
+          sourceDir,
           componentName,
         );
       } catch {
@@ -35,6 +46,7 @@ function loadStylingConfig(path: string, childConfig: StylingConfig, componentNa
         config = parseStylingConfig(
           require(resolve(path, PACKAGE_JSON_FILENAME)).styling as RawStylingConfig,
           path,
+          sourceDir,
           componentName,
         );
       }
@@ -47,11 +59,12 @@ function loadStylingConfig(path: string, childConfig: StylingConfig, componentNa
       mergeWith(config, childConfig, (value, srcValue) => {
         if (!srcValue) return value;
       }),
+      sourceDir,
       componentName,
     );
   } catch {
     verbose("No styling config found in package.json, checking parent directory");
-    return conditionallyLoadParentStylingConfig(path, childConfig, componentName);
+    return conditionallyLoadParentStylingConfig(path, childConfig, sourceDir, componentName);
   }
 }
 
@@ -60,5 +73,5 @@ export default function loadStylingConfigs({
   sourceFilename,
 }: Optional<Metadata, "componentName" | "propList">): StylingConfig {
   const { dir } = parse(sourceFilename);
-  return loadStylingConfig(dir, { outputPath: "" }, componentName);
+  return loadStylingConfig(dir, { outputPath: "" }, dir, componentName);
 }

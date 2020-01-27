@@ -1,13 +1,18 @@
-import { Required } from "utility-types";
 import { PlainObject } from "./common";
 
-export interface RawStylingConfig {
-  outputPath?: string;
-  overrides?: PlainObject;
-  selectorPrefix?: string;
-  theme?: string | PlainObject;
+export interface PathConfig {
+  path: string;
+  workingDir: "current" | "source";
 }
 
-export interface StylingConfig extends Required<Omit<RawStylingConfig, "overrides">, "outputPath"> {
+export interface RawStylingConfig {
+  outputPath?: string | PathConfig;
+  overrides?: PlainObject;
+  selectorPrefix?: string;
+  theme?: string | PathConfig | PlainObject;
+}
+
+export interface StylingConfig extends Omit<RawStylingConfig, "overrides"> {
+  outputPath: string;
   theme?: PlainObject;
 }

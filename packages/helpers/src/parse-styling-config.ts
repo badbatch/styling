@@ -1,20 +1,27 @@
-import { PlainObject, RawStylingConfig, StylingConfig } from "@styling/types";
+import { PathConfig, PlainObject, RawStylingConfig, StylingConfig } from "@styling/types";
 import { isPlainObject, isString, merge } from "lodash";
-import { resolve } from "path";
+import getPathFromConfig from "./get-path-from-config";
+import isPathConfig from "./is-path-config";
 import { error, info, verbose } from "./log";
 
 export default function parseStylingConfig(
   config: RawStylingConfig,
   currentDir: string,
+  sourceDir: string,
   componentName?: string,
 ): StylingConfig {
+  const themePath =
+    isString(config.theme) || isPathConfig(config.theme)
+      ? getPathFromConfig(config.theme as string | PathConfig, currentDir, sourceDir)
+      : null;
+
   let theme: PlainObject = {};
 
-  if (isString(config.theme)) {
-    info(`Loading theme from ${config.theme}`);
+  if (themePath) {
+    info(`Loading theme from ${themePath}`);
 
     try {
-      theme = require(resolve(currentDir, config.theme));
+      theme = require(themePath);
 
       if (theme.__esModule && theme.default) {
         theme = theme.default;
@@ -32,11 +39,6 @@ export default function parseStylingConfig(
     theme = merge(theme, config.overrides?.[componentName]);
   }
 
-  let outputPath = currentDir;
-
-  if (config.outputPath) {
-    outputPath = resolve(currentDir, config.outputPath);
-  }
-
+  const outputPath = config.outputPath ? getPathFromConfig(config.outputPath, currentDir, sourceDir) : sourceDir;
   return { ...config, outputPath, theme };
 }

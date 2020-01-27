@@ -41,7 +41,7 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
          * in main thread, otherwise build will just hang.
          */
         if (checkAndAwaitActiveBuild(filename)) {
-          const file = retrieveCachedFile(filename, outputPath);
+          const file = retrieveCachedFile(filename);
           info("Replacing program");
           babelPath.replaceWith(file.program);
           babelPath.skip();
@@ -53,7 +53,7 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
          * packages have been updated.
          */
         if (!fileChanged(filename) && hasTransformedFileInCache(filename)) {
-          const file = retrieveCachedFile(filename, outputPath);
+          const file = retrieveCachedFile(filename);
 
           info(`Writing cached css to ${outputPath}`);
           copyCachedCSS(filename, outputPath);
