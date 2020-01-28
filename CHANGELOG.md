@@ -1,3 +1,9 @@
+#### 0.0.45 (2020-01-28)
+
+##### Chores
+
+*  adding todo ([7202566f](https://github.com/badbatch/styling/commit/7202566f9ae613842e03405f5da926a54876e8cd))
+
 #### 0.0.44 (2020-01-28)
 
 ##### Bug Fixes
