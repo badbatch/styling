@@ -97,18 +97,18 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
           const usedImportNames = intersection(identifiers, importNames);
           if (!usedImportNames.length) return;
 
-          let cloneNodeB: ImportDeclaration | undefined;
-          const cloneNodeA = cloneNode(declaration.node);
+          let removedImportsClone: ImportDeclaration | undefined;
+          const originalClone = cloneNode(declaration.node);
 
           if (importNames.length !== usedImportNames.length) {
             info("Removing unused imports");
             removeUnusedImports(declaration, usedImportNames);
 
-            cloneNodeB = cloneNode(declaration.node);
-            declaration.replaceWith(cloneNodeA);
+            removedImportsClone = cloneNode(declaration.node);
+            declaration.replaceWith(originalClone);
           }
 
-          importDeclarationsToInclude.push(cloneNodeB || cloneNodeA);
+          importDeclarationsToInclude.push(removedImportsClone || originalClone);
         });
 
         info("Evaluating styling file");
@@ -118,6 +118,12 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
           error("Invalid evalStylingFile output");
           return;
         }
+
+        /**
+         * TODO: Add import for css file into imports to include.
+         * Output dir passed to babel cli does not seem to be available
+         * from within a plugin.
+         */
 
         verbose("Transforming styling file with named exports\n", namedExports);
         const transformedProgram = program(buildTransformedFile(namedExports, importDeclarationsToInclude, map));
