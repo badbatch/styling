@@ -24,6 +24,11 @@ import { PluginResult, StylingPluginOptions } from "./types";
 
 // tslint:disable-next-line no-any
 export default function transformStylingFiles(babel: any, options: StylingPluginOptions = {}): PluginResult {
+  /**
+   * TODO: Add configuration for passing js output directory so
+   * we can automatically add an import for the css file.
+   */
+
   setLevel(options.logLevel);
   info("Entering transformStylingFiles");
 

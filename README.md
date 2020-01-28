@@ -45,76 +45,209 @@ yarn add @styling/babel-plugin-transform-styling @styling/core @styling/file-cha
 
 ## Usage
 
-Styling works as a babel plugin and requires just __two changes__ to the way you already write your styled components.
+Styling requires __three changes__ to the way you already write your styled components.
 
 The __first change__ may or may not be a big one, depending on how you currently structure your code. Styling requires
 all styled components related to React component to be named exports in their own file and the file has to be called
 either `styling.{ext}` or `{name}.styling.{ext}`.
 
-The __second change__ is Styling requires a list of the props a styled component cares about - those that change styles it
-generates - to be passed into the component in the order of precedence you want the styles each prop generates to have
-over each other. [Read more about the prop list](#proplist-rules).
+The __second change__ is Styling requires a list of the props a styled component cares about - those that change styles
+it generates - to be passed into the component in the order of precedence you want the styles each prop generates to
+have over each other. [Read more about the prop list](#the-prop-list).
 
-Below is an example of how to change a traditional styled component you will be familiar with into a Styling styled
-component. And that is pretty much it... apart from one caveat around [IE11 support](#ie11-support) (damn you IE11!).
+The __third change__ is the way you supply a theme to the components. Because the styles are generated at compile time,
+you need to tell Styling where it can find the theme for a given component so it can load the theme and use it when
+generating the styles. [Read more about configuration](#configuration).
 
-Under the hood, the plugin generates the styles for each component in the file using their prop list and replaces each
-`styled` component with a `styling` component. Each `styling` component is provided a map of prop list combo keys to
-css class names, which it uses at runtime to figure out which class names to apply based on the props it receives.
+And that is pretty much it... apart from the obligatory a caveat around [IE11 support](#ie11-support) (damn you IE11!).
+
+Once you have configured babel and Styling, you can run your usual transpilation/compilation with babel. Styling will
+generate the styles for its components and write them to an output directory.
+
+It will also replace each `styled` component with a `styling` component. Each `styling` component is provided a map of
+prop list combo keys to css class names, which it uses at runtime to figure out which class names to apply based on the
+props it receives.
+
+Below is a really simplified example to get you started.
+
+```text
+# folder structure
+
+- babel.config.js
+- package.json
+- src/
+  - button/
+    - index.jsx
+    - styling.js
+  - theme/
+    - index.js
+```
 
 ```javascript
-// traditional styled component
-export const Button = styled.button`
-  background-color: ${props => (props.disabled ? getDisabledBackgroundColor : getPrimaryColor)};
-  color: ${getSecondaryColor};
+// babel.config.js
 
-  &[disabled],
-  :disabled {
-    background-color: ${getDisabledBackgroundColor};
-    color: ${getSecondaryColor};
-  }
+module.exports = () => ({
+  plugins: [
+    // other plugins
+    [
+      '@styling/babel-plugin-transform-styling',
+      {
+        logLevel: 'error',
+      },
+    ],
+  ],
+  presets: [
+    // presets
+  ],
+});
+```
 
-  &:focus,
-  &:hover {
-    ${buttonActiveStyles};
+```json
+// package.json
+
+{
+  // other config
+  "styling": {
+    "outputPath": "./lib/css",
+    "selectorPrefix": "button",
+    "theme": "./src/theme/index.js"
   }
+}
+```
+
+```javascript
+// src/button/index.jsx
+
+import React from 'react';
+import { Primary, Secondary } from './styling';
+
+export default function Button({ variant, ...rest }) {
+  return variant === 'primary' ? <Primary {...rest} /> : <Secondary {...rest} />;
+}
+```
+
+```javascript
+// src/button/styling.js
+
+import styled from '@styling/styled';
+
+const propList = ['disabled', 'error'];
+
+export const Primary = styled('button', propList)`
+  background-color: ${props => props.disabled ? props.theme.grey : props.theme.blue};
+  border-color: ${props => props.disabled ? props.theme.grey : props.theme.blue};
+  color: white;
+  ${props => props.error && `outline-color: ${props.theme.red}`};
 `;
 
-// styling styled component
-const propList = [
-  'block',
-  'inverse',
-  'disabled',
-  'error',
-  'externalText',
-  'noText',
-  ['size', ['xs', 'sm', 'md']],
-  'stretch',
-  ['variant', ['primary', 'secondary', 'link']],
-];
-
-export const Button = styled('button', propList)`
-  background-color: ${props => (props.disabled ? getDisabledBackgroundColor : getPrimaryColor)};
-  color: ${getSecondaryColor};
-
-  &[disabled],
-  :disabled {
-    background-color: ${getDisabledBackgroundColor};
-    color: ${getSecondaryColor};
-  }
-
-  &:focus,
-  &:hover {
-    ${buttonActiveStyles};
-  }
+export const Secondary = styled('button', propList)`
+  background-color: white;
+  border-color: ${props => props.disabled ? props.theme.grey : props.theme.blue};
+  color: ${props => props.disabled ? props.theme.grey : props.theme.blue};
+  ${props => props.error && `outline-color: ${props.theme.red}`};
 `;
 ```
 
-### propList
+```javascript
+// src/theme/index.js
 
-The props that can be used to drive styles in a Styling styled component can either be a boolean, an "enum"
-or a string/number value. This might sound restrictive at first, but having build and maintained a component library
-with some 100 components I have found this caters for all use cases.
+export default {
+  blue: 'blue',
+  grey: 'grey',
+  red: 'red',
+};
+```
+
+Then run the command below and you should see the following folders and files.
+
+```shell
+babel src --out-dir lib/main --config-file ./babel.config.js
+```
+
+```text
+# folder structure
+
+- babel.config.js
+- package.json
+- lib/
+  - css/
+    - button/
+      - styling.css
+  - main/
+    - button/
+      - index.js
+      - styling.js
+    - theme/
+      - index.js
+- src/
+  - button/
+    - index.jsx
+    - styling.js
+  - theme/
+    - index.js
+```
+
+```javascript
+// lib/main/button/styling.js
+
+import styling from '@styling/core';
+
+export const Primary = styling('button', ['disabled', 'error'], ['disabled', 'error'], {
+  "base": "button__primary-1842608486",
+  "disabled": "button__primary-1842608486--disabled",
+  "error": "button__primary-1842608486--error",
+});
+
+export const Secondary = styling('button', ['disabled', 'error'], ['disabled', 'error'], {
+  "base": "button__secondary-1842608487",
+  "disabled": "button__secondary-1842608487--disabled",
+  "error": "button__secondary-1842608487--error",
+});
+```
+
+```css
+/* lib/css/button/styling.css */
+
+.button__primary-1842608486 {
+  background-color: blue;
+  border-color: blue;
+  color: white;
+}
+
+.button__primary-1842608486--disabled {
+  background-color: grey;
+  border-color: grey;
+}
+
+.button__primary-1842608486--error {
+  outline-color: red;
+}
+
+.button__secondary-1842608487 {
+  background-color: white;
+  border-color: blue;
+  color: blue;
+}
+
+.button__secondary-1842608487--disabled {
+  border-color: grey;
+  color: grey;
+}
+
+.button__secondary-1842608487--error {
+  outline-color: red;
+}
+```
+
+Once you have the above example working, you could apply the library to one of your existing React components
+that use styled components and see what the output from that looks like. The library can work alongside other
+styled component libraries so it is possible to roll it out incrementally.
+
+### The prop list
+
+The list of the props a styled component cares about, along with the theme, are used to generate
+the styles for a component. The props that can be used to drive styles in a Styling styled component can either be a
+boolean, an "enum" or a string/number value.
 
 A boolean prop is represented in the prop list as the name of the prop. An "enum" is represented in the prop
 list as an array with the first entry being the name of the prop and the second being an array of the possible string
@@ -128,6 +261,13 @@ type PropList = Array<string | [string, string[]] | [string, (string | number)?]
 As stated above, the order of the props in the list is important. Styling uses the order to determine the order class
 names get written to a stylesheet. The class names generated for the first entry in the prop list will have a higher
 precedence than those generated for the second entry, and so on.
+
+Below is an example of how to change a traditional styled component you will be familiar with into a Styling styled
+component using the `propList`.
+
+### Configuration
+
+...more to follow...
 
 ## IE11 support
 
@@ -157,6 +297,28 @@ module.exports = {
 };
 ```
 
+If this is not enough, you can set breakpoints in the Styling source files in `node_modules/@styling` and run babel
+directly through the vscode launch configuration. The debugger will stop on the breakpoints and you can follow the flow
+for a given Styling file from start to finish. Below is an example configuration from a component library monorepo.
+
+```json
+{
+  "type": "node",
+  "request": "launch",
+  "name": "Run babel on component",
+  "program": "${workspaceFolder}/node_modules/.bin/babel",
+  "cwd": "${workspaceFolder}/packages/button",
+  "args": [
+    "src",
+    "--out-dir", "lib/main",
+    "--config-file", "../../babel.config.js"
+  ],
+  "console": "integratedTerminal",
+  "protocol": "inspector",
+  "stopOnEntry": false
+}
+```
+
 ## Troubleshooting
 
 ### Styling is not resolving module aliases
@@ -170,6 +332,12 @@ Styling will not try and resolve module path aliases, there are already Babel pl
 This is caused by the Rollup preflight checks and happens when you are running multiple builds concurrently and one
 of those builds has modules set to "commonjs" in babel config. The way to resolve this is to upgrade
 `rollup-plugin-babel` to v5 and set the newly added `skipPreflightCheck` flag to true.
+
+## Other defects
+
+This library is still in its infancy, so you may encounter bugs at some point while using it. Right now, you can search
+the codebase for `TODO` to find out what has been flagged up internally as needing to be looked at. If you do have a
+problem, please raise an issue and I'll look at it.
 
 ## Changelog
 
