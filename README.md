@@ -59,7 +59,7 @@ The __third change__ is the way you supply a theme to the components. Because th
 you need to tell Styling where it can find the theme for a given component so it can load the theme and use it when
 generating the styles. [Read more about configuration](#configuration).
 
-And that is pretty much it... apart from the obligatory a caveat around [IE11 support](#ie11-support) (damn you IE11!).
+And that is pretty much it... apart from the obligatory caveat around [IE11 support](#ie11-support) (damn you IE11!).
 
 Once you have configured babel and Styling, you can run your usual transpilation/compilation with babel. Styling will
 generate the styles for its components and write them to an output directory.
