@@ -1,3 +1,11 @@
+#### 0.0.44 (2020-01-28)
+
+##### Bug Fixes
+
+*  resolve the way media query styles were overridden ([59686a5e](https://github.com/badbatch/styling/commit/59686a5e3850f9a11181511e81ed15b9347dc930))
+*  sort media queries overriding each other ([604e8596](https://github.com/badbatch/styling/commit/604e85965ca81d8531b41b0a3efce8e5fe573cd8))
+*  issue with configuring output dir from root ([54457f4b](https://github.com/badbatch/styling/commit/54457f4b7d8f4d5a2c34e9d8231bb045d94e5d99))
+
 #### 0.0.43 (2020-01-27)
 
 ##### Bug Fixes
