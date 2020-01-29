@@ -17,13 +17,6 @@ export default function buildClassNamesMapAndWriteCSS(
 
   info("Building css objects");
 
-  /**
-   * TODO: Need to stop overriding root directives with
-   * selectors nested inside them like @media directive.
-   *
-   * TODO: Need to get keyframe animations working.
-   */
-
   const propKeyComboCSS = buildCSSObjects(
     propKeyCombos,
     cssVariablePropList,
