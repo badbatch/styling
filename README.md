@@ -267,7 +267,36 @@ component using the `propList`.
 
 ### Configuration
 
-...more to follow...
+To mimic the way traditional styled components are themed using a `Provider` higher order component, Styling uses
+configuration objects that can be declared anywhere in a project's folder structure by creating a `styling.config.js`
+file or adding a `styling` object to a `package.json` file.
+
+Each time a styling file is parsed, Styling loads the config for that file by working its way up from the file's
+directory to the project root, loading and merging configs as it goes; the closer to the component the config, the
+more precedence it is given when merging configs.
+
+Below are the type definitions for the styling configuration object accompanied by descriptions of what each
+property does.
+
+```typescript
+interface PathConfig {
+  // Relative path to file
+  path: string;
+  // Directory to use when resolving relative path
+  workingDir: "current" | "source" | "package";
+}
+
+interface RawStylingConfig {
+  // Relative path to css output directory
+  outputPath?: string | PathConfig;
+  // An object of theme overrides
+  overrides?: PlainObject;
+  // Prefix for all class names
+  selectorPrefix?: string;
+  // Path to theme or theme object
+  theme?: string | PathConfig | PlainObject;
+}
+```
 
 ## IE11 support
 
