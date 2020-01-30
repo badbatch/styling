@@ -1,6 +1,6 @@
 {
   "name": "@styling/core",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "The Styling core module.",
   "keywords": [
     "css-in-js",

@@ -1,3 +1,17 @@
+#### 0.0.46 (2020-01-30)
+
+##### Documentation Changes
+
+*  add links to usage guide to all readmes ([190c1717](https://github.com/badbatch/styling/commit/190c1717724a5cab662f24d40dbceab36e566b73))
+*  add config info to readme ([9fd169c8](https://github.com/badbatch/styling/commit/9fd169c8488010087ab27c2640c7f2e7bd9329a0))
+*  fix typo ([f7b95569](https://github.com/badbatch/styling/commit/f7b9556975d18052497148f76870a55392e515b9))
+*  update readme and add todos ([9dfcad3a](https://github.com/badbatch/styling/commit/9dfcad3a900066d39ed3cb10e52555fbe6f54443))
+
+##### Bug Fixes
+
+*  defensively coding against non styled exports ([4100e7f1](https://github.com/badbatch/styling/commit/4100e7f1e5dca3ce4b66ddd28e3d034f51eb786c))
+*  add/remove todos ([a2b05f4d](https://github.com/badbatch/styling/commit/a2b05f4df11e25e4ce8912f573c5d993289dba80))
+
 #### 0.0.45 (2020-01-28)
 
 ##### Chores
