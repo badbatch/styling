@@ -10,3 +10,7 @@ The Styling core module.
 ```shell
 yarn add @styling/core --dev
 ```
+
+## Usage
+
+Read the Styling [usage guide](../../README.md#usage).

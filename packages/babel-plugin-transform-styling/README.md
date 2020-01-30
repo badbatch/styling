@@ -10,3 +10,7 @@ The Styling babel-plugin-transform-styling module.
 ```shell
 yarn add @styling/babel-plugin-transform-styling --dev
 ```
+
+## Usage
+
+Read the Styling [usage guide](../../README.md#usage).

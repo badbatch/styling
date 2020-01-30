@@ -10,3 +10,7 @@ The Styling types module.
 ```shell
 yarn add @styling/types --dev
 ```
+
+## Usage
+
+Read the Styling [usage guide](../../README.md#usage).

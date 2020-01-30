@@ -10,3 +10,7 @@ The Styling helpers module.
 ```shell
 yarn add @styling/helpers --dev
 ```
+
+## Usage
+
+Read the Styling [usage guide](../../README.md#usage).

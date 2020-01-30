@@ -10,3 +10,7 @@ The Styling file-change module.
 ```shell
 yarn add @styling/file-change --dev
 ```
+
+## Usage
+
+Read the Styling [usage guide](../../README.md#usage).
