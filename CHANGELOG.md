@@ -1,3 +1,9 @@
+#### 0.0.47 (2020-01-30)
+
+##### Bug Fixes
+
+*  default prop list to empty array if not passed in ([f062a40d](https://github.com/badbatch/styling/commit/f062a40d57cc9734b37dc14977e5d87a21a01ab0))
+
 #### 0.0.46 (2020-01-30)
 
 ##### Documentation Changes
