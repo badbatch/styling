@@ -1,12 +1,6 @@
 import { NodePath } from "@babel/core";
-import {
-  CallExpression,
-  ExportNamedDeclaration,
-  Identifier,
-  TaggedTemplateExpression,
-  VariableDeclaration,
-} from "@babel/types";
-import { IDENTIFIER, STRING_LITERAL } from "../constants";
+import { CallExpression, ExportNamedDeclaration, Identifier, VariableDeclaration } from "@babel/types";
+import { IDENTIFIER, STRING_LITERAL, STYLED_FUNC_NAME } from "../constants";
 import { ExportsArgsResult } from "../types";
 
 export default function getExportsComponentArgs(exportDeclarations: Array<NodePath<ExportNamedDeclaration>>) {
@@ -17,15 +11,13 @@ export default function getExportsComponentArgs(exportDeclarations: Array<NodePa
       )[0];
 
       const name = (variableDeclaratorPath.get("id") as NodePath<Identifier>).node.name;
+      const initPath = variableDeclaratorPath.get("init");
 
-      /**
-       * TODO: Defensively code against other variables being
-       * exported from the file.
-       */
+      if (!initPath.isTaggedTemplateExpression()) return args;
 
-      const callExpressionPath = (variableDeclaratorPath.get("init") as NodePath<TaggedTemplateExpression>).get(
-        "tag",
-      ) as NodePath<CallExpression>;
+      const callExpressionPath = initPath.get("tag") as NodePath<CallExpression>;
+      const callee = callExpressionPath.get("callee");
+      if (!callee.isIdentifier() || callee.node.name !== STYLED_FUNC_NAME) return args;
 
       const firstArgumentsPath = callExpressionPath.get("arguments")[0];
       const obj = { type: "", value: "" };

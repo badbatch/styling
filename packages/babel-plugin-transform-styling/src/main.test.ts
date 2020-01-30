@@ -12,6 +12,8 @@ describe("transformStylingFiles >>", () => {
     import BlackText from "./text";
     import { BlueSubtext } from "./subtext";
 
+    export const foo = "bar";
+
     export const Container = styled(
       "div",
       ["checked", "disabled"],
