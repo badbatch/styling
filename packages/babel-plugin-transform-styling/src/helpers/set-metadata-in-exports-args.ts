@@ -1,5 +1,12 @@
 import { NodePath } from "@babel/core";
-import { ExportNamedDeclaration, Identifier, VariableDeclarator, callExpression, stringLiteral } from "@babel/types";
+import {
+  ExportNamedDeclaration,
+  Identifier,
+  VariableDeclarator,
+  arrayExpression,
+  callExpression,
+  stringLiteral,
+} from "@babel/types";
 import { info } from "@styling/helpers";
 import { STYLED_FUNC_NAME } from "../constants";
 
@@ -24,17 +31,14 @@ export default function setMetadataInExportsArgs(
           const argsPath = path.get("arguments");
           info("Replace call expression");
 
-          /**
-           * TODO: Set propList to empty array if it
-           * is not passed in.
-           */
+          const argNodes = argsPath.slice(0, 2).map(argPath => argPath.node);
+
+          if (argNodes.length === 1) {
+            argNodes.push(arrayExpression());
+          }
 
           path.replaceWith(
-            callExpression(path.node.callee, [
-              ...argsPath.map(argPath => argPath.node),
-              stringLiteral(name),
-              stringLiteral(filename),
-            ]),
+            callExpression(path.node.callee, [...argNodes, stringLiteral(name), stringLiteral(filename)]),
           );
 
           path.skip();

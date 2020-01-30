@@ -9,9 +9,9 @@ import { PropListExact } from "./types";
 
 export default function styled<P extends {}>(
   component: ComponentType | keyof ReactHTML | keyof ReactSVG,
-  propList: PropListExact<P>,
-  componentName: string,
-  sourceFilename: string,
+  propList: PropListExact<P> = [],
+  __componentName?: string, // tslint:disable-line variable-name
+  __sourceFilename?: string, // tslint:disable-line variable-name
 ) {
   return (strings: TemplateStringsArray, ...values: Interpolation[]) => {
     const _propList = (propList as unknown) as PropList;
@@ -22,7 +22,7 @@ export default function styled<P extends {}>(
         generatePropKeyCombos(filterOutCSSVariables(_propList)),
         filterCSSVariables(_propList),
         interweaveInterpolations(strings, values),
-        { componentName, propList: _propList, sourceFilename },
+        { componentName: __componentName as string, propList: _propList, sourceFilename: __sourceFilename as string },
       ),
     };
   };
