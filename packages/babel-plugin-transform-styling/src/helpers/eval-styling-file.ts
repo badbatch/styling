@@ -6,12 +6,12 @@ import { StylingExports } from "../types";
 import removeFileAndEmptyFolders from "./remove-file-and-empty-folders";
 
 export default function evalStylingFile(code: string, sourceFilename: string) {
-  const { outputPath } = loadStylingConfig({ sourceFilename });
-  const cssDistOutputPath = getFullOutputPath(outputPath, sourceFilename, CSS_FILE_EXT, "src");
+  const { cssOutputPath } = loadStylingConfig({ sourceFilename });
+  const cssDistOutputPath = getFullOutputPath(cssOutputPath, sourceFilename, CSS_FILE_EXT, "src");
 
   if (existsSync(cssDistOutputPath)) {
     info(`styling file already exists, so removing file from: ${cssDistOutputPath}`);
-    removeFileAndEmptyFolders(cssDistOutputPath, outputPath);
+    removeFileAndEmptyFolders(cssDistOutputPath, cssOutputPath);
   }
 
   const stylingFolderPath = resolve(getStylingFolderPath(), TEMP_FILES_FOLDER_NAME);

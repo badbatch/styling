@@ -108,7 +108,7 @@ module.exports = () => ({
 {
   // other config
   "styling": {
-    "outputPath": "./lib/css",
+    "cssOutputPath": "./lib/css",
     "selectorPrefix": "button",
     "theme": "./src/theme/index.js"
   }
@@ -288,7 +288,7 @@ interface PathConfig {
 
 interface RawStylingConfig {
   // Relative path to css output directory
-  outputPath?: string | PathConfig;
+  cssOutputPath?: string | PathConfig;
   // An object of theme overrides
   overrides?: PlainObject;
   // Prefix for all class names

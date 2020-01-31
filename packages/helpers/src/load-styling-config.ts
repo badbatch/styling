@@ -82,5 +82,5 @@ export default function loadStylingConfigs({
   sourceFilename,
 }: Optional<Metadata, "componentName" | "propList">): StylingConfig {
   const { dir } = parse(sourceFilename);
-  return loadStylingConfig(dir, { outputPath: "" }, dir, componentName);
+  return loadStylingConfig(dir, { cssOutputPath: "" }, dir, componentName);
 }

@@ -58,7 +58,7 @@ describe("buildCSSObjects", () => {
       interpolations,
       { componentName: "Container", propList, sourceFilename: "path/to/component/index.ts" },
       {
-        outputPath: "",
+        cssOutputPath: "",
         selectorPrefix: "button",
         theme: {},
       },

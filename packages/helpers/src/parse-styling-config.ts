@@ -40,9 +40,9 @@ export default function parseStylingConfig(
     theme = merge(theme, config.overrides?.[componentName]);
   }
 
-  const outputPath = config.outputPath
-    ? getPathFromConfig(config.outputPath, currentDir, sourceDir, packageDir)
+  const cssOutputPath = config.cssOutputPath
+    ? getPathFromConfig(config.cssOutputPath, currentDir, sourceDir, packageDir)
     : sourceDir;
 
-  return { ...config, outputPath, theme };
+  return { ...config, cssOutputPath, theme };
 }

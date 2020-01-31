@@ -25,18 +25,18 @@ export default function buildClassNamesMapAndWriteCSS(
     config,
   );
 
-  const { outputPath } = config;
+  const { cssOutputPath } = config;
 
   info("Generating css from css objects");
   let css = buildCSSStringFromCSSObjects(propKeyComboCSS);
-  const fullOutputPath = getFullOutputPath(outputPath, sourceFilename, CSS_FILE_EXT, "src");
+  const fullOutputPath = getFullOutputPath(cssOutputPath, sourceFilename, CSS_FILE_EXT, "src");
 
   if (existsSync(fullOutputPath)) {
     info("Merging new css into existing css");
     css = mergeNewCSSIntoExisting(css, readFileSync(fullOutputPath, { encoding: "utf8" }));
   }
 
-  verbose(`Writing css to ${outputPath}\n`, css);
+  verbose(`Writing css to ${cssOutputPath}\n`, css);
 
   try {
     writeCSS(sourceFilename, fullOutputPath, css);

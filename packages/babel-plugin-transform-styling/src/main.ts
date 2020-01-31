@@ -39,7 +39,7 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
         const { base, dir } = parse(filename);
         if (!FILENAME_REGEX.test(base)) return;
 
-        const { outputPath } = loadStylingConfig({ sourceFilename: filename });
+        const { cssOutputPath } = loadStylingConfig({ sourceFilename: filename });
 
         /**
          * TODO: Need way to kill child process if error happens
@@ -60,8 +60,8 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
         if (!fileChanged(filename) && hasTransformedFileInCache(filename)) {
           const file = retrieveCachedFile(filename);
 
-          info(`Writing cached css to ${outputPath}`);
-          copyCachedCSS(filename, outputPath);
+          info(`Writing cached css to ${cssOutputPath}`);
+          copyCachedCSS(filename, cssOutputPath);
 
           info("Replacing program");
           babelPath.replaceWith(file.program);

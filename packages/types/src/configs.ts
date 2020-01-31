@@ -6,13 +6,13 @@ export interface PathConfig {
 }
 
 export interface RawStylingConfig {
-  outputPath?: string | PathConfig;
+  cssOutputPath?: string | PathConfig;
   overrides?: PlainObject;
   selectorPrefix?: string;
   theme?: string | PathConfig | PlainObject;
 }
 
 export interface StylingConfig extends Omit<RawStylingConfig, "overrides"> {
-  outputPath: string;
+  cssOutputPath: string;
   theme?: PlainObject;
 }
