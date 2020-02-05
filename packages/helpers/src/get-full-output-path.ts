@@ -3,8 +3,7 @@ import { join, parse } from "path";
 export default function getFullOutputPath(
   outputPath: string,
   sourceFilename: string,
-  extension: string,
-  exclude?: string,
+  { exclude, extension }: { exclude?: string; extension?: string } = {},
 ) {
   const { dir, ext, name } = parse(sourceFilename);
   const splitSourceDir = dir.split("");
@@ -21,11 +20,14 @@ export default function getFullOutputPath(
     }
   }
 
+  /**
+   * TODO: Need to defensively code against no match.
+   */
   let match = (dir.match(new RegExp(`^${sharedPath}(.+)$`)) as RegExpMatchArray)[1];
 
   if (exclude && match.startsWith(exclude)) {
     match = match.substring(exclude.length);
   }
 
-  return join(outputPath, match, `${name}${extension || ext}`);
+  return name ? join(outputPath, match, `${name}${extension || ext}`) : join(outputPath, match);
 }

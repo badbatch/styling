@@ -3,6 +3,17 @@ import replaceAppRoot from "./__tests__/helpers/replace-app-root";
 import transformStylingFiles from "./main";
 import { MockEvalStylingFile } from "./types";
 
+/**
+ * TODO: Need to mock out checkAndAwaitActiveBuild
+ * and fileChange to stop writing of files into
+ * project as part of tests.
+ */
+
+jest.mock("@styling/helpers", () => ({
+  ...jest.requireActual("@styling/helpers"),
+  loadStylingConfig: () => ({ cssOutputPath: "/Users/dylanaubrey/Documents/workspaces/styling/lib/css" }),
+}));
+
 jest.mock("./helpers/eval-styling-file");
 const evalStylingFile = require("./helpers/eval-styling-file") as MockEvalStylingFile;
 
@@ -86,11 +97,15 @@ describe("transformStylingFiles >>", () => {
 
   it("SHOULD generate the correct output for the correct files", () => {
     const result = transform(sourceFile, {
-      filename: "index.styling.ts",
+      filename: "src/component/index.styling.ts",
       plugins: [
         [
           transformStylingFiles,
           {
+            jsOutputPath: {
+              path: "./lib/main",
+              workingDir: "project",
+            },
             logLevel: "error",
           },
         ],

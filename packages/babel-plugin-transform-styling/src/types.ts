@@ -1,5 +1,5 @@
 import { NodePath, Visitor } from "@babel/traverse";
-import { PropList, StringObject } from "@styling/types";
+import { PathConfig, PropList, StringObject } from "@styling/types";
 
 export type ExportsArgsMap = Map<string, { type: string; value: string }>;
 
@@ -41,5 +41,6 @@ export interface StylingExports {
 }
 
 export interface StylingPluginOptions {
+  jsOutputPath?: string | PathConfig;
   logLevel?: "error" | "warn" | "info";
 }

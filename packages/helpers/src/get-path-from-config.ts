@@ -1,36 +1,40 @@
 import { PathConfig } from "@styling/types";
+import appRoot from "app-root-path";
 import { isString } from "lodash";
 import { resolve } from "path";
 
 export default function getPathFromConfig(
-  themeConfig: string | PathConfig,
+  pathConfig: string | PathConfig,
   currentDir: string,
   sourceDir: string,
   packageDir?: string,
 ) {
-  let themePath: string | undefined;
+  let path: string | undefined;
 
-  if (isString(themeConfig)) {
-    themePath = resolve(currentDir, themeConfig);
+  if (isString(pathConfig)) {
+    path = resolve(currentDir, pathConfig);
   } else {
     let workingDir: string;
 
     switch (true) {
-      case themeConfig?.workingDir === "current":
+      case pathConfig?.workingDir === "current":
         workingDir = currentDir;
         break;
-      case themeConfig?.workingDir === "package" && packageDir:
+      case pathConfig?.workingDir === "package" && !!packageDir:
         workingDir = packageDir as string;
         break;
-      case themeConfig?.workingDir === "source":
+      case pathConfig?.workingDir === "project":
+        workingDir = appRoot.toString();
+        break;
+      case pathConfig?.workingDir === "source":
         workingDir = sourceDir;
         break;
       default:
         workingDir = currentDir;
     }
 
-    themePath = resolve(workingDir, themeConfig?.path);
+    path = resolve(workingDir, pathConfig?.path);
   }
 
-  return themePath;
+  return path;
 }

@@ -1,4 +1,4 @@
-import { getStylingFolderPath, verbose } from "@styling/helpers";
+import { getStylingFolderPath, info, verbose } from "@styling/helpers";
 import { PlainObject } from "@styling/types";
 import { existsSync, outputFileSync } from "fs-extra";
 import { resolve } from "path";
@@ -6,6 +6,8 @@ import { LAST_CHECKED_FILES_FILENAME } from "./constants";
 import checkFileAndImports from "./helpers/check-file-and-imports";
 
 export default function fileChanged(filePath: string) {
+  info(`Checking if files have changed for ${filePath}`);
+
   if (!existsSync(filePath)) {
     verbose(`fileChanged expected to find a file at path: ${filePath}`);
     return true;

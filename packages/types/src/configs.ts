@@ -2,7 +2,7 @@ import { PlainObject } from "./common";
 
 export interface PathConfig {
   path: string;
-  workingDir: "current" | "source" | "package";
+  workingDir: "current" | "source" | "package" | "project";
 }
 
 export interface RawStylingConfig {

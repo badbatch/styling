@@ -1,11 +1,28 @@
 import { NodePath } from "@babel/core";
 import generator from "@babel/generator";
-import { ExportNamedDeclaration, ImportDeclaration, cloneNode, program } from "@babel/types";
+import {
+  ExportNamedDeclaration,
+  ImportDeclaration,
+  cloneNode,
+  importDeclaration,
+  program,
+  stringLiteral,
+} from "@babel/types";
 import fileChanged from "@styling/file-change";
-import { error, importSourceIsRelativePath, info, loadStylingConfig, setLevel, verbose } from "@styling/helpers";
+import {
+  error,
+  getFullOutputPath,
+  getPathFromConfig,
+  importSourceIsRelativePath,
+  info,
+  loadStylingConfig,
+  setLevel,
+  verbose,
+} from "@styling/helpers";
+import appRoot from "app-root-path";
 import { intersection } from "lodash";
-import { parse } from "path";
-import { FILENAME_REGEX } from "./constants";
+import { parse, relative } from "path";
+import { CSS_FILE_EXT, FILENAME_REGEX } from "./constants";
 import buildTransformedFile from "./helpers/build-transformed-file";
 import cacheTransformedFile from "./helpers/cache-transformed-file";
 import checkAndAwaitActiveBuild from "./helpers/check-and-await-active-build";
@@ -24,11 +41,6 @@ import { PluginResult, StylingPluginOptions } from "./types";
 
 // tslint:disable-next-line no-any
 export default function transformStylingFiles(babel: any, options: StylingPluginOptions = {}): PluginResult {
-  /**
-   * TODO: Add configuration for passing js output directory so
-   * we can automatically add an import for the css file.
-   */
-
   setLevel(options.logLevel);
   info("Entering transformStylingFiles");
 
@@ -41,10 +53,6 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
 
         const { cssOutputPath } = loadStylingConfig({ sourceFilename: filename });
 
-        /**
-         * TODO: Need way to kill child process if error happens
-         * in main thread, otherwise build will just hang.
-         */
         if (checkAndAwaitActiveBuild(filename)) {
           const file = retrieveCachedFile(filename);
           info("Replacing program");
@@ -58,10 +66,12 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
          * packages have been updated.
          */
         if (!fileChanged(filename) && hasTransformedFileInCache(filename)) {
+          info(`Files have not changed and transformed file in cache for ${filename}`);
           const file = retrieveCachedFile(filename);
 
           info(`Writing cached css to ${cssOutputPath}`);
           copyCachedCSS(filename, cssOutputPath);
+          updateActiveBuilds(filename);
 
           info("Replacing program");
           babelPath.replaceWith(file.program);
@@ -124,11 +134,22 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
           return;
         }
 
-        /**
-         * TODO: Add import for css file into imports to include.
-         * Output dir passed to babel cli does not seem to be available
-         * from within a plugin.
-         */
+        if (options.jsOutputPath) {
+          const fullJSFolderOutputPath = getFullOutputPath(
+            getPathFromConfig(options.jsOutputPath, appRoot.toString(), dir, process.cwd()),
+            dir,
+            { exclude: "src" },
+          );
+
+          const fullCSSOutputPath = getFullOutputPath(cssOutputPath, filename, {
+            exclude: "src",
+            extension: CSS_FILE_EXT,
+          });
+
+          importDeclarationsToInclude.push(
+            importDeclaration([], stringLiteral(relative(fullJSFolderOutputPath, fullCSSOutputPath))),
+          );
+        }
 
         verbose("Transforming styling file with named exports\n", namedExports);
         const transformedProgram = program(buildTransformedFile(namedExports, importDeclarationsToInclude, map));

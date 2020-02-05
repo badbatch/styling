@@ -2,8 +2,9 @@
 
 exports[`transformStylingFiles >> SHOULD generate the correct output for the correct files 1`] = `
 "import styling from \\"@styling/core\\";
-import BlackText from \\"path/to/app-root/text\\";
-import { BlueSubtext } from \\"path/to/app-root/subtext\\";
+import BlackText from \\"path/to/app-root/src/component/text\\";
+import { BlueSubtext } from \\"path/to/app-root/src/component/subtext\\";
+import \\"../../css/component/index.styling.css\\";
 export const Container = styling(\\"div\\", [\\"checked\\", \\"disabled\\"], [\\"checked\\", \\"disabled\\"], {
   \\"checked\\": \\"test-component__container--checked\\",
   \\"checked--disabled\\": \\"test-component__container--checked--disabled\\",

@@ -29,7 +29,7 @@ export default function buildClassNamesMapAndWriteCSS(
 
   info("Generating css from css objects");
   let css = buildCSSStringFromCSSObjects(propKeyComboCSS);
-  const fullOutputPath = getFullOutputPath(cssOutputPath, sourceFilename, CSS_FILE_EXT, "src");
+  const fullOutputPath = getFullOutputPath(cssOutputPath, sourceFilename, { exclude: "src", extension: CSS_FILE_EXT });
 
   if (existsSync(fullOutputPath)) {
     info("Merging new css into existing css");

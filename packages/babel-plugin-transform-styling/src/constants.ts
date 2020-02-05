@@ -24,3 +24,5 @@ export const IDENTIFIER = "Identifier" as const;
 export const STRING_LITERAL = "StringLiteral" as const;
 
 export const STYLED_FUNC_NAME = "styled" as const;
+
+export const WATCH_ACTIVE_BUILDS_SCRIPT_PATH = "/node_modules/@styling/babel-plugin-transform-styling/bin/watch-active-builds" as const;

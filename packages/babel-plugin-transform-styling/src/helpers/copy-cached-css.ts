@@ -4,7 +4,7 @@ import { CSS_FILE_EXT } from "../constants";
 
 export default function copyCachedCSS(filename: string, cssOutputPath: string) {
   outputFileSync(
-    getFullOutputPath(cssOutputPath, filename, CSS_FILE_EXT, "src"),
+    getFullOutputPath(cssOutputPath, filename, { exclude: "src", extension: CSS_FILE_EXT }),
     readFileSync(getCachedFilePath(`${filename}::stying`), { encoding: "utf8" }),
     { encoding: "utf8" },
   );
