@@ -1,3 +1,13 @@
+#### 0.0.48 (2020-02-05)
+
+##### New Features
+
+*  auto import css and fix watch bugs ([acbc22df](https://github.com/badbatch/styling/commit/acbc22dfd52e6075b18346b54e690d619f55ca43))
+
+##### Refactors
+
+*  change outputPath to cssOutputPath ([bb714d9b](https://github.com/badbatch/styling/commit/bb714d9bd21b8935c5e71a8911a1e4c5d23077f4))
+
 #### 0.0.47 (2020-01-30)
 
 ##### Bug Fixes
