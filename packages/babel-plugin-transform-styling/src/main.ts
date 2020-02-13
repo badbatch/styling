@@ -53,7 +53,7 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
 
         const { cssOutputPath } = loadStylingConfig({ sourceFilename: filename });
 
-        if (checkAndAwaitActiveBuild(filename)) {
+        if (checkAndAwaitActiveBuild(filename) && hasTransformedFileInCache(filename)) {
           const file = retrieveCachedFile(filename);
           info("Replacing program");
           babelPath.replaceWith(file.program);

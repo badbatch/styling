@@ -9,8 +9,6 @@ describe("styled", () => {
     color: ${p => (p.disabled ? "grey" : "blue")};
   `;
 
-  process.env.STYLING_WRITE_CSS = "true";
-
   const { propsToClassNamesMap } = styled("div", ["disabled", "checked"], "Container", "path/to/component/index.ts")`
     font-family: Arial;
     font-size: 16px;
