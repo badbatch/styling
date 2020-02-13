@@ -30,6 +30,12 @@ export default function evalStylingFile(code: string, sourceFilename: string) {
 
   try {
     require = require("esm")(module);
+
+    /**
+     * TODO: Throwing error when internal dependency has not been compiled
+     * and when css file in compiled internal dependency is required.
+     */
+
     output = require(tempOutputPath);
     removeFileAndEmptyFolders(tempOutputPath, stylingFolderPath);
   } catch (e) {

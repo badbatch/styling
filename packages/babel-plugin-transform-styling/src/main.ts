@@ -134,6 +134,11 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
           return;
         }
 
+        /**
+         * TODO: Fix issue with wrong relative path being generated
+         * in CI pipeline causing build to fail.
+         */
+
         if (options.jsOutputPath) {
           const fullJSFolderOutputPath = getFullOutputPath(
             getPathFromConfig(options.jsOutputPath, appRoot.toString(), dir, process.cwd()),

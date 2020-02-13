@@ -102,10 +102,6 @@ describe("transformStylingFiles >>", () => {
         [
           transformStylingFiles,
           {
-            jsOutputPath: {
-              path: "./lib/main",
-              workingDir: "project",
-            },
             logLevel: "error",
           },
         ],
