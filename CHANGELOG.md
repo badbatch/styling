@@ -1,3 +1,14 @@
+#### 0.0.49 (2020-02-13)
+
+##### Chores
+
+*  add todo ([833e8179](https://github.com/badbatch/styling/commit/833e81799770f245ce9abd9a8526189d2cb84fa6))
+
+##### Bug Fixes
+
+*  remove auto import css file test while bugs are fixed ([73c0dce4](https://github.com/badbatch/styling/commit/73c0dce41f1297e1b42d618034f5285f8cf988f7))
+*  issues related to watching active builds ([cf967273](https://github.com/badbatch/styling/commit/cf967273c9fe7180dec6eef182302a22044a5b73))
+
 #### 0.0.48 (2020-02-05)
 
 ##### New Features
