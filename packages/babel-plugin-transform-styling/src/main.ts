@@ -135,7 +135,7 @@ export default function transformStylingFiles(babel: any, options: StylingPlugin
         }
 
         /**
-         * TODO: Fix issue with wrong relative path being generated
+         * TODO: Fix issue with wrong relative path css being generated
          * in CI pipeline causing build to fail.
          */
 
