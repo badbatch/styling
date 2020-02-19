@@ -55,7 +55,7 @@ const sourceFile = `
 `;
 
 describe("transformStylingFiles >>", () => {
-  let result: BabelFileResult;
+  let result: BabelFileResult | null;
 
   beforeAll(() => {
     evalStylingFile._setMock({
@@ -115,6 +115,6 @@ describe("transformStylingFiles >>", () => {
   });
 
   it("SHOULD generate the correct output for the correct files", () => {
-    expect(replaceAppRoot(result.code)).toMatchSnapshot();
+    expect(replaceAppRoot((result as BabelFileResult).code as string)).toMatchSnapshot();
   });
 });
