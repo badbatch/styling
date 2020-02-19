@@ -14,7 +14,8 @@ export interface MockBuildTransformedFile {
 }
 
 export interface MockEvalStylingFile {
-  _setFile: (file: StylingExports) => void;
+  _getOriginal: () => string;
+  _setMock: (file: StylingExports) => void;
   default: (filename: string) => StylingExports;
 }
 

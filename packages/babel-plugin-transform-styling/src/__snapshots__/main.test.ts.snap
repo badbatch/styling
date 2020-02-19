@@ -25,3 +25,54 @@ export const Text = styling(BlackText, [\\"checked\\", \\"disabled\\"], [\\"chec
   \\"disabled\\": \\"test-component__text--disabled\\"
 });"
 `;
+
+exports[`transformStylingFiles >> SHOULD pass the correct code to evalStylingFile 1`] = `
+"let styled;
+
+try {
+
+    const require_0 = require(\\"@styling/core\\");
+    styled = require_0.styled
+  ;
+} catch {}
+
+let BlackText;
+
+try {
+
+    const require_1 = require(\\"/Users/dylanaubrey/Documents/workspaces/styling/src/component/text\\");
+    BlackText = require_1.default
+  ;
+} catch {}
+
+let BlueSubtext;
+
+try {
+
+    const require_2 = require(\\"/Users/dylanaubrey/Documents/workspaces/styling/src/component/subtext\\");
+    BlueSubtext = require_2.BlueSubtext
+  ;
+} catch {}
+
+let consts;
+
+try {
+
+    consts = require(\\"/Users/dylanaubrey/Documents/workspaces/styling/src/component/constants\\");
+  ;
+} catch {}
+
+export const foo = \\"bar\\";
+export const Container = styled(\\"div\\", [\\"checked\\", \\"disabled\\"], \\"Container\\", \\"/Users/dylanaubrey/Documents/workspaces/styling/src/component/index.styling.ts\\")\`
+    display: block;
+  \`;
+export const Radio = styled(\\"input\\", [\\"checked\\", \\"disabled\\"], \\"Radio\\", \\"/Users/dylanaubrey/Documents/workspaces/styling/src/component/index.styling.ts\\")\`
+    display: block;
+  \`;
+export const Text = styled(BlackText, [\\"checked\\", \\"disabled\\"], \\"Text\\", \\"/Users/dylanaubrey/Documents/workspaces/styling/src/component/index.styling.ts\\")\`
+    display: block;
+  \`;
+export const Subtext = styled(BlueSubtext, [\\"checked\\", \\"disabled\\"], \\"Subtext\\", \\"/Users/dylanaubrey/Documents/workspaces/styling/src/component/index.styling.ts\\")\`
+    display: block;
+  \`;"
+`;

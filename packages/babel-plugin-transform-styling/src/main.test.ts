@@ -1,4 +1,4 @@
-import { transform } from "@babel/core";
+import { BabelFileResult, transform } from "@babel/core";
 import replaceAppRoot from "./__tests__/helpers/replace-app-root";
 import transformStylingFiles from "./main";
 import { MockEvalStylingFile } from "./types";
@@ -17,45 +17,48 @@ jest.mock("@styling/helpers", () => ({
 jest.mock("./helpers/eval-styling-file");
 const evalStylingFile = require("./helpers/eval-styling-file") as MockEvalStylingFile;
 
+const sourceFile = `
+  import { styled } from "@styling/core";
+  import BlackText from "./text";
+  import { BlueSubtext } from "./subtext";
+  import * as consts from "./constants";
+
+  export const foo = "bar";
+
+  export const Container = styled(
+    "div",
+    ["checked", "disabled"],
+  )\`
+    display: block;
+  \`;
+
+  export const Radio = styled(
+    "input",
+    ["checked", "disabled"],
+  )\`
+    display: block;
+  \`;
+
+  export const Text = styled(
+    BlackText,
+    ["checked", "disabled"],
+  )\`
+    display: block;
+  \`;
+
+  export const Subtext = styled(
+    BlueSubtext,
+    ["checked", "disabled"],
+  )\`
+    display: block;
+  \`;
+`;
+
 describe("transformStylingFiles >>", () => {
-  const sourceFile = `
-    import { styled } from "@styling/core";
-    import BlackText from "./text";
-    import { BlueSubtext } from "./subtext";
+  let result: BabelFileResult;
 
-    export const foo = "bar";
-
-    export const Container = styled(
-      "div",
-      ["checked", "disabled"],
-    )\`
-      display: block;
-    \`;
-
-    export const Radio = styled(
-      "input",
-      ["checked", "disabled"],
-    )\`
-      display: block;
-    \`;
-
-    export const Text = styled(
-      BlackText,
-      ["checked", "disabled"],
-    )\`
-      display: block;
-    \`;
-
-    export const Subtext = styled(
-      BlueSubtext,
-      ["checked", "disabled"],
-    )\`
-      display: block;
-    \`;
-  `;
-
-  beforeEach(() => {
-    evalStylingFile._setFile({
+  beforeAll(() => {
+    evalStylingFile._setMock({
       Container: {
         propList: ["checked", "disabled"],
         propsToClassNamesMap: {
@@ -93,10 +96,8 @@ describe("transformStylingFiles >>", () => {
         relevantPropKeys: ["checked", "disabled"],
       },
     });
-  });
 
-  it("SHOULD generate the correct output for the correct files", () => {
-    const result = transform(sourceFile, {
+    result = transform(sourceFile, {
       filename: "src/component/index.styling.ts",
       plugins: [
         [
@@ -107,9 +108,13 @@ describe("transformStylingFiles >>", () => {
         ],
       ],
     });
+  });
 
-    if (result) {
-      expect(replaceAppRoot(result.code as string)).toMatchSnapshot();
-    }
+  it("SHOULD pass the correct code to evalStylingFile", () => {
+    expect(evalStylingFile._getOriginal()).toMatchSnapshot();
+  });
+
+  it("SHOULD generate the correct output for the correct files", () => {
+    expect(replaceAppRoot(result.code)).toMatchSnapshot();
   });
 });

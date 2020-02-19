@@ -3,16 +3,23 @@ import { MockEvalStylingFile, StylingExports } from "../../types";
 const mockModule = jest.genMockFromModule("../eval-styling-file") as MockEvalStylingFile;
 
 let mockFile: StylingExports;
+let originalFile: string;
 
-function _setFile(file: StylingExports) {
+function _getOriginal() {
+  return originalFile;
+}
+
+function _setMock(file: StylingExports) {
   mockFile = file;
 }
 
-function evalStylingFile(filename: string) {
+function evalStylingFile(file: string) {
+  originalFile = file;
   return mockFile;
 }
 
-mockModule._setFile = _setFile;
+mockModule._getOriginal = _getOriginal;
+mockModule._setMock = _setMock;
 mockModule.default = evalStylingFile;
 
 module.exports = mockModule;
