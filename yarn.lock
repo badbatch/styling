@@ -2083,10 +2083,10 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@repodog/babel-config@^0.3.28":
-  version "0.3.28"
-  resolved "https://registry.yarnpkg.com/@repodog/babel-config/-/babel-config-0.3.28.tgz#bc7990951565ce3ab503c9bbbee24a5168e8b07d"
-  integrity sha512-zCIFXdvWz2CFNYTVEJND/nQDrgEC+frEvF23uvyhdttmfZA1SFBmGhdW0xHCyw/yZSz1w+GCTxszdwlsNVJhkA==
+"@repodog/babel-config@^0.3.30":
+  version "0.3.30"
+  resolved "https://registry.yarnpkg.com/@repodog/babel-config/-/babel-config-0.3.30.tgz#4908ec837f2f9473c01c214594b71c380e3ded0e"
+  integrity sha512-HPjfnxVzEGSTik6SPpt8PFZEwhLpXNYMIU2fOJEqzJUbVYIazV+8PIbDaYHJReY6+amGZz55YWyQPN8pOboH1g==
 
 "@repodog/build-references@^0.3.26":
   version "0.3.26"
@@ -2131,10 +2131,10 @@
     sort-package-json "^1.23.1"
     validate-npm-package-name "^3.0.0"
 
-"@repodog/jest-config@^0.3.29":
-  version "0.3.29"
-  resolved "https://registry.yarnpkg.com/@repodog/jest-config/-/jest-config-0.3.29.tgz#c9519e2f3c696c08b8b6bb369fbf7ab2763625ea"
-  integrity sha512-9brU1w8dkvRoEE/3bcnvtxGEegdafHf5nvt4n9ctPySFmVtyWEfgTOtwP2LWPYFPSyr/2TiNEGzvjTNs84VVmw==
+"@repodog/jest-config@^0.3.30":
+  version "0.3.30"
+  resolved "https://registry.yarnpkg.com/@repodog/jest-config/-/jest-config-0.3.30.tgz#78cf5fbff33d3c417211ec60c4663639a1ca3889"
+  integrity sha512-57qly+N+OCzUAOBvA3TRWVLpclSSCwBkh+7EikR858GwV4pjrso2eFbEPtFes0tcK5rTD9edibgH7pejxl8Rnw==
 
 "@repodog/lerna-config@^0.3.23":
   version "0.3.23"
@@ -2178,20 +2178,20 @@
   resolved "https://registry.yarnpkg.com/@repodog/prettier-config/-/prettier-config-0.3.24.tgz#0bc8a39159855d8979be5cd56b50078502950c64"
   integrity sha512-itGDgPopPDNnUJ5jUxSElh8Pg3Kc+6o6zsNtj69oNqWRNG209Be0OJKGCGTe7Rk45gHz1zQqvPU03yL/MXpKxw==
 
-"@repodog/rollup-config@^0.3.25":
-  version "0.3.25"
-  resolved "https://registry.yarnpkg.com/@repodog/rollup-config/-/rollup-config-0.3.25.tgz#063609ad356b5d3d4bd1dac112ade5544d8c5321"
-  integrity sha512-1F4iLSnRlKc7w5/FkweqAVClTKFm6imyVBZ8AeDWF6vzu+/DRxWiZDdqYJMKMQ5Jr22SttBKqmufADVVUdLYiw==
+"@repodog/rollup-config@^0.3.27":
+  version "0.3.27"
+  resolved "https://registry.yarnpkg.com/@repodog/rollup-config/-/rollup-config-0.3.27.tgz#928a78953dd00f4a2991f5eb05c091a3af13cb6f"
+  integrity sha512-cpbEf+Se+K9z9wT0dzVpdr0H0Jp/Ka2vk6dxYMQT+Ij3A8/uEWL066msuKBFD4lE2GMF5grmKIgl+xIBchMXOQ==
 
 "@repodog/ts-config@^0.3.23":
   version "0.3.23"
   resolved "https://registry.yarnpkg.com/@repodog/ts-config/-/ts-config-0.3.23.tgz#936cd6f7cfcc50442bec58e7c8103418e0b080de"
   integrity sha512-TMASFB+8cXYWNozu0CqcGyI9jt7SMst711DSX2ZjAvnOKFN/G+V5XtHAABSviuNke0yDgK+aepPBWKSPoUNeng==
 
-"@repodog/tslint-config@^0.3.24":
-  version "0.3.24"
-  resolved "https://registry.yarnpkg.com/@repodog/tslint-config/-/tslint-config-0.3.24.tgz#9e9aa5ed1804cee86159204f640547adc1bcd5aa"
-  integrity sha512-tadJImnYhrwIhT762eKVGHTioZON3t2Ba7WvQotE7yJcj2dASCyx/d6S8jUocND/xHh71BayV+iQaf3HNZOkvQ==
+"@repodog/tslint-config@^0.3.25":
+  version "0.3.25"
+  resolved "https://registry.yarnpkg.com/@repodog/tslint-config/-/tslint-config-0.3.25.tgz#abcba474a76859d0162482cfaa84cb2db1d0e7fd"
+  integrity sha512-UpRBxjHfubtUxdBlTG+C19MUVgH/Nok471pIVorWV8zdHZjoAhwSTCG40IS/XcFN0CI42LyqmN1tHrzf3PIwlg==
 
 "@repodog/types@^0.3.25":
   version "0.3.25"
