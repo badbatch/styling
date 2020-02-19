@@ -1,3 +1,12 @@
+#### 0.0.50 (2020-02-19)
+
+##### Bug Fixes
+
+*  upgrade dependencies ([69738c35](https://github.com/badbatch/styling/commit/69738c35fd8df6a7f252f987fa082fc50be434e4))
+*  comment out unit test and upgrade jest config ([53b3a31d](https://github.com/badbatch/styling/commit/53b3a31de99a6156dd012f12e1b45874a1ff2b51))
+*  type error ([d14f6756](https://github.com/badbatch/styling/commit/d14f6756160e1e3d629959deeaa278f2c7c5194f))
+*  module not found error during compilation ([d08fcd04](https://github.com/badbatch/styling/commit/d08fcd04e9ea7a4830aadbaec92b0618647f4b0b))
+
 #### 0.0.49 (2020-02-13)
 
 ##### Chores
