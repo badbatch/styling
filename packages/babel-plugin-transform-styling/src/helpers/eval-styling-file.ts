@@ -35,6 +35,11 @@ export default function evalStylingFile(code: string, sourceFilename: string, ad
       require.extensions[".css"] = () => {}; // tslint:disable-line no-empty
     }
 
+    /**
+     * TODO: Look at webpack hot module reloading does not
+     * seem to rebuild css on occasion.
+     */
+
     output = require(tempOutputPath);
     removeFileAndEmptyFolders(tempOutputPath, stylingFolderPath);
   } catch (e) {

@@ -76,12 +76,22 @@ export default function transformStylingFiles(
         const importDeclarationsToInclude = transformImportDeclarations(babelPath, identifiers, filename);
 
         info("Evaluating styling file");
-        const namedExports = evalStylingFile(generator(babelPath.node).code, filename, !!addCSSImportToJSOutput);
+
+        const namedExports = evalStylingFile(
+          generator(babelPath.node).code,
+          filename,
+          !!addCSSImportToJSOutput.jsOutputPath,
+        );
 
         if (!namedExports) {
           error("Invalid evalStylingFile output");
           return;
         }
+
+        /**
+         * TODO: Look at why webpack is resolving relative
+         * path to src directory rather than lib.
+         */
 
         if (addCSSImportToJSOutput.jsOutputPath) {
           addCSSFileToImportDeclarations(
