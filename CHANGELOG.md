@@ -1,3 +1,15 @@
+#### 0.0.51 (2020-02-20)
+
+##### Chores
+
+*  add more todos ([991df2e5](https://github.com/badbatch/styling/commit/991df2e59cd3afe01d021293389fb507c950d594))
+* **deps-dev:**  bump codecov from 3.6.1 to 3.6.5 ([f31db599](https://github.com/badbatch/styling/commit/f31db599bf672c56cc3651714525d55f798fd6d7))
+
+##### Bug Fixes
+
+*  linting error ([9b829a68](https://github.com/badbatch/styling/commit/9b829a68e382acb2b52612ea9e2694f6d5b615db))
+*  mock css file imports to stop node crashing ([fe151ed8](https://github.com/badbatch/styling/commit/fe151ed87906824debf3f533f1a696892bf62e3c))
+
 #### 0.0.50 (2020-02-19)
 
 ##### Bug Fixes
