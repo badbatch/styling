@@ -23,6 +23,7 @@ export default function getFullOutputPath(
   /**
    * TODO: Need to defensively code against no match.
    */
+
   let match = (dir.match(new RegExp(`^${sharedPath}(.+)$`)) as RegExpMatchArray)[1];
 
   if (exclude && match.startsWith(exclude)) {

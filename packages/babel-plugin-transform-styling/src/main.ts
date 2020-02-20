@@ -21,7 +21,7 @@ import { PluginResult, StylingPluginOptions } from "./types";
 
 export default function transformStylingFiles(
   babel: any, // tslint:disable-line no-any
-  { logLevel, jsOutputPath }: StylingPluginOptions = {},
+  { addCSSImportToJSOutput = {}, logLevel }: StylingPluginOptions = {},
 ): PluginResult {
   setLevel(logLevel);
   info("Entering transformStylingFiles");
@@ -76,15 +76,20 @@ export default function transformStylingFiles(
         const importDeclarationsToInclude = transformImportDeclarations(babelPath, identifiers, filename);
 
         info("Evaluating styling file");
-        const namedExports = evalStylingFile(generator(babelPath.node).code, filename);
+        const namedExports = evalStylingFile(generator(babelPath.node).code, filename, !!addCSSImportToJSOutput);
 
         if (!namedExports) {
           error("Invalid evalStylingFile output");
           return;
         }
 
-        if (jsOutputPath) {
-          addCSSFileToImportDeclarations(importDeclarationsToInclude, filename, cssOutputPath, jsOutputPath);
+        if (addCSSImportToJSOutput.jsOutputPath) {
+          addCSSFileToImportDeclarations(
+            importDeclarationsToInclude,
+            filename,
+            cssOutputPath,
+            addCSSImportToJSOutput.jsOutputPath,
+          );
         }
 
         verbose("Transforming styling file with named exports\n", namedExports);

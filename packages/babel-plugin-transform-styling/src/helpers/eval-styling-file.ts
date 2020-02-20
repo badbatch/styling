@@ -5,7 +5,7 @@ import { CSS_FILE_EXT, JS_FILE_EXT, TEMP_FILES_FOLDER_NAME } from "../constants"
 import { StylingExports } from "../types";
 import removeFileAndEmptyFolders from "./remove-file-and-empty-folders";
 
-export default function evalStylingFile(code: string, sourceFilename: string) {
+export default function evalStylingFile(code: string, sourceFilename: string, addCSSImportToJSOutput: boolean) {
   const { cssOutputPath } = loadStylingConfig({ sourceFilename });
 
   const cssDistOutputPath = getFullOutputPath(cssOutputPath, sourceFilename, {
@@ -31,9 +31,9 @@ export default function evalStylingFile(code: string, sourceFilename: string) {
   try {
     require = require("esm")(module);
 
-    /**
-     * TODO: Mock CSS requires.
-     */
+    if (addCSSImportToJSOutput) {
+      require.extensions[".css"] = () => {}; // tslint:disable-line no-empty
+    }
 
     output = require(tempOutputPath);
     removeFileAndEmptyFolders(tempOutputPath, stylingFolderPath);

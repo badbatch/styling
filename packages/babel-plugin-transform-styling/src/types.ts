@@ -42,6 +42,8 @@ export interface StylingExports {
 }
 
 export interface StylingPluginOptions {
-  jsOutputPath?: string | PathConfig;
+  addCSSImportToJSOutput?: {
+    jsOutputPath?: string | PathConfig;
+  };
   logLevel?: "error" | "warn" | "info";
 }
