@@ -44,7 +44,7 @@ describe("evalStylingFile", () => {
       };
     `;
 
-    const output = evalStylingFile(sourceFile, `${__dirname}/index.js`);
+    const output = evalStylingFile(sourceFile, `${__dirname}/index.js`, false);
 
     expect(output).toEqual({
       Container: {
