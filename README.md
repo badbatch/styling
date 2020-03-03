@@ -4,6 +4,8 @@
 
 A zero-runtime CSS-in-JS library that extracts css into stylesheets at compile time.
 
+**This package is still very experimental and users will likely encounter bugs.**
+
 [![Build Status](https://travis-ci.com/badbatch/styling.svg?branch=master)](https://travis-ci.com/badbatch/styling)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![codecov](https://codecov.io/gh/badbatch/styling/branch/master/graph/badge.svg)](https://codecov.io/gh/badbatch/styling)

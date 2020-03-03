@@ -38,10 +38,10 @@
     "murmurhash": "^0.0.2"
   },
   "peerDependencies": {
-    "@babel/runtime": "^7.0.0",
-    "@styling/types": "> 1.0",
-    "core-js": "> 4.0",
-    "lodash": "^4.17.5"
+    "@babel/runtime": "< 8",
+    "@styling/types": "< 1",
+    "core-js": "< 4",
+    "lodash": "< 5"
   },
   "publishConfig": {
     "access": "public"

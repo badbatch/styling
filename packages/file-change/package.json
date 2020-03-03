@@ -36,17 +36,17 @@
     "glob": "^7.1.6"
   },
   "peerDependencies": {
-    "@babel/runtime": "^7.0.0",
-    "@styling/helpers": "> 1.0",
-    "@styling/types": "> 1.0",
-    "core-js": "> 4.0",
-    "lodash": "^4.17.5"
+    "@babel/runtime": "< 8",
+    "@styling/helpers": "< 1",
+    "@styling/types": "< 1",
+    "core-js": "< 4",
+    "lodash": "< 5"
   },
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
-    "@types/fs-extra": "^8.0.1",
+    "@types/fs-extra": "^8.1.0",
     "@types/glob": "^7.1.1"
   }
 }

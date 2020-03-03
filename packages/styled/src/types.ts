@@ -11,4 +11,4 @@ export type PropKeyComboCSSEntry = [
 
 export type PropKeyComboCSS = PropKeyComboCSSEntry[];
 
-export type PropListExact<P extends {}> = Array<keyof P | [keyof P, string[]] | [keyof P, string | number]>;
+export type PropListExact<P extends {}> = (keyof P | [keyof P, string[]] | [keyof P, string | number])[];

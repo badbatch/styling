@@ -6,7 +6,7 @@ export default function buildImportTryCatchRequire(declarationPath: NodePath<Imp
   const sourceValue = declarationPath.get("source").node.value;
   const specifierPaths = declarationPath.get("specifiers");
   const variableDeclarations: string[] = [];
-  const variableAssignments: Array<[string, string]> = [];
+  const variableAssignments: [string, string][] = [];
   let isNamespaced = false;
 
   specifierPaths.forEach(specifierPath => {
@@ -44,7 +44,7 @@ function buildNamespacedRequire(variableDeclarations: string[], sourceValue: str
 }
 
 function buildRequireWithVariableAssignments(
-  variableAssignments: Array<[string, string]>,
+  variableAssignments: [string, string][],
   sourceValue: string,
   index: number,
 ) {

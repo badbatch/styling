@@ -3,7 +3,7 @@ import { isArray, isBoolean, isString } from "lodash";
 import getMatchingPropFromList from "./get-matching-prop-from-list";
 
 export default function filterRelevantPropList(propList: PropList, relevantPropKeys: string[], props: PlainObject) {
-  const filteredPropList: Array<string | [string, string[]]> = [];
+  const filteredPropList: (string | [string, string[]])[] = [];
 
   Object.keys(props).forEach(key => {
     const matchingProp = getMatchingPropFromList(key, propList, relevantPropKeys);

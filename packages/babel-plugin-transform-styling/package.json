@@ -36,9 +36,9 @@
     "compile:types": "tsc --build"
   },
   "dependencies": {
-    "@babel/template": "^7.7.4",
-    "@babel/traverse": "^7.7.4",
-    "@babel/types": "^7.7.4",
+    "@babel/template": "^7.8.6",
+    "@babel/traverse": "^7.8.6",
+    "@babel/types": "^7.8.6",
     "app-root-path": "^3.0.0",
     "esm": "^3.2.25",
     "fs-extra": "^8.1.0",
@@ -46,21 +46,21 @@
     "yargs": "^15.1.0"
   },
   "peerDependencies": {
-    "@babel/runtime": "^7.0.0",
-    "@styling/file-change": "> 1.0",
-    "@styling/helpers": "> 1.0",
-    "@styling/types": "> 1.0",
-    "core-js": "> 4.0",
-    "lodash": "^4.17.5",
-    "react": "^16.8"
+    "@babel/runtime": "< 8",
+    "@styling/file-change": "< 1",
+    "@styling/helpers": "< 1",
+    "@styling/types": "< 1",
+    "core-js": "< 4",
+    "lodash": "< 5",
+    "react": "< 17"
   },
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
     "@types/app-root-path": "^1.2.4",
-    "@types/fs-extra": "^8.0.1",
+    "@types/fs-extra": "^8.1.0",
     "@types/murmurhash": "^0.0.1",
-    "@types/yargs": "^15.0.1"
+    "@types/yargs": "^15.0.4"
   }
 }

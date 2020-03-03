@@ -1,7 +1,6 @@
 {
   "extends": "@repodog/tslint-config",
   "rules": {
-    "no-submodule-imports": [true, "ts-jest/utils", "uuid/v4"],
-    "no-shadowed-variable": [true, { "temporalDeadZone": false }]
+    "no-submodule-imports": [true, "ts-jest/utils", "uuid/v4"]
   }
 }

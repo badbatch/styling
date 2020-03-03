@@ -20,7 +20,7 @@ import updateActiveBuilds from "./helpers/update-active-builds";
 import { PluginResult, StylingPluginOptions } from "./types";
 
 export default function transformStylingFiles(
-  babel: any, // tslint:disable-line no-any
+  _babel: any, // tslint:disable-line no-any
   { addCSSImportToJSOutput = {}, logLevel }: StylingPluginOptions = {},
 ): PluginResult {
   setLevel(logLevel);
@@ -66,7 +66,7 @@ export default function transformStylingFiles(
 
         const exportDeclarations = (babelPath
           .get("body")
-          .filter(node => node.isExportNamedDeclaration()) as unknown) as Array<NodePath<ExportNamedDeclaration>>;
+          .filter(node => node.isExportNamedDeclaration()) as unknown) as NodePath<ExportNamedDeclaration>[];
 
         info("Setting identifier in exports args");
         setMetadataInExportsArgs(exportDeclarations, filename);

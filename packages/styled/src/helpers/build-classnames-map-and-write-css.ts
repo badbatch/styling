@@ -49,7 +49,7 @@ export default function buildClassNamesMapAndWriteCSS(
       map[key] = selector;
       return map;
     }, {}),
-    relevantPropKeys: propKeyComboCSS.reduce((set, [key, { keyCombo }]) => {
+    relevantPropKeys: propKeyComboCSS.reduce((set, [_key, { keyCombo }]) => {
       return [...new Set([...set, ...keyCombo])];
     }, [] as string[]),
   };

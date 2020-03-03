@@ -11,7 +11,7 @@ import { info } from "@styling/helpers";
 import { STYLED_FUNC_NAME } from "../constants";
 
 export default function setMetadataInExportsArgs(
-  exportDeclarations: Array<NodePath<ExportNamedDeclaration>>,
+  exportDeclarations: NodePath<ExportNamedDeclaration>[],
   filename: string,
 ) {
   info("Iterating export declarations");

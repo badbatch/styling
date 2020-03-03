@@ -3,7 +3,7 @@ import { CallExpression, ExportNamedDeclaration, Identifier, VariableDeclaration
 import { IDENTIFIER, STRING_LITERAL, STYLED_FUNC_NAME } from "../constants";
 import { ExportsArgsResult } from "../types";
 
-export default function getExportsComponentArgs(exportDeclarations: Array<NodePath<ExportNamedDeclaration>>) {
+export default function getExportsComponentArgs(exportDeclarations: NodePath<ExportNamedDeclaration>[]) {
   return exportDeclarations.reduce(
     (args: ExportsArgsResult, declaration) => {
       const variableDeclaratorPath = (declaration.get("declaration") as NodePath<VariableDeclaration>).get(

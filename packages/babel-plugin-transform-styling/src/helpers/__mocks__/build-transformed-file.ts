@@ -8,7 +8,7 @@ function _setFile(file: string) {
   mockFile = file;
 }
 
-function buildTransformedFile(namedExports: StylingExports) {
+function buildTransformedFile(_namedExports: StylingExports) {
   return mockFile;
 }
 

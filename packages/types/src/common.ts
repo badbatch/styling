@@ -18,10 +18,10 @@ export interface Metadata {
   sourceFilename: string;
 }
 
-export type EnumPropList = Array<[string, string[]]>;
+export type EnumPropList = [string, string[]][];
 
-export type CSSVariablePropList = Array<[string, (string | number)?]>;
+export type CSSVariablePropList = [string, (string | number)?][];
 
-export type PropListWithoutCSSVariables = Array<string | [string, string[]]>;
+export type PropListWithoutCSSVariables = (string | [string, string[]])[];
 
-export type PropList = Array<string | [string, string[]] | [string, (string | number)?]>;
+export type PropList = (string | [string, string[]] | [string, (string | number)?])[];
