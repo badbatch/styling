@@ -1,3 +1,9 @@
+#### 0.0.52 (2020-03-03)
+
+##### Chores
+
+*  upgrade dependencies and sort peer versions ([e13b80bc](https://github.com/badbatch/styling/commit/e13b80bc9693159ec4856b55771dbfb9e9a1ef19))
+
 #### 0.0.51 (2020-02-20)
 
 ##### Chores
